@@ -1,0 +1,10 @@
+# vim: filetype=sh
+alias h="cd ~/ && ls"
+alias d="cd ~/documents && ls"
+alias j="cd ~/junk && ls"
+alias m="cd ~/audio/music && ls"
+alias p="cd ~/images && ls"
+alias vd="cd ~/video && ls"
+alias con="cd $HOME/.config && ls"
+alias cac="cd $HOME/.cache && ls"
+alias sc="cd ~/.local/bin && ls"

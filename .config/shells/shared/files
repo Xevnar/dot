@@ -1,0 +1,13 @@
+# Syntax highlighting
+# vim: filetype=sh
+
+# Shortcuts to files I edit regularly
+alias zsrc="$EDITOR $ZDOTDIR/.zshrc"
+alias zdir="$EDITOR $ZDOTDIR/nameddir"
+alias bsrc="$EDITOR $BDOTDIR/.bashrc"
+alias bdir="$EDITOR $BDOTDIR/nameddir"
+alias alrc="$EDITOR $HOME/.config/shells/shared/aliases"
+alias firc="$EDITOR $HOME/.config/shells/shared/files"
+alias hkrc="$EDITOR $HOME/.config/sxhkd/sxhkdrc"
+alias bwrc="$EDITOR $HOME/.config/bspwm/bspwmrc"
+alias virc="$EDITOR $HOME/.config/nvim/init.vim"

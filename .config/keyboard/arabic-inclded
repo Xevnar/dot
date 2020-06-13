@@ -1,0 +1,402 @@
+
+xkb_keymap {
+  default xkb_keycodes "lenovo-personal" {
+	minimum = 8;
+	maximum = 255;
+
+	//Function Row
+	<FK01> = 9;
+	<FK02> = 67;
+	<FK03> = 68;
+	<FK04> = 69;
+	<FK05> = 70;
+	<FK06> = 71;
+	<FK07> = 72;
+	<FK08> = 73;
+	<FK09> = 74;
+	<FK10> = 75;
+	<FK11> = 76;
+	<FK12> = 95;
+	<FK13> = 96;
+	<FK14> = 107;
+	<FK15> = 118;
+	<FK16> = 119;
+	
+	//Fn modified function keys excluding F5, F9 & F10
+	//Keycodes 200 & 201 are both F6
+	<FK17> = 121;
+	<FK18> = 122;
+	<FK19> = 123;
+	<FK20> = 198;
+	<FK21> = 200;
+	<FK22> = 201;
+	<FK23> = 255;
+	<FK24> = 220;
+	<FK25> = 232;
+	<FK26> = 233;
+
+	//Number Row
+	<AA01> = 49;
+	<AA02> = 10;
+	<AA03> = 11;
+	<AA04> = 12;
+	<AA05> = 13;
+	<AA06> = 14;
+	<AA07> = 15;
+	<AA08> = 16;
+	<AA09> = 17;
+	<AA10> = 18;
+	<AA11> = 19;
+	<AA12> = 20;
+	<AA13> = 21;
+	<AA14> = 22;
+
+	//Top Row
+	<AB01> = 23;
+	<AB02> = 24;
+	<AB03> = 25;
+	<AB04> = 26;
+	<AB05> = 27;
+	<AB06> = 28;
+	<AB07> = 29;
+	<AB08> = 30;
+	<AB09> = 31;
+	<AB10> = 32;
+	<AB11> = 33;
+	<AB12> = 34;
+	<AB13> = 35;
+	<AB14> = 51;
+
+	//Home Row
+	<AC01> = 66;
+	<AC02> = 38;
+	<AC03> = 39;
+	<AC04> = 40;
+	<AC05> = 41;
+	<AC06> = 42;
+	<AC07> = 43;
+	<AC08> = 44;
+	<AC09> = 45;
+	<AC10> = 46;
+	<AC11> = 47;
+	<AC12> = 48;
+	<AC13> = 36;
+
+	//Bottom Row
+	<AD01> = 50;
+	<AD02> = 52;
+	<AD03> = 53;
+	<AD04> = 54;
+	<AD05> = 55;
+	<AD06> = 56;
+	<AD07> = 57;
+	<AD08> = 58;
+	<AD09> = 59;
+	<AD10> = 60;
+	<AD11> = 61;
+	<AD12> = 62;
+
+	//Control Row
+	<CT01> = 37;
+	<CT02> = 133;
+	<CT03> = 64;
+	<CT04> = 65;
+	<CT05> = 108;
+	<CT06> = 105;
+	//Arrow keys
+	<CT07> = 113;
+	<CT08> = 111;
+	<CT09> = 116;
+	<CT10> = 114;
+	//Arrow keys + Fn
+	<CT11> = 110;
+	<CT12> = 112;
+	<CT13> = 117;
+	<CT14> = 115;
+       
+        // Delete has it's own keycode outside the keyboard to
+        // fully utilise all the keys on the keyboard
+        <FDEL> = 250;
+
+        indicator 1 = "Latch";
+  };
+
+
+  xkb_types "complete" {
+
+     virtual_modifiers Alt,Meta,Super,Hyper;
+
+     type "ONE_LEVEL" {
+         modifiers= none;
+         level_name[Level1]= "Any";
+     };
+  
+     type "TWO_LEVEL" {
+         modifiers= Shift;
+         map[Shift]= Level2;
+         level_name[Level1]= "Base";
+         level_name[Level2]= "Shift";
+     };
+  
+     type "ALPHABETIC" {
+         modifiers= Shift+Lock;
+         map[Shift]= Level2;
+         map[Lock]= Level2;
+         level_name[Level1]= "Base";
+         level_name[Level2]= "Caps";
+     };
+     
+     type "THREE_LEVEL" {
+         modifiers= Shift+Mod3;
+         map[Shift]= Level2;
+         map[Mod3]= Level3;
+         map[Shift+Mod3]= Level3;
+         level_name[Level1]= "Base";
+         level_name[Level2]= "Shift";
+         level_name[Level3]= "Num";
+     };
+
+     type "FOUR_LEVEL" {
+         modifiers= Shift+Mod3+Mod4;
+         map[Shift]= Level2;
+         map[Mod3]= Level3;
+         map[Mod4]= Level4;
+         map[Shift+Mod4]= Level4;
+         level_name[Level1]= "Base";
+         level_name[Level2]= "Shift";
+         level_name[Level3]= "Num";
+         level_name[Level4]= "Shift Num";
+     };
+  };
+
+
+  xkb_compatibility "complete" {
+
+     virtual_modifiers Alt,Meta,Super,Hyper;
+
+     interpret.useModMapMods= AnyLevel;
+     interpret.repeat= False;
+     interpret.locking= False;
+
+     interpret Shift_L+AnyOf(all) {
+        action= LatchMods(modifiers= Shift, clearLocks, latchToLock);
+     };
+    
+     interpret Shift_L+AnyOfOrNone(all) {
+         action= LatchMods(modifiers= Shift, clearLocks, latchToLock);
+     };
+    
+     interpret Meta_R+AnyOf(all) {
+         virtualModifier= Meta;
+         action= LatchMods(modifiers= modMapMods, clearLocks, latchToLock);
+     };
+    
+     interpret Meta_R+AnyOfOrNone(all) {
+         action= LatchMods(modifiers= Meta, clearLocks, latchToLock);
+     };
+    
+     interpret Hyper_R+AnyOf(all) {
+         virtualModifier= Meta;
+         action= LatchMods(modifiers= modMapMods, clearLocks, latchToLock);
+     };
+    
+     interpret Hyper_R+AnyOfOrNone(all) {
+         action= LatchMods(modifiers= Hyper, clearLocks, latchToLock);
+     };
+    
+     interpret Super_L+AnyOf(all) {
+         virtualModifier= Super;
+         action= LatchMods(modifiers= modMapMods, clearLocks, latchToLock);
+     };
+    
+     interpret Super_L+AnyOfOrNone(all) {
+         action= LatchMods(modifiers= Super, clearLocks, latchToLock);
+     };
+    
+     interpret Alt_L+AnyOf(all) {
+         virtualModifier= Alt;
+         action= SetMods(modifiers=modMapMods,clearLocks);
+     };
+    
+     interpret Alt_L+AnyOfOrNone(all) {
+         action= SetMods(modifiers=Alt,clearLocks);
+     };
+    
+     interpret Alt_R+AnyOf(all) {
+         virtualModifier= Alt;
+         action= SetMods(modifiers=modMapMods,clearLocks);
+     };
+    
+     interpret Alt_R+AnyOfOrNone(all) {
+         action= SetMods(modifiers=Alt,clearLocks);
+     };
+    
+     interpret Any+AnyOf(all) {
+         action= SetMods(modifiers=modMapMods,clearLocks);
+     };
+
+     interpret BackSpace{
+         repeat= True;
+     };
+
+     // Do this to fix the shift + delete issue
+     interpret dead_grave{
+         repeat= True;
+         action= RedirectKey(keycode= <FDEL>, clearmodifiers= Shift);
+     };
+     
+     indicator "Latch" {
+         !allowExplicit;
+         modifiers= Shift+Mod2+Mod3+Mod4;
+     };
+  };
+
+
+  partial alphanumeric_keys
+  xkb_symbols "lenovo.personal"{
+
+     name[group1]= "Custom";
+
+     //Function Row
+     key.type = "ONE_LEVEL";
+     key <FK01> { [      F1 ] };
+     key <FK02> { [      F2 ] };
+     key <FK03> { [      F3 ] };
+     key <FK04> { [      F4 ] };
+     key <FK05> { [      F5 ] };
+     key <FK06> { [      F6 ] };
+     key <FK07> { [      F7 ] };
+     key <FK08> { [      F8 ] };
+     key <FK09> { [      F9 ] };
+     key <FK10> { [     F10 ] };
+     key <FK11> { [     F11 ] };
+     key <FK12> { [     F12 ] };
+     key <FK13> { [     F13 ] };
+     key <FK14> { [     F14 ] };
+     key <FK15> { [     F15 ] };
+     key <FK16> { [ Hyper_R ], virtualMods= Hyper };
+     
+     ////Fn Modified function keys excluding F5, F9 & F10
+     ////Keycodes 200 & 201 are both F6
+     key.type = "ONE_LEVEL";
+     key <FK17> { [     F17 ] };
+     key <FK18> { [     F18 ] };
+     key <FK19> { [     F19 ] };
+     key <FK20> { [     F20 ] };
+     key <FK21> { [     F21 ] };
+     key <FK22> { [     F22 ] };
+     key <FK23> { [     F23 ] };
+     key <FK24> { [     F24 ] };
+     key <FK25> { [     F25 ] };
+     key <FK26> { [     F26 ] };
+
+
+     //Symbol Row
+     key.type = "ONE_LEVEL";
+     key <AA01> { [   asciitilde ] };
+     key <AA02> { [       dollar ] };
+     key <AA03> { [  bracketleft ] };
+     key <AA04> { [    braceleft ] };
+     key <AA05> { [   braceright ] };
+     key <AA06> { [    parenleft ] };
+     key <AA07> { [        equal ] };
+     key <AA08> { [     asterisk ] };
+     key <AA09> { [   parenright ] };
+     key <AA10> { [         plus ] };
+     key <AA11> { [ bracketright ] };
+     key <AA12> { [       exclam ] };
+     key <AA13> { [   numbersign ] };
+     key <AA14> { [      percent ] };
+  
+     //Top Row
+     key.type = "ONE_LEVEL";
+     key <AB01> { [        Tab ] };
+     key.type = "FOUR_LEVEL";
+     key <AB02> { [  semicolon,       colon,   asterisk, Arabic_kaf ] };
+     key <AB03> { [      comma,        less,          1, Arabic_waw ] };
+     key <AB04> { [     period,     greater,          2, Arabic_zain ] };
+     key <AB05> { [          p,           P,          3, Arabic_hah ] };
+     key <AB06> { [          y,           Y,       plus, Arabic_ghain ] };
+     key <AB07> { [          f,           F,       less, Arabic_beh ] };
+     key <AB08> { [          g,           G,          A, Arabic_lam ] };
+     key <AB09> { [          c,           C,          B, Arabic_hamzaonwaw ] };
+     key <AB10> { [          r,           R,          C, Arabic_qaf ] };
+     key <AB11> { [          l,           L,        bar, Arabic_meem ] };
+     key <AB12> { [      slash,    question, VoidSymbol, Arabic_hamzaonyeh ] };
+     key <AB13> { [         at, asciicircum, VoidSymbol, Arabic_dal ] };
+     key.type = "TWO_LEVEL";
+     key <AB14> { [  backslash,         bar ] };
+
+     //Home Row
+     key.type = "TWO_LEVEL";
+     key <AC01> { [  BackSpace,  dead_grave ] };
+     key.type = "FOUR_LEVEL";
+     key <AC02> { [          a,           A,          0, Arabic_sheen ] };
+     key <AC03> { [          o,           O,          4, Arabic_khah ] };
+     key <AC04> { [          e,           E,          5, Arabic_theh ] };
+     key <AC05> { [          u,           U,          6, Arabic_ain ] };
+     key <AC06> { [          i,           I,     period, Arabic_ha ] };
+     key <AC07> { [          d,           D,      equal, Arabic_yeh ] };
+     key <AC08> { [          h,           H,          D, Arabic_alef ] };
+     key <AC09> { [          t,           T,          E, Arabic_feh ] };
+     key <AC10> { [          n,           N,          F, Arabic_alefmaksura ] };
+     key <AC11> { [          s,           S,      colon, Arabic_seen ] };
+     key <AC12> { [      minus,  underscore, VoidSymbol, Arabic_jeem ] };
+     key.type = "ONE_LEVEL";
+     key <AC13> { [          Return ] };
+
+     //Bottom Row
+     key.type = "ONE_LEVEL";
+     key <AD01> { [    Shift_L ] };
+     key.type = "FOUR_LEVEL";
+     key <AD02> { [ apostrophe, quotedbl,         slash, Arabic_tah ] };
+     key <AD03> { [          q,        Q,             7, Arabic_dad ] };
+     key <AD04> { [          j,        J,             8, Arabic_teh ] };
+     key <AD05> { [          k,        K,             9, Arabic_noon ] };
+     key <AD06> { [          x,        X,         minus, Arabic_hamza ] };
+     key <AD07> { [          b,        B,       greater, Arabic_thal ] };
+     key <AD08> { [          m,        M,    numbersign, Arabic_tehmarbuta ] };
+     key <AD09> { [          w,        W,     ampersand, Arabic_sad ] };
+     key <AD10> { [          v,        V,         comma, Arabic_ra ] };
+     key <AD11> { [          z,        Z,     semicolon, Arabic_zah ] };
+     key.type = "ONE_LEVEL";
+     key <AD12> { [     Meta_R ],  virtualMods= Meta };
+     
+     //Control Row
+     key.type = "ONE_LEVEL";
+     key <CT01> { [  Control_L ] };
+     key <CT02> { [    Super_L ], virtualMods= Super };
+     key <CT03> { [     Escape ] };
+     key <CT04> { [      space ] };
+     key <CT05> { [      Alt_R ],   virtualMods= Alt };
+     key <CT06> { [  Control_R ] };
+     
+     ////Arrow keys
+     key.type = "ONE_LEVEL";
+     key <CT07> { [       Left ] };
+     key <CT08> { [         Up ] };
+     key <CT09> { [       Down ] };
+     key <CT10> { [      Right ] };
+     
+     ////Arrow keys + Fn
+     key.type = "ONE_LEVEL";
+     key <CT11> { [       Home ] };
+     key <CT12> { [    Page_Up ] };
+     key <CT13> { [  Page_Down ] };
+     key <CT14> { [        End ] };
+ 
+     // This is used to avoid the shift + delete issue
+     key.type = "ONE_LEVEL";
+     key <FDEL> { [     Delete ] };
+
+
+     //Mapping Modifiers
+     modifier_map Control { <CT01> };  //Left Control
+     modifier_map Control { <CT06> };  //Right Control
+     modifier_map Shift   { <AD01> };  //Left Shift
+     modifier_map Mod1    { <CT05> };  //Right Alt
+     modifier_map Mod2    { <CT02> };  //Left Super
+     modifier_map Mod3    { <AD12> };  //Right Num Layer
+     modifier_map Mod4    { <FK16> };  //Right Arabic Layer
+  };
+};

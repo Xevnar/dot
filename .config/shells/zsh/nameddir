@@ -1,0 +1,12 @@
+# Syntax highlighting
+# vim: filetype=sh
+
+hash -d d=~/documents
+hash -d j=~/junk
+hash -d m=~/audio/music
+hash -d i=~/images
+hash -d v=~/video
+hash -d con=$HOME/.config
+hash -d cac=$HOME/.cache
+hash -d mnt=/mnt
+hash -d scripts=~/.local/bin

@@ -1,0 +1,10 @@
+#!/bin/sh
+
+# Togglo the hidden state of the scratchpad
+
+pids=$(xdotool search --class scratchpad)
+
+for pid in $pids; do
+  echo "Toggle $pid"
+  bspc node "$pid" --flag hidden -f
+done

@@ -1,0 +1,48 @@
+#!/bin/sh
+
+# Movement
+alias ..='cd ..'
+alias ...='cd ../..'
+
+# Adding flags
+alias mv='mv -vi'
+alias rm='rm -vi'
+alias cp='cp -vi'
+alias mkdir='mkdir -pv'
+alias rmdir='rmdir -v'
+
+# Abbreviations
+alias e='$EDITOR'
+alias c='clear'
+alias ka='killall'
+alias hist='history'
+alias g='git'
+alias ga='git add'
+alias gg='git clone'
+alias gs='git status'
+alias gc='git commit -m'
+alias dot='git --git-dir=$HOME/documents/dotfiles --work-tree=$HOME'
+alias dota='git --git-dir=$HOME/documents/dotfiles --work-tree=$HOME add'
+alias dots='git --git-dir=$HOME/documents/dotfiles --work-tree=$HOME status'
+alias dotc='git --git-dir=$HOME/documents/dotfiles --work-tree=$HOME commit -m'
+alias pac='sudo pacman'
+alias pacr='sudo pacman -Rsn'
+alias pacs='sudo pacman -S'
+alias pacq='pacman -Q'
+alias scratchpad='setsid alacritty --class scratchpad,scratchpad'
+
+# Substitutions
+alias ls='exa -la     --color=auto --group-directories-first'
+alias ll='exa -l      --color=auto --group-directories-first'
+alias lt='exa -laTL=2 --color=auto --group-directories-first'
+alias lx='exa -x      --color=auto --group-directories-first'
+alias la='exa -xa     --color=auto --group-directories-first'
+
+# Commands
+alias brc='source $BDOTDIR/.bashrc'
+alias zrc='source $ZDOTDIR/.zshrc'
+alias mkexe='chmod -R u+x'
+alias mkmine='sudo chown -R ${USER}'
+
+# Scripts
+alias ex='extract'
