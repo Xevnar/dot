@@ -74,8 +74,8 @@ keycode  5 =  braceright
 keycode  6 =  parenleft
   alt keycode  6 =  parenleft
 
-keycode  7 =  equal
-  alt keycode  7 =  equal
+keycode  7 =  ampersand
+  alt keycode  7 =  ampersand
 
 keycode  8 =  asterisk
   alt keycode  8 =  asterisk
@@ -143,7 +143,7 @@ keycode 24 =  r
 
 keycode 25 =  l
   shift keycode 25 =  L
-  alt keycode 25 =  bar
+  alt keycode 25 =  asciitilde
 
 keycode 26 =  slash
   shift keycode 26 = question
@@ -200,7 +200,7 @@ keycode 38 = n
 
 keycode 39 = s
   shift keycode 39 = S
-  alt keycode 39 = colon
+  alt keycode 39 = numbersign
 
 keycode 40 = minus
   shift keycode 40 = underscore
@@ -213,7 +213,7 @@ keycode 28 = Return
 ! Bottom Row
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-keycode 42 = SShift
+keycode 42 = SAlt
 
 keycode 44 = apostrophe
   shift keycode 44 = quotedbl
@@ -241,21 +241,21 @@ keycode 49 = b
 
 keycode 50 = m
   shift keycode 50 = M
-  alt keycode 50 = numbersign
+  alt keycode 50 = h
 
 keycode 51 = w
   shift keycode 51 = W
-  alt keycode 51 = ampersand
+  alt keycode 51 = j
 
 keycode 52 = v
   shift keycode 52 = V
-  alt keycode 52 = comma
+  alt keycode 52 = k
 
 keycode 53 = z
   shift keycode 53 = Z
-  alt keycode 53 = semicolon
+  alt keycode 53 = s
 
-keycode 54 = SAlt
+keycode 54 = SShift
 
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 ! Control Row
@@ -273,15 +273,19 @@ keycode  97 = Control
 
 keycode 105 = Left
   shift keycode 105 = Home
+  alt keycode 105 = Home
 
 keycode 103 = Up
   shift keycode 103 = PageUp
+  alt keycode 103 = PageUp
 
 keycode 108 = Down
   shift keycode 108 = PageDown
+  alt keycode 108 = PageDown
 
 keycode 106 = Right
   shift keycode 106 = End
+  alt keycode 106 = End
 
 
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -298,7 +302,7 @@ keycode 247 =  F23
 keycode 212 =  F24
 keycode 224 =  F25
 keycode 225 =  F26
-keycode 104 =
-keycode 102 =
-keycode 109 =
-keycode 107 =
+keycode 104 =  F27
+keycode 102 =  F28
+keycode 109 =  F29
+keycode 107 =  F30
