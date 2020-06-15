@@ -308,7 +308,7 @@ xkb_keymap {
 
      // Bottom Row
      key.type = "ONE_LEVEL";
-     key <AD01> { [       Meta_L ] };
+     key <AD01> { [       Meta_L ],  virtualMods= Meta };
      key.type = "THREE_LEVEL";
      key <AD02> { [   apostrophe,    quotedbl,         slash ] };
      key <AD03> { [            q,           Q,             7 ] };
@@ -321,7 +321,7 @@ xkb_keymap {
      key <AD10> { [            v,           V,             k ] };
      key <AD11> { [            z,           Z,             s ] };
      key.type = "ONE_LEVEL";
-     key <AD12> { [      Shift_R ],   virtualMods= Meta};
+     key <AD12> { [      Shift_R ] };
 
      // Control Row
      key.type = "ONE_LEVEL";
@@ -357,10 +357,10 @@ xkb_keymap {
      // Mapping Modifiers
      modifier_map Control { <CT01> };  //Left Control
      modifier_map Control { <CT06> };  //Right Control
-     modifier_map Shift   { <AD01> };  //Left Shift
+     modifier_map Shift   { <AD12> };  //Left Shift
      modifier_map Mod1    { <CT05> };  //Right Alt
      modifier_map Mod2    { <CT02> };  //Left Super
-     modifier_map Mod3    { <AD12> };  //Right Num Layer
+     modifier_map Mod3    { <AD01> };  //Right Num Layer
 
      // Have Shift + Delete act as Delete on a keyboard level
      // key.type = "ONE_LEVEL";

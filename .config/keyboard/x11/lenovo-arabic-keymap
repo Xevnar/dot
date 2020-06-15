@@ -352,9 +352,9 @@ xkb_keymap {
      //Mapping Modifiers
      modifier_map Control { <CT01> };  //Left Control
      modifier_map Control { <CT06> };  //Right Control
-     modifier_map Shift   { <AD01> };  //Left Shift
+     modifier_map Shift   { <AD12> };  //Left Shift
      modifier_map Mod1    { <CT05> };  //Right Alt
      modifier_map Mod2    { <CT02> };  //Left Super
-     modifier_map Mod3    { <AD12> };  //Right Num Layer
+     modifier_map Mod3    { <AD01> };  //Right Num Layer
   };
 };
