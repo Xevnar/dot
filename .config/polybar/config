@@ -54,7 +54,7 @@ font-0 = monospace:pixelsize=10;1
 font-1 = monospace:fontformat=truetype:size=8:antialias=false;0
 font-2 = monospace:pixelsize=10;1
 
-modules-left = bspwm 
+modules-left = bspwm
 modules-right = filesystem xbacklight alsa memory cpu wlan battery temperature date powermenu
 
 tray-position = right
@@ -92,19 +92,19 @@ label-unmounted-foreground = ${colors.foreground-alt}
 [module/bspwm]
 type = internal/bspwm
 
-label-focused = %index%
+label-focused = %name%
 label-focused-background = ${colors.background-alt}
 label-focused-underline= ${colors.primary}
 label-focused-padding = 2
 
-label-occupied = %index%
+label-occupied = %name%
 label-occupied-padding = 2
 
-label-urgent = %index%!
+label-urgent = %name%!
 label-urgent-background = ${colors.alert}
 label-urgent-padding = 2
 
-label-empty = %index%
+label-empty = %name%
 label-empty-foreground = ${colors.foreground-alt}
 label-empty-padding = 2
 
@@ -116,30 +116,30 @@ label-empty-padding = 2
 ; format = <label-state> <label-mode>
 ; index-sort = true
 ; wrapping-scroll = false
-; ; 
+; ;
 ; ; Only show workspaces on the same output as the bar
 ; ;pin-workspaces = true
-; 
+;
 ; label-mode-padding = 2
 ; label-mode-foreground = #000
 ; label-mode-background = ${colors.primary}
-; 
+;
 ; ; focused = Active workspace on focused monitor
 ; label-focused = %index%
 ; label-focused-background = ${colors.background-alt}
 ; label-focused-underline= ${colors.primary}
 ; label-focused-padding = 2
-; 
+;
 ; ; unfocused = Inactive workspace on any monitor
 ; label-unfocused = %index%
 ; label-unfocused-padding = 2
-; 
+;
 ; ; visible = Active workspace on unfocused monitor
 ; label-visible = %index%
 ; label-visible-background = ${self.label-focused-background}
 ; label-visible-underline = ${self.label-focused-underline}
 ; label-visible-padding = ${self.label-focused-padding}
-; 
+;
 ; ; urgent = Workspace with urgency hint set
 ; label-urgent = %index%
 ; label-urgent-background = ${colors.alert}
@@ -152,13 +152,13 @@ label-empty-padding = 2
 ; [module/mpd]
 ; type = internal/mpd
 ; format-online = <label-song>  <icon-prev> <icon-stop> <toggle> <icon-next>
-; 
+;
 ; icon-prev = 
 ; icon-stop = 
 ; icon-play = 
 ; icon-pause = 
 ; icon-next = 
-; 
+;
 ; label-song-maxlen = 25
 ; label-song-ellipsis = true
 
@@ -226,18 +226,18 @@ ramp-signal-foreground = ${colors.foreground-alt}
 ; type = internal/network
 ; interface = net0
 ; interval = 3.0
-; 
+;
 ; format-connected-underline = #55aa55
 ; format-connected-prefix = " "
 ; format-connected-prefix-foreground = ${colors.foreground-alt}
 ; label-connected = %local_ip%
-; 
+;
 ; format-disconnected =
 ; ;format-disconnected = <label-disconnected>
 ; ;format-disconnected-underline = ${self.format-connected-underline}
 ; ;label-disconnected = %ifname% disconnected
 ; ;label-disconnected-foreground = ${colors.foreground-alt}
-; 
+;
 [module/date]
 type = internal/date
 interval = 5
@@ -256,14 +256,14 @@ label = %date% %time%
 
 ; [module/pulseaudio]
 ; type = internal/pulseaudio
-; 
+;
 ; format-volume = <label-volume> <bar-volume>
 ; label-volume = VOL %percentage%%
 ; label-volume-foreground = ${root.foreground}
-; 
+;
 ; label-muted = 🔇 muted
 ; label-muted-foreground = #666
-; 
+;
 ; bar-volume-width = 10
 ; bar-volume-foreground-0 = #55aa55
 ; bar-volume-foreground-1 = #55aa55
