@@ -18,7 +18,6 @@ set showcmd         "Shows incomplete command in the lower right corner
 set ruler           "Shows current cursor position in the lower right corner
 set ignorecase      "Ignores case when searching
 set smartcase       "Overrides ignore case if pattern has an upper case character
-set scroll=22       "Scrolls 15 lines when you hit Ctrl+U/
 set scrolloff=99    "Keeps the cursor 22 lines away from the edges the screen when scrolling
 set wrap            "Wraps text that exeeds window size
 set linebreak
