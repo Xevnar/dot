@@ -1,7 +1,7 @@
 super + BackSpace
   pkill -USR1 -x sxhkd
 
-super + Delete 
+super + Delete
   bspc wm -r
 
 super + {_, shift +, mod3 +, shift + mod3 +} Return
@@ -26,11 +26,11 @@ super + {h, s}
   bspc node {prev, next}.local -f
 
 # Cycling through desktops in current moniter
-super + shift + {h, s}
+super + mod3 + {h, s}
   bspc desktop {prev, next}.local -f
 
 # Cycling through moniter
-super + mod3 + {h, s}
+super + shift + {h, s}
   bspc moniter {prev, next} -f
 
 # Change to a specific desktop on the focused moniter
@@ -42,48 +42,62 @@ super + mod3 + {a, comma, period, p, o, e, u, q, j, k}
 ###############################################################################
 
 # Close nodes
-super + asciitilde
+super + percent
   bspc node focused -c
 
-# Increase node size
-# TODO  find a good hotkey for this
-# super + shift + {h, j, k, s}
-#   bspc node -z {left -10 0, bottom 0 10, top 0 -10, right 10 0}
+# Increase node size vertically
+super + j
+  bspc node -z bottom 0 10 && bspc node -z top 0 -10
 
-# Decrease node size
-# TODO  find a good hotkey for this
-# super + ctrl + {h, j, k, s}
-#   bspc node -z {left 10 0, bottom 0 -10, top 0 10, right -10 0}
+# Decrease node size vertically
+super + shift + j
+  bspc node -z bottom 0 -10 && bspc node -z top 0 10
+
+# Increase node size horizontally
+super + k
+  bspc node -z  left -10 0 && bspc node -z right 10 0
+
+# Decrease node size horizontally
+super + shift + k
+  bspc node -z  left 10 0 && bspc node -z right -10 0
 
 # Move a node to a specific desktop
 super + shift + mod3 + {a, comma, period, p, o, e, u, q, j, k}
   bspc node -d focused:'^{1, 2, 3, 4, 5, 6, 7, 8, 9, 10}'
 
 # Set the currently focused node as the biggest
-# TODO  Make it a toggle
-# TODO  Make it so it cycles the nodes
 super + r
  bspc node -s biggest.local || bspc node -s smallest.local
 
-# Resize the node so that it is in focus
-#super + shift + r
-# TODO figure out how to do that
+# Change the currently focused node to be the largest node
+# super + shift + r
+#  TODO figure out how to do that
+
+# super + r but it cycles the nodes
+# super + c
+#  TODO figure out how to do that
 
 # Toggle the focused node between fullscreen mode and the previous state
 super + f
-  bspc node -t ~fullscreen
+  bspc node -t '~fullscreen'
 
 # Toggle the focused node between floating mode and the previous state
 super + shift + f
-  bspc node -t ~floating
+  bspc node -t '~floating'
 
 # Toggle the focused node between tiled mode and the previous state
 super + t
-  bspc node -t ~tiled
+  bspc node -t '~tiled'
 
 # Toggle the focused node between pseudo_tiled mode and the previous state
 super + shift + t
-  bspc node -t ~pseudo_tiled
+  bspc node -t '~pseudo_tiled'
 
 control + z
- echo "disabled job control" 2>/dev/null 
+ echo "disabled job control" 2>/dev/null
+
+F1
+  xkbcomp ~/.config/keyboard/x11/lenovo-default-keymap $DISPLAY
+
+F2
+  xkbcomp ~/.config/keyboard/x11/lenovo-arabic-keymap $DISPLAY
