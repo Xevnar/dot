@@ -2,10 +2,10 @@
 # vim: filetype=sh
 
 # Shortcuts to files I edit regularly
-alias zsrc="$EDITOR $ZDOTDIR/.zshrc"
-alias zdir="$EDITOR $ZDOTDIR/nameddir"
-alias bsrc="$EDITOR $BDOTDIR/.bashrc"
-alias bdir="$EDITOR $BDOTDIR/nameddir"
+alias zsrc="$EDITOR $HOME/documents/dot/.config/shells/zsh/.zshrc"
+alias zdir="$EDITOR $HOME/documents/dot/.config/shells/zsh/nameddir"
+alias bsrc="$EDITOR $HOME/documents/dot/.config/shells/bash/.bashrc"
+alias bdir="$EDITOR $HOME/documents/dot/.config/shells/bash/nameddir"
 alias alrc="$EDITOR $HOME/documents/dot/.config/shells/shared/aliases"
 alias firc="$EDITOR $HOME/documents/dot/.config/shells/shared/files"
 alias hkrc="$EDITOR $HOME/documents/dot/.config/sxhkd/sxhkdrc"
