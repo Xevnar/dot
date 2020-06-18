@@ -140,6 +140,12 @@ setopt AUTO_CD
 # Find the best match to the command you typed and ask if it is what you meant
 setopt CORRECT
 
+# The '*' matches files/directories that start with '.'
+setopt GLOB_DOTS
+
+# Add additional glob matching functionality
+setopt EXTENDED_GLOB
+
 # Load line editing inside a vim buffer
 autoload edit-command-line
 
