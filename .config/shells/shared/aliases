@@ -1,5 +1,9 @@
 #!/bin/sh
 
+# Alias expansion
+alias sudo='sudo -v '
+alias -g $=' '
+
 # Movement
 alias ..='cd ..'
 alias ...='cd ../..'
@@ -15,21 +19,17 @@ alias rmdir='rmdir -v'
 alias e='$EDITOR'
 alias c='clear'
 alias ka='killall'
+alias ex='extract'
 alias hist='history'
 alias g='git'
 alias ga='git add'
 alias gg='git clone'
 alias gs='git status'
 alias gc='git commit -m'
-alias dot='git --git-dir=$HOME/documents/dotfiles --work-tree=$HOME'
-alias dota='git --git-dir=$HOME/documents/dotfiles --work-tree=$HOME add'
-alias dots='git --git-dir=$HOME/documents/dotfiles --work-tree=$HOME status'
-alias dotc='git --git-dir=$HOME/documents/dotfiles --work-tree=$HOME commit -m'
 alias pac='sudo pacman'
 alias pacr='sudo pacman -Rsn'
 alias pacs='sudo pacman -S'
 alias pacq='pacman -Q'
-alias scratchpad='setsid alacritty --class scratchpad,scratchpad'
 
 # Substitutions
 alias ls='exa -la     --color=auto --group-directories-first'
@@ -41,8 +41,6 @@ alias la='exa -xa     --color=auto --group-directories-first'
 # Commands
 alias brc='source $BDOTDIR/.bashrc'
 alias zrc='source $ZDOTDIR/.zshrc'
-alias mkexe='chmod -R u+x'
+alias mkexe='chmod -R ugo+x'
 alias mkmine='sudo chown -R ${USER}'
-
-# Scripts
-alias ex='extract'
+alias scratchpad='setsid alacritty --class scratchpad,scratchpad'
