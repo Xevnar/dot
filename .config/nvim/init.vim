@@ -1,10 +1,11 @@
 call plug#begin('~/.config/nvim/plugins')
-	Plug 'arcticicestudio/nord-vim'
-        Plug 'baskerville/vim-sxhkdrc'
-        Plug 'RRethy/vim-hexokinase', {'do': 'make hexokinase'}
-        Plug 'junegunn/goyo.vim'
-        Plug 'junegunn/limelight.vim'
-        Plug 'psliwka/vim-smoothie'
+  Plug 'arcticicestudio/nord-vim'
+  Plug 'baskerville/vim-sxhkdrc'
+  Plug 'airblade/vim-gitgutter'
+  Plug 'RRethy/vim-hexokinase', {'do': 'make hexokinase'}
+  Plug 'junegunn/goyo.vim'
+  Plug 'junegunn/limelight.vim'
+  Plug 'vimwiki/vimwiki'
 call plug#end()
 
 filetype plugin indent on
