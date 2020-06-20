@@ -208,6 +208,8 @@
       set showmode
       set showcmd
       Limelight!
+      highlight CursorLine guibg=#121F30
+      highlight CursorColumn guibg=#121F30
     endfunction
 
   " Call the previous functions when entering or exiting goyo
