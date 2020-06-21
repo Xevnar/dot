@@ -215,3 +215,12 @@
   " Call the previous functions when entering or exiting goyo
     autocmd! User GoyoEnter nested call <SID>goyo_enter()
     autocmd! User GoyoLeave nested call <SID>goyo_leave()
+
+" VimWiki
+
+  " General wiki
+    let wiki_1 = {}
+    let wiki_1.path = '~/documents/vimwiki/'
+
+  " Wiki list
+    let g:vimwiki_list = [wiki_1]
