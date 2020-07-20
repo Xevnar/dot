@@ -1,6 +1,6 @@
 #!/bin/sh
 
-dotdir="$HOME/documents/dot"
+dotdir="$HOME/documents/dot/files"
 hostname=$(hostname)
 
 if [ -z ${hostname##*box} ]; then
