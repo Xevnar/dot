@@ -1,0 +1,26 @@
+#!/bin/sh
+
+dotdir="$HOME/documents/dot"
+hostname=$(hostname)
+
+if [ -z ${hostname##*box} ]; then
+
+  for file in $(find $dotdir -path "$dotdir/*top" -prune -false -o -type f); do
+    tmp=$(echo "${file##$dotdir}" | sed "s|/box/|/|g")
+    dir="$HOME${tmp%/*}"
+    [ ! -d $dir ] && mkdir -pv $dir
+
+    cp -vuf $file $dir
+  done
+
+elif [ -z ${hostname##*top} ]; then
+
+  for file in $(find $dotdir -path "$dotdir/*box" -prune -false -o -type f); do
+    tmp=$(echo "${file##$dotdir/}" | sed "s|/top/|/|g")
+    dir="$HOME/${tmp%/*}"
+    [ ! -d $dir ] && mkdir -pv $dir
+
+    cp -vuf $file $dir
+  done
+
+fi
