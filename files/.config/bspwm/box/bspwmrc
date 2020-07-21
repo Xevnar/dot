@@ -23,6 +23,12 @@ bspc config urgent_border_color    "#dd2727"
 bspc config ignore_ewmh_focus true
 bspc config ignore_ewmh_fullscreen enter
 
+# Mouse Controls
+bspc config pointer_modifier control
+bspc config pointer_action1 move
+bspc config pointer_action3 resize_side
+bspc config pointer_action3 resize_corner
+
 # Window Rules
 bspc rule -r "*"
 
