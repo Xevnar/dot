@@ -31,7 +31,7 @@ super + mod3 + {h, s}
 
 # Cycling through moniter
 super + shift + {h, s}
-  bspc moniter {prev, next} -f
+  bspc monitor {prev, next} -f
 
 # Change to a specific desktop on the focused moniter
 super + mod3 + {a, comma, period, p, o, e, u, q, j, k}
