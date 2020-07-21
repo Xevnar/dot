@@ -1,0 +1,45 @@
+#!/bin/sh
+# This script does the following:
+#   - It takes the window ids of all the active scratchpads and determines
+#     which id belongs to which scratchpad.
+#   - Then it determines which monitor is currently in focus
+#   - And if the scratchpad corresponding to this monitor is not active, then
+#     it spawns an instance
+#   - Finally it focuses on the scratchpad
+
+
+for wid in $(xdotool search --class scratchpad); do
+  case "$(xdotool getwindowname $wid)" in
+
+    "main")
+      widMain=$wid
+    ;;
+
+    "right")
+      widRight=$wid
+    ;;
+
+  esac
+done
+
+case "$(bspc query --names -M -m)" in
+
+  "HDMI-0")
+    if [  -z "$widMain" ]; then
+      setsid --fork alacritty --class main,scratchpad --title main
+      until xdotool search --classname main > /dev/null; do sleep .05; done
+    fi
+
+    bspc node $(xdotool search --classname main) --flag hidden -f
+  ;;
+
+  "DVI-D-0")
+    if [  -z "$widRight" ]; then
+      setsid --fork alacritty --class main,scratchpad --title main
+      until xdotool search --classname right > /dev/null; do sleep .05; done
+    fi
+
+    bspc node $(xdotool search --classname right) --flag hidden -f
+  ;;
+
+esac
