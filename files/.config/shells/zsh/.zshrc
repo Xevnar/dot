@@ -213,7 +213,6 @@ stty stop undef
 ### SOURCING FILES ###
 ###############################################################################
 
-
 # Load Named Directories
 source $HOME/.config/shells/zsh/nameddir
 # Load File Shortcuts
