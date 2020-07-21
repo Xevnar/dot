@@ -205,7 +205,7 @@ stty stop undef
 
 # String Substition (works only in text insert mode)
 
-  # Ctrl+a:
+  # Ctrl+a: Terminal Calculator
     bindkey -s '^a' 'bc -l\n'
   # Ctrl+f: Search for a directory using fzf and cd to it
     bindkey -s '^f' 'cd "$(dirname "$(fzf)")"\n'
@@ -213,14 +213,15 @@ stty stop undef
 ### SOURCING FILES ###
 ###############################################################################
 
-# Load aliases and shortcuts if existent.
-[ -f "${XDG_CONFIG_HOME:-$HOME/.config}/shortcutrc" ] && source "${XDG_CONFIG_HOME:-$HOME/.config}/shortcutrc"
 
+# Load Named Directories
 source $HOME/.config/shells/zsh/nameddir
-
-source $HOME/.config/shells/shared/aliases
+# Load File Shortcuts
 source $HOME/.config/shells/shared/files
-
+# Load Directory Shortcuts
+source $HOME/.config/shells/shared/nameddir
+# Load Aliases
+source $HOME/.config/shells/shared/aliases
 # Git branch and status in prompt
 source $HOME/.config/shells/shared/git-prompt.sh
 # Fish-style history searching

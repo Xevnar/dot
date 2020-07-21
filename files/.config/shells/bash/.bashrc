@@ -125,3 +125,4 @@ stty -ixon
 source $HOME/.config/shells/shared/aliases
 source $HOME/.config/shells/shared/git-prompt.sh
 source $HOME/.config/shells/shared/files
+source $HOME/.config/shells/shared/nameddir
