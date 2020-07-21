@@ -1,5 +1,5 @@
 xkb_keymap {
-  default xkb_keycodes "lenovo-default" {
+  default xkb_keycodes "logitech-default" {
     minimum = 8;
     maximum = 255;
 
@@ -80,17 +80,18 @@ xkb_keymap {
 
     //Bottom Row
     <AD01> = 50;
-    <AD02> = 52;
-    <AD03> = 53;
-    <AD04> = 54;
-    <AD05> = 55;
-    <AD06> = 56;
-    <AD07> = 57;
-    <AD08> = 58;
-    <AD09> = 59;
-    <AD10> = 60;
-    <AD11> = 61;
-    <AD12> = 62;
+    <AD02> = 94;
+    <AD03> = 52;
+    <AD04> = 53;
+    <AD05> = 54;
+    <AD06> = 55;
+    <AD07> = 56;
+    <AD08> = 57;
+    <AD09> = 58;
+    <AD10> = 59;
+    <AD11> = 60;
+    <AD12> = 61;
+    <AD13> = 62;
 
     //Control Row
     <CT01> = 37;
@@ -115,7 +116,7 @@ xkb_keymap {
   };
 
 
-  xkb_types "lenovo-default" {
+  xkb_types "logitech-default" {
 
     virtual_modifiers Alt,Meta,Super;
 
@@ -151,7 +152,7 @@ xkb_keymap {
   };
 
 
-  xkb_compatibility "lenovo-default" {
+  xkb_compatibility "logitech-default" {
 
     virtual_modifiers Alt,Meta,Super;
 
@@ -228,7 +229,7 @@ xkb_keymap {
 
 
   partial alphanumeric_keys
-  xkb_symbols "lenovo-default"{
+  xkb_symbols "logitech-default"{
 
     name[group1]= "Custom";
 
@@ -308,20 +309,21 @@ xkb_keymap {
 
     // Bottom Row
     key.type = "ONE_LEVEL";
-    key <AD01> { [       Meta_L ],  virtualMods= Meta };
+    key <AD01> { [    Control_L ] };
+    key <AD02> { [       Meta_L ],  virtualMods= Meta };
     key.type = "THREE_LEVEL";
-    key <AD02> { [   apostrophe,    quotedbl,         slash ] };
-    key <AD03> { [            q,           Q,             7 ] };
-    key <AD04> { [            j,           J,             8 ] };
-    key <AD05> { [            k,           K,             9 ] };
-    key <AD06> { [            x,           X,         minus ] };
-    key <AD07> { [            b,           B,       greater ] };
-    key <AD08> { [            m,           M,             h ] };
-    key <AD09> { [            w,           W,             j ] };
-    key <AD10> { [            v,           V,             k ] };
-    key <AD11> { [            z,           Z,             s ] };
+    key <AD03> { [   apostrophe,    quotedbl,         slash ] };
+    key <AD04> { [            q,           Q,             7 ] };
+    key <AD05> { [            j,           J,             8 ] };
+    key <AD06> { [            k,           K,             9 ] };
+    key <AD07> { [            x,           X,         minus ] };
+    key <AD08> { [            b,           B,       greater ] };
+    key <AD09> { [            m,           M,             h ] };
+    key <AD10> { [            w,           W,             j ] };
+    key <AD11> { [            v,           V,             k ] };
+    key <AD12> { [            z,           Z,             s ] };
     key.type = "ONE_LEVEL";
-    key <AD12> { [      Shift_R ] };
+    key <AD13> { [      Shift_R ] };
 
     // Control Row
     key.type = "ONE_LEVEL";
@@ -356,11 +358,12 @@ xkb_keymap {
 
     // Mapping Modifiers
     modifier_map Control { <CT01> };  //Left Control
+    modifier_map Control { <AD01> };  //Left Control
     modifier_map Control { <CT06> };  //Right Control
-    modifier_map Shift   { <AD12> };  //Left Shift
+    modifier_map Shift   { <AD13> };  //Left Shift
     modifier_map Mod1    { <CT05> };  //Right Alt
     modifier_map Mod2    { <CT02> };  //Left Super
-    modifier_map Mod3    { <AD01> };  //Right Num Layer
+    modifier_map Mod3    { <AD02> };  //Right Num Layer
 
     // Have Shift + Delete act as Delete on a keyboard level
     // key.type = "ONE_LEVEL";
