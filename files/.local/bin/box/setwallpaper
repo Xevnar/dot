@@ -1,0 +1,13 @@
+#!/bin/sh
+
+bgpath="$HOME/media/images/wallpapers/default"
+abspath=$(readlink -f "$1")
+
+if [ -d "$1" ]; then
+  wall=$(find $abspath -iregex '.*.\(jpe?g\|png\|gif\)' -type f | shuf -n 1)
+  ln -sf $wall $bgpath
+elif [ -f "$1" ]; then
+  ln -sf $abspath $bgpath
+fi
+
+xwallpaper --output HDMI-0 --zoom $bgpath --output DVI-D-0 --zoom $bgpath
