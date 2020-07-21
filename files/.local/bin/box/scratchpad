@@ -26,7 +26,7 @@ case "$(bspc query --names -M -m)" in
 
   "HDMI-0")
     if [  -z "$widMain" ]; then
-      setsid --fork alacritty --class main,scratchpad --title main
+      setsid --fork uniqueterm scratchpad main
       until xdotool search --classname main > /dev/null; do sleep .05; done
     fi
 
@@ -35,7 +35,7 @@ case "$(bspc query --names -M -m)" in
 
   "DVI-D-0")
     if [  -z "$widRight" ]; then
-      setsid --fork alacritty --class main,scratchpad --title main
+      setsid --fork uniqueterm scratchpad right
       until xdotool search --classname right > /dev/null; do sleep .05; done
     fi
 
