@@ -43,6 +43,5 @@ alias la='exa -xa     --color=auto --group-directories-first'
 # Commands
 alias brc='source $BDOTDIR/.bashrc'
 alias zrc='source $ZDOTDIR/.zshrc'
-alias mkexe='chmod -R ugo+x'
+alias mkexe='chmod -R ug+x'
 alias mkmine='sudo chown -R ${USER}'
-alias scratchpad='setsid alacritty --class scratchpad,scratchpad'
