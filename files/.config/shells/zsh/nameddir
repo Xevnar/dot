@@ -1,15 +1,15 @@
 # Syntax highlighting
 # vim: filetype=sh
 
-hash -d d=$HOME/docs
-hash -d j=$HOME/junk
-hash -d m=$HOME/media
-hash -d i=$HOME/media/images
-hash -d a=$HOME/media/audio
-hash -d v=$HOME/media/video
-hash -d mu=$HOME/media/audio/music
-hash -d cac=$HOME/.cache
-hash -d dot=$HOME/docs/dot/files
-hash -d con=$HOME/docs/dot/files/.config
-hash -d scr=$HOME/docs/dot/files/.local/bin
-hash -d dat=$HOME/docs/dot/files/.local/share
+hash -d d="$HOME/docs"
+hash -d j="$HOME/junk"
+hash -d m="$HOME/media"
+hash -d i="$HOME/media/images"
+hash -d a="$HOME/media/audio"
+hash -d v="$HOME/media/video"
+hash -d mu="$HOME/media/audio/music"
+hash -d cac="$HOME/.cache"
+hash -d dot="$DOTDIR"
+hash -d con="$DOTDIR/.config"
+hash -d scr="$DOTDIR/.local/bin"
+hash -d dat="$DOTDIR/.local/share"

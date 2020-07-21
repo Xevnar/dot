@@ -2,12 +2,12 @@
 # vim: filetype=sh
 
 # Shortcuts to files I edit regularly
-alias zsrc="$EDITOR $HOME/docs/dot/files/.config/shells/zsh/.zshrc"
-alias zdir="$EDITOR $HOME/docs/dot/files/.config/shells/zsh/nameddir"
-alias bsrc="$EDITOR $HOME/docs/dot/files/.config/shells/bash/.bashrc"
-alias alrc="$EDITOR $HOME/docs/dot/files/.config/shells/shared/aliases"
-alias firc="$EDITOR $HOME/docs/dot/files/.config/shells/shared/files"
-alias dirc="$EDITOR $HOME/docs/dot/files/.config/shells/shared/nameddir"
-alias hkrc="$EDITOR $HOME/docs/dot/files/.config/sxhkd/sxhkdrc"
-alias bwrc="$EDITOR $HOME/docs/dot/files/.config/bspwm/box/bspwmrc"
-alias virc="$EDITOR $HOME/docs/dot/files/.config/nvim/box/init.vim"
+alias zsrc="$EDITOR $DOTDIR/.config/shells/zsh/.zshrc"
+alias zdir="$EDITOR $DOTDIR/.config/shells/zsh/nameddir"
+alias bsrc="$EDITOR $DOTDIR/.config/shells/bash/.bashrc"
+alias alrc="$EDITOR $DOTDIR/.config/shells/shared/aliases"
+alias firc="$EDITOR $DOTDIR/.config/shells/shared/files"
+alias dirc="$EDITOR $DOTDIR/.config/shells/shared/nameddir"
+alias hkrc="$EDITOR $DOTDIR/.config/sxhkd/sxhkdrc"
+alias bwrc="$EDITOR $DOTDIR/.config/bspwm/box/bspwmrc"
+alias virc="$EDITOR $DOTDIR/.config/nvim/box/init.vim"

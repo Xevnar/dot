@@ -1,4 +1,6 @@
+# Syntax highlighting
 # vim: filetype=sh
+
 alias h="cd $HOME/ && ls"
 alias d="cd $HOME/docs && ls"
 alias j="cd $HOME/junk && ls"
@@ -11,4 +13,4 @@ alias con="cd $HOME/.config && ls"
 alias cac="cd $HOME/.cache && ls"
 alias scr="cd $HOME/.local/bin && ls"
 alias dat="cd $HOME/.local/share && ls"
-alias dot="cd $HOME/docs/dot/files && ls"
+alias dot="cd $DOTDIR && ls"

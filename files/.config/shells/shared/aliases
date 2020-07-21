@@ -1,4 +1,5 @@
-#!/bin/sh
+# Syntax highlighting
+# vim: filetype=sh
 
 # Alias expansion
 alias sudo='sudo -v; sudo '

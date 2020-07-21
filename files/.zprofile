@@ -15,6 +15,7 @@ export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_CACHE_HOME="$HOME/.cache"
 
 # config paths
+export DOTDIR="$HOME/docs/dot/files"
 export ZDOTDIR="${XDG_CONFIG_HOME:-$HOME/.config}/shells/zsh"
 export BDOTDIR="${XDG_CONFIG_HOME:-$HOME/.config}/shells/bash"
 export INPUTRC="${XDG_CONFIG_HOME:-$HOME/.config}/shells/bash/inputrc"
