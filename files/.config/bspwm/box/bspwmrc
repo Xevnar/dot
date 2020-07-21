@@ -34,10 +34,15 @@ bspc config pointer_action3 resize_corner
 # Window Rules
 bspc rule -r "*"
 
-bspc rule -a scratchpad sticky=on
-bspc rule -a scratchpad state=floating
-bspc rule -a scratchpad hidden=on
-bspc rule -a scratchpad locked=on
+bspc rule -a scratchpad:main sticky=on
+bspc rule -a scratchpad:main state=floating
+bspc rule -a scratchpad:main locked=on
+bspc rule -a scratchpad:main monitor=HDMI-0
+
+bspc rule -a scratchpad:right sticky=on
+bspc rule -a scratchpad:right state=floating
+bspc rule -a scratchpad:right locked=on
+bspc rule -a scratchpad:right monitor=DVI-D-0
 
 bspc rule -a Brave-browser desktop='^1'
 bspc rule -a Brave-browser locked=on
