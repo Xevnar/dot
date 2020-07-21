@@ -7,6 +7,7 @@ setwallpaper
 bars &
 picom &
 sxhkd &
+unclutter &
 
 # Start window manager
 exec bspwm
