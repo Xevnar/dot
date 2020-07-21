@@ -1,0 +1,308 @@
+keymaps 0-2,4-6,8-9,12
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+! Function Row
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+keycode   1 =  F1
+  alt keycode   1 =  F1
+
+keycode  59 =  F2
+  alt keycode  59 =  F2
+
+keycode  60 =  F3
+  alt keycode  60 =  F3
+
+keycode  61 =  F4
+  alt keycode  61 =  F4
+
+keycode  62 =  F5
+  alt keycode  62 =  F5
+
+keycode  63 =  F6
+  alt keycode  63 =  F6
+
+keycode  64 =  F7
+  alt keycode  64 =  F7
+
+keycode  65 =  F8
+  alt keycode  65 =  F8
+
+keycode  66 =  F9
+  alt keycode  66 =  F9
+
+keycode  67 =  F10
+  alt keycode  67 =  F10
+
+keycode  68 =  F11
+  alt keycode  68 =  F11
+
+keycode  87 =  F12
+  alt keycode  87 =  F12
+
+keycode  88 =  F13
+  alt keycode  88 =  F13
+
+keycode  99 =  F14
+  alt keycode  99 =  F14
+
+keycode 110 =  F15
+  alt keycode 110 =  F15
+
+keycode 111 =  F16
+  alt keycode 111 =  F16
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+! Number Row
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+keycode 41 =  asciitilde
+  alt keycode 41 =  asciitilde
+
+keycode  2 =  dollar
+  alt keycode  2 =  dollar
+
+keycode  3 =  bracketleft
+  alt keycode  3 =  bracketleft
+
+keycode  4 =  braceleft
+  alt keycode  4 =  braceleft
+
+keycode  5 =  braceright
+  alt keycode  5 =  braceright
+
+keycode  6 =  parenleft
+  alt keycode  6 =  parenleft
+
+keycode  7 =  ampersand
+  alt keycode  7 =  ampersand
+
+keycode  8 =  asterisk
+  alt keycode  8 =  asterisk
+
+keycode  9 =  parenright
+  alt keycode  9 =  parenright
+
+keycode 10 =  plus
+  alt keycode 10 =  plus
+
+keycode 11 =  bracketright
+  alt keycode 11 =  bracketright
+
+keycode 12 =  exclam
+  alt keycode 12 =  exclam
+
+keycode 13 =  numbersign
+  alt keycode 13 =  numbersign
+
+keycode 14 =  percent
+  alt keycode 14 =  percent
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+! Top Row
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+keycode 15 =  Tab
+  alt keycode 15 =  Tab
+
+keycode 16 =  semicolon
+  shift keycode 16 =  colon
+  alt keycode 16 =  asterisk
+
+keycode 17 =  comma
+  shift keycode 17 =  less
+  alt keycode 17 =  one
+
+keycode 18 =  period
+  shift keycode 18 =  greater
+  alt keycode 18 =  two
+
+keycode 19 =  p
+  shift keycode 19 =  P
+  alt keycode 19 =  three
+
+keycode 20 =  y
+  shift keycode 20 =  Y
+  alt keycode 20 =  plus
+
+keycode 21 =  f
+  shift keycode 21 =  F
+  alt keycode 21 =  less
+
+keycode 22 =  g
+  shift keycode 22 =  G
+  alt keycode 22 =  A
+
+keycode 23 =  c
+  shift keycode 23 =  C
+  alt keycode 23 =  B
+
+keycode 24 =  r
+  shift keycode 24 =  R
+  alt keycode 24 =  C
+
+keycode 25 =  l
+  shift keycode 25 =  L
+  alt keycode 25 =  asciitilde
+
+keycode 26 =  slash
+  shift keycode 26 = question
+
+keycode 27 =  at
+  shift keycode 27 = asciicircum
+
+keycode 43 =  backslash
+  shift keycode 43 = bar
+
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+! Home Row
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+keycode 58 = BackSpace
+  shift keycode 58 = Delete
+
+keycode 30 = a
+  shift keycode 30 = A
+  alt keycode 30 = zero
+
+keycode 31 = o
+  shift keycode 31 = O
+  alt keycode 31 = four
+
+keycode 32 = e
+  shift keycode 32 = E
+  alt keycode 32 = five
+
+keycode 33 = u
+  shift keycode 33 = U
+  alt keycode 33 = six
+
+keycode 34 = i
+  shift keycode 34 = I
+  alt keycode 34 = period
+
+keycode 35 = d
+  shift keycode 35 = D
+  alt keycode 35 = equal
+
+keycode 36 = h
+  shift keycode 36 = H
+  alt keycode 36 = D
+
+keycode 37 = t
+  shift keycode 37 = T
+  alt keycode 37 = E
+
+keycode 38 = n
+  shift keycode 38 = N
+  alt keycode 38 = F
+
+keycode 39 = s
+  shift keycode 39 = S
+  alt keycode 39 = numbersign
+
+keycode 40 = minus
+  shift keycode 40 = underscore
+
+keycode 28 = Return
+  alt keycode 28 = Return
+
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+! Bottom Row
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+keycode 42 = SAlt
+
+keycode 44 = apostrophe
+  shift keycode 44 = quotedbl
+  alt keycode 44 =  slash
+
+keycode 45 = q
+  shift keycode 45 = Q
+  alt keycode 45 = seven
+
+keycode 46 = j
+  shift keycode 46 = J
+  alt keycode 46 =  eight
+
+keycode 47 = k
+  shift keycode 47 = K
+  alt keycode 47 = nine
+
+keycode 48 = x
+  shift keycode 48 = X
+  alt keycode 48 = minus
+
+keycode 49 = b
+  shift keycode 49 = B
+  alt keycode 49 = greater
+
+keycode 50 = m
+  shift keycode 50 = M
+  alt keycode 50 = h
+
+keycode 51 = w
+  shift keycode 51 = W
+  alt keycode 51 = j
+
+keycode 52 = v
+  shift keycode 52 = V
+  alt keycode 52 = k
+
+keycode 53 = z
+  shift keycode 53 = Z
+  alt keycode 53 = s
+
+keycode 54 = SShift
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+! Control Row
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+keycode  29 = Control
+
+keycode  56 = Escape
+
+keycode  57 = space
+
+keycode 100 = Alt
+
+keycode  97 = Control
+
+keycode 105 = Left
+  shift keycode 105 = Home
+  alt keycode 105 = Home
+
+keycode 103 = Up
+  shift keycode 103 = PageUp
+  alt keycode 103 = PageUp
+
+keycode 108 = Down
+  shift keycode 108 = PageDown
+  alt keycode 108 = PageDown
+
+keycode 106 = Right
+  shift keycode 106 = End
+  alt keycode 106 = End
+
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+! FN LAYER
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+keycode 113 =  F17
+keycode 114 =  F18
+keycode 115 =  F19
+keycode 190 =  F20
+keycode 192 =  F21
+keycode 193 =  F22
+keycode 247 =  F23
+keycode 212 =  F24
+keycode 224 =  F25
+keycode 225 =  F26
+keycode 104 =  F27
+keycode 102 =  F28
+keycode 109 =  F29
+keycode 107 =  F30
