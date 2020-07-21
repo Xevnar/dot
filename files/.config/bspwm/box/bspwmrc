@@ -37,10 +37,10 @@ bspc rule -a Brave-browser focus=on
 bspc rule -a Brave-browser follow=off
 bspc rule -a Brave-browser border=on
 
-bspc rule -a Gimp desktop='^10'
-bspc rule -a Gimp state=floating
 bspc rule -a Gimp focus=off
 bspc rule -a Gimp follow=off
+
+bspc rule -a Zathura state=tiled
 
 # Default Desktop
 bspc desktop -f focused:'^2'
