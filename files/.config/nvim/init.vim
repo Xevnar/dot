@@ -25,6 +25,7 @@
       Plug 'baskerville/vim-sxhkdrc'
     " Theme
       Plug 'arcticicestudio/nord-vim'
+      Plug 'morhetz/gruvbox'
 
   call plug#end()
 
@@ -185,12 +186,19 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Nord
 
+"  " Set vim's coloursheme
+"    colorscheme nord
+"    set background=dark
+"  " Change the colour of the current line and column highlights
+"    highlight CursorLine guibg=#121F30
+"    highlight CursorColumn guibg=#121F30
+
+" Gruvbox
+
   " Set vim's coloursheme
-    colorscheme nord
+    let g:gruvbox_contrast_dark = 'hard'
+    colorscheme gruvbox
     set background=dark
-  " Change the colour of the current line and column highlights
-    highlight CursorLine guibg=#121F30
-    highlight CursorColumn guibg=#121F30
 
 " Hexokinase
 
@@ -211,8 +219,6 @@
       set showmode
       set showcmd
       Limelight!
-      highlight CursorLine guibg=#121F30
-      highlight CursorColumn guibg=#121F30
     endfunction
 
   " Call the previous functions when entering or exiting goyo
