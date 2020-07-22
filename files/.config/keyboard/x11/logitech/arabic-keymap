@@ -1,6 +1,6 @@
 
 xkb_keymap {
-  default xkb_keycodes "lenovo-personal" {
+  default xkb_keycodes "logitech-arabic" {
 	minimum = 8;
 	maximum = 255;
 
@@ -82,19 +82,20 @@ xkb_keymap {
 	<AC12> = 48;
 	<AC13> = 36;
 
-	//Bottom Row
-	<AD01> = 50;
-	<AD02> = 52;
-	<AD03> = 53;
-	<AD04> = 54;
-	<AD05> = 55;
-	<AD06> = 56;
-	<AD07> = 57;
-	<AD08> = 58;
-	<AD09> = 59;
-	<AD10> = 60;
-	<AD11> = 61;
-	<AD12> = 62;
+  //Bottom Row
+  <AD01> = 50;
+  <AD02> = 94;
+  <AD03> = 52;
+  <AD04> = 53;
+  <AD05> = 54;
+  <AD06> = 55;
+  <AD07> = 56;
+  <AD08> = 57;
+  <AD09> = 58;
+  <AD10> = 59;
+  <AD11> = 60;
+  <AD12> = 61;
+  <AD13> = 62;
 
 	//Control Row
 	<CT01> = 37;
@@ -118,7 +119,7 @@ xkb_keymap {
   };
 
 
-  xkb_types "complete" {
+  xkb_types "logitech-arabic" {
 
      virtual_modifiers Alt,Meta,Super;
 
@@ -155,7 +156,7 @@ xkb_keymap {
   };
 
 
-  xkb_compatibility "complete" {
+  xkb_compatibility "logitech-arabic" {
 
      virtual_modifiers Alt,Meta,Super;
 
@@ -223,7 +224,7 @@ xkb_keymap {
 
 
   partial alphanumeric_keys
-  xkb_symbols "lenovo.personal"{
+  xkb_symbols "logitech-arabic"{
 
      name[group1]= "Custom";
 
@@ -303,20 +304,21 @@ xkb_keymap {
 
      // Bottom Row
      key.type = "ONE_LEVEL";
-     key <AD01> { [             Meta_L ],  virtualMods= Meta };
+     key <AD01> { [    Control_L ] };
+     key <AD02> { [       Meta_L ],  virtualMods= Meta };
      key.type = "THREE_LEVEL";
-     key <AD02> { [         Arabic_tah,       Arabic_fathatan,      slash ] };
-     key <AD03> { [         Arabic_dad,       Arabic_dammatan,          7 ] };
-     key <AD04> { [         Arabic_teh,       Arabic_kasratan,          8 ] };
-     key <AD05> { [        Arabic_noon,          Arabic_sukun,          9 ] };
-     key <AD06> { [       Arabic_hamza,  Arabic_question_mark,      minus ] };
-     key <AD07> { [        Arabic_thal,            VoidSymbol,    greater ] };
-     key <AD08> { [  Arabic_tehmarbuta,            VoidSymbol,          h ] };
-     key <AD09> { [         Arabic_sad,            VoidSymbol,          j ] };
-     key <AD10> { [          Arabic_ra,            VoidSymbol,          k ] };
-     key <AD11> { [         Arabic_zah,            VoidSymbol,          s ] };
+     key <AD03> { [         Arabic_tah,       Arabic_fathatan,      slash ] };
+     key <AD04> { [         Arabic_dad,       Arabic_dammatan,          7 ] };
+     key <AD05> { [         Arabic_teh,       Arabic_kasratan,          8 ] };
+     key <AD06> { [        Arabic_noon,          Arabic_sukun,          9 ] };
+     key <AD07> { [       Arabic_hamza,  Arabic_question_mark,      minus ] };
+     key <AD08> { [        Arabic_thal,            VoidSymbol,    greater ] };
+     key <AD09> { [  Arabic_tehmarbuta,            VoidSymbol,          h ] };
+     key <AD11> { [         Arabic_sad,            VoidSymbol,          j ] };
+     key <AD11> { [          Arabic_ra,            VoidSymbol,          k ] };
+     key <AD12> { [         Arabic_zah,            VoidSymbol,          s ] };
      key.type = "ONE_LEVEL";
-     key <AD12> { [            Shift_R ] };
+     key <AD13> { [            Shift_R ] };
 
      // Control Row
      key.type = "ONE_LEVEL";
@@ -349,12 +351,13 @@ xkb_keymap {
      key <CT13> { [                F29 ] }; // down
      key <CT14> { [                F30 ] }; // right
 
-     //Mapping Modifiers
+     // Mapping Modifiers
      modifier_map Control { <CT01> };  //Left Control
+     modifier_map Control { <AD01> };  //Left Control
      modifier_map Control { <CT06> };  //Right Control
-     modifier_map Shift   { <AD12> };  //Left Shift
+     modifier_map Shift   { <AD13> };  //Left Shift
      modifier_map Mod1    { <CT05> };  //Right Alt
      modifier_map Mod2    { <CT02> };  //Left Super
-     modifier_map Mod3    { <AD01> };  //Right Num Layer
+     modifier_map Mod3    { <AD02> };  //Right Num Layer
   };
 };
