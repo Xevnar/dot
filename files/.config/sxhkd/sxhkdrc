@@ -1,8 +1,3 @@
-super + BackSpace
-  pkill -USR1 -x sxhkd
-
-super + Delete
-  bspc wm -r
 
 super + {_, shift +, mod3 +, shift + mod3 +} Return
   $TERMINAL
@@ -42,8 +37,8 @@ super + {_, shift + } mod3 + {a, comma, period, p, o, e, u, q, j, k}
 ###############################################################################
 
 # Close nodes
-super + percent
-  bspc node focused -c
+super + {_, shift + } BackSpace
+  bspc node focused {-c, -k}
 
 # Increase/Decrease node size vertically
 super + {_, shift + } j
