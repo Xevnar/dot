@@ -6,7 +6,7 @@ super + b
   bspc desktop -f focused:'^{1}'
 
 super + n
-  $TERMINAL -e launch-editor
+  $TERMINAL -e $EDITOR
 
 super + minus
   scratchpad

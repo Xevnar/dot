@@ -1,9 +1,0 @@
-#!/bin/bash 
-
-# I launch my editor through a script because without the delay the editor
-# would render itself before it's window would reach it's full size causing
-# the editor to only occupy half it's window and not function properly
-
-sleep .02
-
-$EDITOR
