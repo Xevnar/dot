@@ -1,0 +1,23 @@
+#!/bin/sh
+
+file="$HOME/.local/share/lists/plugs.csv"
+
+if [ -f "$file" ]; then
+
+  while IFS=, read -r site author repo path; do
+    echo "path=$path" > /tmp/plugpath
+    . /tmp/plugpath
+
+    if [ -d $path ]; then
+     echo "Plugin already installed"
+      continue
+    fi
+
+    url="https://$site/$author/$repo.git"
+    git clone $url $path
+  done < $file ;
+
+  rm -f /tmp/plugpath
+else
+  echo "$file is missing"
+fi

@@ -1,0 +1,4 @@
+github.com,zdharma,fast-syntax-highlightin,$ZDOTDIR/plugins/syntax
+github.com,zsh-users,zsh-autosuggestions,$ZDOTDIR/plugins/autosuggestions
+github.com,zsh-users,zsh-history-substring-search,$ZDOTDIR/plugins/substring
+github.com,jopstro,bspswallow,$HOME/.local/bin/swallow
