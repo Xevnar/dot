@@ -220,7 +220,7 @@
 
   " General wiki
     let wiki_1 = {}
-    let wiki_1.path = '~/documents/vimwiki/'
+    let wiki_1.path = '~/documents/wiki/'
 
   " Wiki list
     let g:vimwiki_list = [wiki_1]
