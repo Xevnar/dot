@@ -1,0 +1,11 @@
+; Syntak highlighting
+; vim:ft=dosini
+
+[colors]
+background = #202020
+background-alt = #404040
+foreground = #dfdfdf
+foreground-alt = #505050
+primary = #ffb52a
+secondary = #e60053
+alert = #bd2c40
