@@ -53,5 +53,8 @@ bspc rule -a Gimp follow=off
 
 bspc rule -a Zathura state=tiled
 
+# Allow bspwm to Swallow
+pidof bspswallow || bspswallow &
+
 # Default Desktop
 bspc desktop -f focused:'^2'
