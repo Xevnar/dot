@@ -11,6 +11,9 @@ super + n
 super + minus
   scratchpad
 
+super + p
+  screencap
+
 ### MOVING (THROUGH) DOMAINS ###
 ###############################################################################
 
