@@ -65,8 +65,5 @@ super + {_, shift + } f
 super + {_, shift + } t
   bspc node -t '~{tiled,pseudo_tiled}'
 
-control + z
- echo "disabled job control" 2>/dev/null
-
 {F1, F2}
   xkbcomp ~/.config/keyboard/x11/logitech/{default,arabic}-keymap $DISPLAY
