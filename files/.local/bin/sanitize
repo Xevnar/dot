@@ -1,7 +1,0 @@
-#!/bin/sh
-
-# sanitize - set file/directory owner and permissions to normal values (644/755)
-# Usage: sanitize <file>
-
-chmod -R u=rwX,go=rX "$@"
-chown -R ${USER}.users "$@"
