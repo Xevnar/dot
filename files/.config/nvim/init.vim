@@ -88,9 +88,6 @@
 
 " Aesthetic Settings
 
-  " Set vim's coloursheme
-    colorscheme nord
-    set background=dark
   " Enable 24-bit colour RGB
     set termguicolors
   " Highlight the current line the cursor is on
@@ -108,9 +105,6 @@
   " Change the way lines that are too long is displayed
     set wrap
     set linebreak
-  " Change the colour of the current line and column highlights
-    highlight CursorLine guibg=#121F30
-    highlight CursorColumn guibg=#121F30
 
 
 " KEYBINDINGS "
@@ -120,7 +114,7 @@
 
 " Normal, Visual, and Operator-pending modes
 
-  " switch the functions of 's' and 'l'
+  " Switch the functions of 's' and 'l'
     noremap l s
     noremap s l
   " Substitute all to 'L'
@@ -189,6 +183,15 @@
 
 " PLUGIN SETTINGS "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Nord
+
+  " Set vim's coloursheme
+    colorscheme nord
+    set background=dark
+  " Change the colour of the current line and column highlights
+    highlight CursorLine guibg=#121F30
+    highlight CursorColumn guibg=#121F30
+
 " Hexokinase
 
   " Colour display method
