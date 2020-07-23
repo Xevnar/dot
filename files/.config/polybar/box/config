@@ -45,3 +45,32 @@ label-occupied-padding = 2
 ; Disabled desktop states
 label-empty =
 label-urgent =
+
+[module/filesystem]
+
+type = internal/fs
+
+; Mountpoints to display
+mount-0 = /
+mount-1 = /home
+mount-2 = /mnt/drive
+
+; Seconds to sleep between updates
+interval = 30
+
+; Display fixed precision values
+fixed-values = true
+
+; Spacing between entries
+spacing = 2
+
+; Module only displays desktop states
+format-mounted = <label-mounted>
+format-unmounted = <label-unmounted>
+
+; Formatting for mounted drives
+label-mounted = %{F#458588}%mountpoint%%{F-}: %percentage_free%%
+
+; Formatting for unmounted drives
+label-unmounted = %mountpoint%
+label-unmounted-foreground = ${colors.foreground-alt}
