@@ -64,7 +64,7 @@ fixed-values = true
 ; Spacing between entries
 spacing = 2
 
-; Module only displays desktop states
+; Module displays whether a drive is mounted or not
 format-mounted = <label-mounted>
 format-unmounted = <label-unmounted>
 
@@ -74,3 +74,33 @@ label-mounted = %{F#458588}%mountpoint%%{F-}: %percentage_free%%
 ; Formatting for unmounted drives
 label-unmounted = %mountpoint%
 label-unmounted-foreground = ${colors.foreground-alt}
+
+[module/network]
+
+type = internal/network
+
+; Name of the network interface to display
+interface = eno1
+
+; Seconds to sleep between updates
+interval = 1.0
+
+; Test connectivity every Nth update
+ping-interval = 10
+
+; Minimum output width of upload/download rate
+udspeed-minwidth = 2
+
+; Show up/downspeed rate for this interface only
+accumulate-stats = false
+
+; Module displays whether an interface is connected or not
+format-connected = <label-connected>
+format-disconnected = <label-disconnected>
+
+; Formatting for when the interface is connected
+label-connected =  %downspeed% %upspeed%
+
+; Formatting for when the interface is disconnected
+label-disconnected = Disconnected
+label-disconnected-foreground = ${colors.foreground-alt}
