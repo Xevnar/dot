@@ -104,3 +104,23 @@ label-connected =  %downspeed% %upspeed%
 ; Formatting for when the interface is disconnected
 label-disconnected = Disconnected
 label-disconnected-foreground = ${colors.foreground-alt}
+
+[module/date]
+
+type = internal/date
+
+; Seconds to sleep between updates
+interval = 1.0
+
+;Date format
+date = %A %d %B %Y
+
+; Time format
+time = %H:%M:%S
+
+; Module displays the date
+format = <label>
+
+; Formatting for displaying the date
+label = %date% %time%
+label-foreground = ${colors.foreground-alt}
