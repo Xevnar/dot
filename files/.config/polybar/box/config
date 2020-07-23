@@ -2,10 +2,46 @@
 ; vim:ft=dosini
 
 [colors]
+
 background = #202020
 background-alt = #404040
+
 foreground = #dfdfdf
 foreground-alt = #505050
+
 primary = #ffb52a
 secondary = #e60053
+
 alert = #bd2c40
+
+[module/bspwm]
+
+type = internal/bspwm
+
+; Only show workspaces defined on the same monitor as the bar
+pin-workspaces = true
+
+; Disable clicking to focus on workspace
+enable-click = false
+
+; Disable scrolling to cycle through workspaces
+enable-scroll = false
+
+; Set the scroll cycle direction when scrolling is enabled
+reverse-scroll = false
+
+; Module only displays desktop states
+format = <label-state>
+
+; Formatting for focused desktops
+label-focused = %name%
+label-focused-background = ${colors.background-alt}
+label-focused-padding = 2
+
+; Formatting for occupied desktops
+label-occupied = %name%
+label-occupied-padding = 2
+
+; Disabled desktop states
+label-empty =
+label-urgent =
