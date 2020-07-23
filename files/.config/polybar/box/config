@@ -3,16 +3,16 @@
 
 [colors]
 
-background = #202020
-background-alt = #404040
+background = #1D2021
+background-alt = #3C3836
 
-foreground = #dfdfdf
-foreground-alt = #505050
+foreground = #FBF1C7
+foreground-alt = #A89984
 
-primary = #ffb52a
-secondary = #e60053
+primary = #D79921
+secondary = #B16286
 
-alert = #bd2c40
+alert = #CC241D
 
 [module/bspwm]
 
