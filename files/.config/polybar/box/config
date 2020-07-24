@@ -135,6 +135,16 @@ format = <label>
 label = %date% %time%
 label-foreground = ${colors.foreground-alt}
 
+[module/date-right]
+
+inherit = module/date
+
+; Seconds to sleep between updates
+interval = 10
+
+; Time format
+time = %H:%M
+
 [bar/main]
 
 ; Default location of bar
@@ -222,4 +232,5 @@ font-0 = JetBrains Mono,JetBrains Mono:style=Regular:size=8;1
 
 ; Modules
 modules-left = bspwm-right
+modules-center = date-right
 modules-right =
