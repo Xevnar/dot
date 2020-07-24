@@ -2,6 +2,8 @@
 
 hostname=$(hostname)
 
+[ -z $DOTDIR ] && echo "DOTDIR in not defined" && exit 1
+
 if [ -z ${hostname##*box} ]; then
 
   for file in $(find $DOTDIR -path "$DOTDIR/*top" -prune -false -o -type f); do
