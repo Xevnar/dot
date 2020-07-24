@@ -191,3 +191,20 @@ font-0 = JetBrains Mono,JetBrains Mono:style=Regular:size=9;2
 modules-left = bspwm
 modules-center = date
 modules-right = filesystem network
+
+[bar/right]
+
+; Inherit settings from main bar
+inherit = bar/main
+
+; Default location of bar
+monitor = DVI-D-0
+
+; Bar Dimensions
+height = 13
+
+; Fonts
+font-0 = JetBrains Mono,JetBrains Mono:style=Regular:size=8;1
+
+; Modules
+modules-right =
