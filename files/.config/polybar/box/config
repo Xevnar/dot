@@ -3,8 +3,10 @@
 
 [colors]
 
-background = #1D2021
-background-alt = #3C3836
+background-main = #B81D2021
+background-right = #E01D2021
+background-alt-main = #BA3C3836
+background-alt-right = #E03C3836
 
 foreground = #FBF1C7
 foreground-alt = #A89984
@@ -35,7 +37,7 @@ format = <label-state>
 
 ; Formatting for focused desktops
 label-focused = %name%
-label-focused-background = ${colors.background-alt}
+label-focused-background = ${colors.background-alt-main}
 label-focused-padding = 2
 
 ; Formatting for occupied desktops
@@ -45,6 +47,14 @@ label-occupied-padding = 2
 ; Disabled desktop states
 label-empty =
 label-urgent =
+
+
+[module/bspwm-right]
+
+inherit = module/bspwm
+
+; Formatting for focused desktops
+label-focused-background = ${colors.background-alt-right}
 
 [module/filesystem]
 
@@ -169,9 +179,9 @@ tray-detached = false
 tray-maxsize = 10
 
 ; Colors
-background = ${colors.background}
+background = ${colors.background-main}
 foreground = ${colors.foreground}
-tray-background = ${colors.background}
+tray-background = ${colors.background-main}
 
 ; Offsets
 offset-x = 0
@@ -203,8 +213,13 @@ monitor = DVI-D-0
 ; Bar Dimensions
 height = 13
 
+; Colors
+background = ${colors.background-right}
+tray-background = ${colors.background-right}
+
 ; Fonts
 font-0 = JetBrains Mono,JetBrains Mono:style=Regular:size=8;1
 
 ; Modules
+modules-left = bspwm-right
 modules-right =
