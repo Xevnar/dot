@@ -2,8 +2,8 @@
 
 until pgrep -u $USER -x bspwm > /dev/null; do sleep 0.1; done
 
-#date=$(date +"%a %d, %B %Y - %I:%M %p")
-#echo "$date\n\n" | tee -a /tmp/mainbar.log /tmp/rightbar.log > /dev/null
+date=$(date +"%a %d, %B %Y - %I:%M %p")
+echo "$date\n\n" | tee -a /tmp/mainbar.log /tmp/rightbar.log > /dev/null
 
-polybar --reload main >>/dev/null 2>&1 &
-polybar --reload right >>/dev/null 2>&1 &
+polybar --reload main >>/tmp/barmain.log 2>&1 &
+polybar --reload right >>/tmp/barright.log 2>&1 &
