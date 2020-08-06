@@ -18,6 +18,7 @@
       Plug 'junegunn/goyo.vim'
       Plug 'junegunn/limelight.vim'
     " Quality of life improvements
+      Plug 'airblade/vim-gitgutter'
       Plug 'tpope/vim-surround'
       Plug 'tpope/vim-commentary'
       Plug 'RRethy/vim-hexokinase', {'do': 'make hexokinase'}
@@ -86,6 +87,8 @@
     set wildmode=longest,full
   " Change the default way vim splits
     set splitbelow splitright
+  " Change the delay vim take before updating buffer
+    set updatetime=100
 
 " Aesthetic Settings
 
@@ -224,6 +227,19 @@
   " Call the previous functions when entering or exiting goyo
     autocmd! User GoyoEnter nested call <SID>goyo_enter()
     autocmd! User GoyoLeave nested call <SID>goyo_leave()
+
+" GitGutter
+
+  " Disable GitGutter keymappings
+    let g:gitgutter_map_keys = 0
+
+  " Change GitGutter Symbols
+    let g:gitgutter_sign_added = '++'
+    let g:gitgutter_sign_modified = '~~'
+    let g:gitgutter_sign_removed = '--'
+    let g:gitgutter_sign_removed_first_line = '^^'
+    let g:gitgutter_sign_removed_above_and_below = '{}'
+    let g:gitgutter_sign_modified_removed = '~-'
 
 " VimWiki
 
