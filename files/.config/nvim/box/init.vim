@@ -188,6 +188,14 @@
 " Trigger autoread on cursor inactivity, buffer change, or terminal focus
   autocmd CursorHold,CursorHoldI,FocusGained,BufEnter * checktime
 
+" Highlight the specific words so that they stick out more
+  augroup vimrc_todo
+      au!
+      au Syntax * syn match MyTodo /\v<(FIXME|NOTE|TODO|BUG|OPTIMIZE|XXX)/
+            \ containedin=.*Comment,vimCommentTitle
+  augroup END
+  hi def link MyTodo Todo
+
 " PLUGIN SETTINGS "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Nord
