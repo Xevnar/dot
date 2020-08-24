@@ -1,0 +1,8 @@
+#!/bin/sh
+
+until pgrep -u $USER -x bspwm > /dev/null; do sleep 0.1; done
+
+date=$(date +"%a %d, %B %Y - %I:%M %p")
+echo "$date\n\n" | tee -a /tmp/mainbar.log > /dev/null
+
+polybar --reload main >>/tmp/barmain.log 2>&1 &
