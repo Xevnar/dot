@@ -21,8 +21,8 @@ type = internal/bspwm
 ; Only show workspaces defined on the same monitor as the bar
 pin-workspaces = true
 
-; Disable clicking to focus on workspace
-enable-click = false
+; Enable clicking to focus on workspace
+enable-click = Enable
 
 ; Disable scrolling to cycle through workspaces
 enable-scroll = false
