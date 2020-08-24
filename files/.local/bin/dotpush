@@ -17,8 +17,8 @@ if [ -z ${hostname##*box} ]; then
 elif [ -z ${hostname##*top} ]; then
 
   for file in $(find $DOTDIR -path "$DOTDIR/*box" -prune -false -o -type f); do
-    tmp=$(echo "${file##$DOTDIR/}" | sed "s|/top/|/|g")
-    dir="$HOME/${tmp%/*}"
+    tmp=$(echo "${file##$DOTDIR}" | sed "s|/top/|/|g")
+    dir="$HOME${tmp%/*}"
     [ ! -d $dir ] && mkdir -pv $dir
 
     cp -vuf $file $dir

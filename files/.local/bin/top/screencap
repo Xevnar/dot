@@ -1,0 +1,51 @@
+#!/bin/sh
+
+while getopts ":d:o:t:h" option; do
+  case $option in
+
+    d) delay=$OPTARG ;;
+
+    o)
+      capdir=${OPTARG%/*}
+      capname=${OPTARG##*/}
+    ;;
+
+    t) captype=$OPTARG ;;
+
+    h)
+      echo "$0 accepts the following options:\n"
+      echo "\t-h\tprints this help message"
+      echo "\t-d\tsepcify the duration of the delay before taking the image"
+      echo "\t-o\tspecify the location of the output file"
+      echo "\t-t\tspecify the filetype of the image\n"
+      echo 'The default options are: -d 0 -o images/screencaps/$(date) -t png'
+      exit
+    ;;
+
+	  *) printf "Invalid option: -%s\\n" "$OPTARG" && exit ;;
+
+  esac
+done
+
+case "$(bspc query --names -M -m)" in
+
+  "eDP1")
+    capmonitor="ed"
+    capsize="1366x768"
+    display=":0.0+0,0"
+  ;;
+
+esac
+
+[ -z $delay ] && delay=0
+[ -z $capdir ] && capdir="$HOME/media/images/screencaps"
+[ -z $capname ] && capname=$capmonitor-$(date +"%Y%m%d-%H%M%S")
+[ -z $captype ] && captype="png"
+
+[ -d $capdir ] || mkdir -pv $capdir
+
+cap=$capdir/$capname.$captype
+
+sleep $delay
+
+ffmpeg -f x11grab -s $capsize -i $display -frames:v 1 $cap
