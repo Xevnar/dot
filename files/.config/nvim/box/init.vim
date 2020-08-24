@@ -185,6 +185,9 @@
 " Refresh sxhdrc when my keybind file is updated
   autocmd BufWritePost *sxhkdrc !pkill -USR1 sxhkd
 
+" Trigger autoread on cursor inactivity, buffer change, or terminal focus
+  autocmd CursorHold,CursorHoldI,FocusGained,BufEnter * checktime
+
 " PLUGIN SETTINGS "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Nord
