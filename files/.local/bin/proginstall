@@ -1,0 +1,73 @@
+#!/bin/sh
+
+file="$HOME/.local/share/lists/progs.csv"
+
+pacInstall(){
+  echo "Installing $1 ($2) through pacman."
+  sleep 0.5
+
+  pacman --noconfirm --needed -S "$1" ;
+}
+
+aurInstall(){
+  # Check if package is already installed
+	pacman -Qim "$1" && return
+
+  echo "Installing $1 ($2) through yay."
+  sleep 0.5
+
+	yay --aur -S --noconfirm "$1"
+}
+
+gitInstall(){
+  progname="$(basename "$1" .git)"
+	dir="$srcdir/$progname"
+
+  echo "Installing $dir ($2) through git."
+  sleep 0.5
+
+	git clone --depth 1 "$1" "$dir" || { cd "$dir" || return ; sudo -u "$name" git pull --force origin master;}
+	cd "$dir" || exit
+	make
+	make install
+	cd /tmp || return ;
+}
+
+
+if [ -f "$file" ]; then
+
+  # Remove comments and empty lines
+  cat "$file" | sed -E '/^(#|\s*$)/d'  > /tmp/progs.csv
+
+  # Create git source directory
+	srcdir="$HOME/.local/src"
+  [ -d "$srcdir" ] || mkdir "$srcdir"
+
+  # Install git if not installed
+  if ! pacman -Qi git > /dev/null; then
+    pacInstall git
+  fi
+
+  # Install yay if not installed
+  if ! pacman -Qi yay > /dev/null; then
+    git clone https://aur.archlinux.org/yay.git "$srcdir/yay"
+    cd "$srcdir/yay"
+    makepkg -si
+  fi
+
+  while IFS=, read -r tag prog description; do
+
+    case $tag in
+
+      "M") pacInstall "$prog" "$description" ;;
+      "A") aurInstall "$prog" "$description" ;;
+      "G") gitInstall "$prog" "$description" ;;
+        *) echo "tag is unspecified or invalid" ;;
+
+    esac
+
+  done < /tmp/progs.csv ;
+
+else
+  echo "$file is missing"
+fi

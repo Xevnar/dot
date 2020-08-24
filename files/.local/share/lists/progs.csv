@@ -1,0 +1,78 @@
+# vim:ft=sh
+# TAG,NAME IN REPO (or git url),PURPOSE (should be a verb phrase to sound right while installing)
+
+### Fonts ###
+M,ttf-inconsolata,"is an alternative monospace font."
+M,ttf-linux-libertine,"provides the sans and serif fonts."
+M,ttf-jetbrains-mono,"provides the monospace font."
+M,noto-fonts,"provides arabic and unicode characters."
+M,noto-fonts-cjk,"provides the asian font set."
+M,noto-fonts-emoji,"is an emoji font."
+A,powerline-fonts-git,"provides patched fonts for powerline."
+
+### Main programs ###
+M,alacritty,"is terminal emulator."
+M,bc,"is used for a dropdown calculator."
+M,bspwm,"is the window manager."
+M,dmenu,"run launcher."
+M,fzf,"is a fuzzy finder tool."
+M,neovim,"a tidier vim with some useful features"
+M,picom,"is for transparency and removing screen-tearing."
+M,sxhkd,"is the hotkey daemon."
+M,sxiv,"is a minimalist image viewer."
+M,xournalpp,"is a hand-written note taking program."
+M,youtube-dl,"can download any YouTube video (or playlist or channel) when given the link."
+M,zathura,"is a pdf viewer with vim-like bindings."
+M,zathura-pdf-mupdf,"allows mupdf pdf compatibility in zathura."
+A,brave-bin,"is an elegant browser with built-in adblocking, tor and other features."
+A,lf-git,"is an extensive terminal file manager that everyone likes."
+A,polybar,"is the status bar."
+A,sc-im,"is an Excel-like terminal spreadsheet manager."
+A,task-spooler,"queues commands or files for download."
+
+### FileSystem Utilities ###
+M,ntfs-3g,"allows accessing NTFS partitions."
+M,exfat-utils,"allows management of FAT drives."
+M,dosfstools,"allows your computer to access dos-like filesystems."
+A,simple-mtpfs-git,"enables the mounting of cell phones."
+
+### Media Utilites ###
+M,pulseaudio-alsa,"is the audio system."
+M,pulsemixer,"is an audio controler."
+M,pamixer,"is a command-line audio interface."
+M,mediainfo,"shows audio and video information."
+
+### Archive Utilites ###
+M,atool,"manages and gives information about archives."
+M,unrar,"extracts rars."
+M,unzip,"unzips zips."
+
+### Hardware Utilities ###
+M,usbutils,"provides usb dignostic tools."
+M,hplip,"interface to communicate with hp printers."
+M,piper,"allows configuring gaming mouse."
+M,xf86-input-evdev,"allows the use of a drawing tablet."
+M,xorg-xinput,"tool to display hardware information of usb devices."
+M,xorg-xkbutils,"tools to allow of creating custom keymaps."
+
+### General Utilities ###
+M,dash,"is default shell."
+M,exa,"is ls replacment."
+M,man-db,"lets you read man pages of programs."
+M,ffmpeg,"can record and splice video and audio on the command line."
+M,gnome-keyring,"serves as the system keyring."
+M,arandr,"is a UI for screen adjustment."
+M,unclutter,"hides an inactive mouse."
+M,reflector,"tool to generate pacman mirror lists."
+M,poppler,"manipulates .pdfs and gives .pdf previews and other .pdf functions."
+M,xclip,"allows for copying and pasting from the command line."
+M,xdotool,"provides window action utilities on the command line."
+M,xwallpaper,"sets the wallpaper."
+M,xorg-xinit,"starts the graphical server."
+M,xorg-server,"is the graphical server."
+M,xorg-xprop,"is a tool for detecting window properties."
+M,xorg-xwininfo,"allows querying information about windows."
+M,xorg-xdpyinfo,"aids with resolution determination and screen recording."
+M,xorg-xbacklight,"enables changing screen brightness levels."
+A,vidir,"allows bulk file renaming."
+A,gtk-theme-arc-gruvbox-git,"gives the dark GTK theme used in LARBS."
