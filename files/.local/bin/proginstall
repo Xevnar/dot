@@ -51,11 +51,23 @@ gitInstall(){
 	cd /tmp || return ;
 }
 
+sudoRefresh() {
+ while [ -f /tmp/progs.csv ]; do
+  sudo -v
+  sleep 5
+ done &
+}
+
+# Only run script if user is root
+[ "$(id -u)" -ne 0 ] && echo "Please run as root." && exit
 
 if [ -f "$file" ]; then
 
   # Remove comments and empty lines
   cat "$file" | sed -E '/^(#|\s*$)/d'  > /tmp/progs.csv
+
+  # Start refreshing the sudo session until program stops
+  sudoRefresh
 
   # Create git source directory
 	srcdir="$HOME/.local/src"
@@ -89,6 +101,7 @@ if [ -f "$file" ]; then
 
   done < /tmp/progs.csv ;
 
+  rm /tmp/progs.csv
 else
   echo "$file is missing"
 fi
