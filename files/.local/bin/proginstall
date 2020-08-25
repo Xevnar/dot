@@ -1,5 +1,23 @@
 #!/bin/sh
 
+while getopts ":ah" option; do
+  case $option in
+
+    a) allpacks=true ;;
+
+    h)
+      echo "$0 accepts the following options:\n"
+      echo "\t-h\tprints this help message"
+      echo "\t-a\tinstalls all packages regardless of priority\n"
+      echo 'The default options are: -d 0 -o images/screencaps/$(date) -t png'
+      exit
+    ;;
+
+	  *) printf "Invalid option: -%s\\n" "$OPTARG" && exit ;;
+
+  esac
+done
+
 file="$HOME/.local/share/lists/progs.csv"
 
 pacInstall(){
@@ -55,7 +73,10 @@ if [ -f "$file" ]; then
     makepkg -si
   fi
 
-  while IFS=, read -r tag prog description; do
+  while IFS=, read -r priority tag prog description; do
+
+    # Only install important packages
+    [ -z "$allpacks" ] && { [ -z "$priority" ] && continue; }
 
     case $tag in
 
