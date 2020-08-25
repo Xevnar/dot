@@ -9,7 +9,6 @@ while getopts ":ah" option; do
       echo "$0 accepts the following options:\n"
       echo "\t-h\tprints this help message"
       echo "\t-a\tinstalls all packages regardless of priority\n"
-      echo 'The default options are: -d 0 -o images/screencaps/$(date) -t png'
       exit
     ;;
 
