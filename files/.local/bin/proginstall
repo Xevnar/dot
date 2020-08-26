@@ -33,7 +33,7 @@ aurInstall(){
   echo "Installing $1 ($2) through yay."
   sleep 0.5
 
-	yay --aur -S --noconfirm "$1"
+	sudo -u nobody yay --aur -S --noconfirm "$1"
 }
 
 gitInstall(){
@@ -69,8 +69,8 @@ if [ -f "$file" ]; then
   sudoRefresh
 
   # Create git source directory
-	srcdir="$HOME/.local/src"
-  [ -d "$srcdir" ] || mkdir "$srcdir"
+	srcdir="/tmp/aur/src"
+  [ -d "$srcdir" ] || sudo -u nobody mkdir -p "$srcdir"
 
   # Install git if not installed
   if ! pacman -Qi git > /dev/null; then
@@ -81,7 +81,7 @@ if [ -f "$file" ]; then
   if ! pacman -Qi yay > /dev/null; then
     git clone https://aur.archlinux.org/yay.git "$srcdir/yay"
     cd "$srcdir/yay"
-    makepkg -si
+    sudo -u nobody makepkg -si
   fi
 
   while IFS=, read -r priority tag prog description; do
