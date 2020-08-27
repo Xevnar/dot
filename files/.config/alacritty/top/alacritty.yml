@@ -8,19 +8,19 @@ scrolling:
 # Font configuration
 font:
   normal:
-    family: monospace
+    family: Monospace
     style: Regular
 
   bold:
-    family: monospace
+    family: Monospace
     style: Bold
 
   italic:
-    family: monospace
+    family: Monospace
     style: Italic
 
   bold_italic:
-    family: monospace
+    family: Monospace
     style: Bold Italic
 
   # Point size
