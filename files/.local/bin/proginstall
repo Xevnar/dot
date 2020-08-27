@@ -20,6 +20,7 @@ done
 file="$HOME/.local/share/lists/progs.csv"
 
 pacInstall(){
+  # TODO? skip packages in ignore packages
   echo "Installing $1 ($2) through pacman."
   sleep 0.5
 
@@ -27,13 +28,23 @@ pacInstall(){
 }
 
 aurInstall(){
-  # Check if package is already installed
-	pacman -Qim "$1" && return
-
-  echo "Installing $1 ($2) through yay."
+  echo "Installing $1 ($2) through the aur."
   sleep 0.5
 
-	sudo -u nobody yay --aur -S --noconfirm "$1"
+  # Check if package is already installed
+	pacman -Qim "$1" > /dev/null 2>&1 && printf "\033[33;1mWarning: \033[0m$1 is already installed -- skipping\n there is nothing to do\n" && return
+
+  # Get package src code
+  srcurl="https://aur.archlinux.org/$1.git"
+	dir="$srcdir/$1"
+	sudo -u aurbuilder git clone --depth 1 "$srcurl" "$dir" || { cd "$dir" || return ; sudo -u aurbuilder git pull --force origin master;}
+
+  # Build package
+	cd "$dir" || exit
+  sudo -u aurbuilder makepkg --noconfirm --needed -s
+  cd "$builddir" || exit
+  pacman --noconfirm -U "$1"-*.pkg.tar.*
+	cd /tmp || return ;
 }
 
 gitInstall(){
@@ -68,20 +79,25 @@ if [ -f "$file" ]; then
   # Start refreshing the sudo session until program stops
   sudoRefresh
 
-  # Create git source directory
-	srcdir="/tmp/aur/src"
-  [ -d "$srcdir" ] || sudo -u nobody mkdir -p "$srcdir"
+  # Create temp user
+  useradd aurbuilder
+
+  # Give temp user broken permissions
+	echo "aurbuilder ALL=(ALL) NOPASSWD: /usr/bin/pacman * #builder" >> /etc/sudoers ;
+
+  # Create source code directory for git and aur packages
+	srcdir="/var/cache/aur/src"
+  [ -d "$srcdir" ] || mkdir -p "$srcdir"
+  chmod ugo=rwx "$srcdir"
+
+  # Create build directory for aur packages
+	builddir="/var/cache/aur/pkg"
+  [ -d "$builddir" ] || mkdir -p "$builddir"
+  chmod ugo=rwx "$builddir"
 
   # Install git if not installed
-  if ! pacman -Qi git > /dev/null; then
+  if ! pacman -Qi "git" > /dev/null 2>&1 ; then
     pacInstall git
-  fi
-
-  # Install yay if not installed
-  if ! pacman -Qi yay > /dev/null; then
-    git clone https://aur.archlinux.org/yay.git "$srcdir/yay"
-    cd "$srcdir/yay"
-    sudo -u nobody makepkg -si
   fi
 
   while IFS=, read -r priority tag prog description; do
@@ -99,6 +115,15 @@ if [ -f "$file" ]; then
     esac
 
   done < /tmp/progs.csv ;
+
+  # Delete the builder
+  userdel -f aurbuilder
+
+  # Remove bulider's broken permissions
+  sed -i "/#builder/d" /etc/sudoers
+
+  # Change owner of all files to root
+  chown -R root:root "/var/cache/aur"
 
   rm /tmp/progs.csv
 else
