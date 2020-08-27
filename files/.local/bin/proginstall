@@ -37,7 +37,7 @@ aurInstall(){
   sleep 0.5
 
   # Check if package is already installed
-	pacman -Qim "$1" > /dev/null 2>&1 && printf "\033[33;1mWarning: \033[0m$1 is already installed -- skipping\n there is nothing to do\n" && return
+	pacman -Qi "$1" > /dev/null 2>&1 && printf "\033[33;1mWarning: \033[0m$1 is already installed -- skipping\n there is nothing to do\n" && return
 
   # Get package src code
   srcurl="https://aur.archlinux.org/$1.git"
