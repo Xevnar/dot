@@ -141,6 +141,9 @@ if [ -f "$file" ]; then
     pacInstall git
   fi
 
+  # Install base-devel before proceeding
+  pacInstall base-devel
+
   while IFS=, read -r priority tag prog description; do
 
     # Only install important packages
