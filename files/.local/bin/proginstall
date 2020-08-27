@@ -4,11 +4,13 @@ while getopts ":ah" option; do
   case $option in
 
     a) allpacks=true ;;
+    f) file="$OPTARG" ;;
 
     h)
       echo "$0 accepts the following options:\n"
       echo "\t-h\tprints this help message"
       echo "\t-a\tinstalls all packages regardless of priority\n"
+      echo "\t-f\tspecify a different progs file"
       exit
     ;;
 
@@ -20,7 +22,7 @@ done
 # Trap enusre cleanup if script is inturrepted halfway
 trap "cleanup" 1 2 3 6
 
-file="$HOME/.local/share/lists/progs.csv"
+[ -z "$file" ] && file="$HOME/.local/share/lists/progs.csv"
 
 pacInstall(){
   # TODO? skip packages in ignore packages
