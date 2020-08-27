@@ -1,6 +1,6 @@
 #!/bin/sh
 
-while getopts ":ah" option; do
+while getopts ":af:h" option; do
   case $option in
 
     a) allpacks=true ;;
