@@ -1,5 +1,23 @@
 #!/bin/sh
 
+while getopts ":d:h" option; do
+  case $option in
+
+    d) DOTDIR=$OPTARG ;;
+
+    h)
+      echo "$0 accepts the following options:\n"
+      echo "\t-h\tprints this help message"
+      echo "\t-d\tsepcify the location of the dot directory"
+      echo 'The default location is: $HOME/docs/projects/dot/files'
+      exit
+    ;;
+
+	  *) printf "Invalid option: -%s\\n" "$OPTARG" && exit ;;
+
+  esac
+done
+
 hostname=$(hostname)
 
 [ -z $DOTDIR ] && echo "DOTDIR in not defined" && exit 1
