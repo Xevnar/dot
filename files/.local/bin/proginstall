@@ -121,12 +121,12 @@ if [ -f "$file" ]; then
   # Create source code directory for git and aur packages
 	srcdir="/var/cache/aur/src"
   [ -d "$srcdir" ] || mkdir -p "$srcdir"
-  chmod ugo=rwx "$srcdir"
+  chown -R aurbuilder:aurbuilder "$srcdir"
 
   # Create build directory for aur packages
 	builddir="/var/cache/aur/pkg"
   [ -d "$builddir" ] || mkdir -p "$builddir"
-  chmod ugo=rwx "$builddir"
+  chown -R aurbuilder:aurbuilder "$builddir"
 
   # Install git if not installed
   if ! pacman -Qi "git" > /dev/null 2>&1 ; then
