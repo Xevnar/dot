@@ -13,7 +13,7 @@ y,A,powerline-fonts-git,"provides patched fonts for powerline."
 ### Main programs ###
 y,M,alacritty,"is terminal emulator."
 ,M,bc,"is used for a dropdown calculator."
-y,M,bspwm,"is the window manager."
+y,O,bspwm-0.9.9-2-x86_64.pkg.tar.zst,"is the window manager."
 y,M,dmenu,"run launcher."
 y,M,fzf,"is a fuzzy finder tool."
 y,M,neovim,"a tidier vim with some useful features"

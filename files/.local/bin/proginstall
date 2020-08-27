@@ -64,6 +64,15 @@ gitInstall(){
 	cd /tmp || return ;
 }
 
+alaInstall(){
+  progname=$(echo "$1" | sed -e 's/-[0-9].*//')
+  progintial=$(echo "$progname" | cut -c1)
+
+  echo "Installing $1 ($2) through the ala."
+
+  pacman --noconfirm --needed -U "https://archive.archlinux.org/packages/$progintial/$progname/$1"
+}
+
 sudoRefresh(){
  while [ -f /tmp/progs.csv ]; do
   sudo -v
@@ -132,6 +141,7 @@ if [ -f "$file" ]; then
       "M") pacInstall "$prog" "$description" ;;
       "A") aurInstall "$prog" "$description" ;;
       "G") gitInstall "$prog" "$description" ;;
+      "O") alaInstall "$prog" "$description" ;;
         *) echo "tag is unspecified or invalid" ;;
 
     esac
