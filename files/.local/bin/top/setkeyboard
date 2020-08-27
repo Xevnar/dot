@@ -1,5 +1,24 @@
 #!/bin/sh
 
+while getopts ":ah" option; do
+  case $option in
+
+    a) keymap=arabic-keymap ;;
+
+    h)
+      echo "$0 accepts the following options:\n"
+      echo "\t-h\tprints this help message"
+      echo "\t-a\tsets the keymap to the arabic varient\n"
+      exit
+    ;;
+
+	  *) printf "Invalid option: -%s\\n" "$OPTARG" && exit ;;
+
+  esac
+done
+
+[ -z "$keymap" ] && keymap=default
+
 # keyboard settings
-xkbcomp ~/.config/keyboard/x11/lenovo/default-keymap $DISPLAY
+xkbcomp ~/.config/keyboard/x11/lenovo/"$keymap" $DISPLAY
 xset r rate 200 30
