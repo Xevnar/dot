@@ -17,6 +17,9 @@ while getopts ":ah" option; do
   esac
 done
 
+# Trap enusre cleanup if script is inturrepted halfway
+trap "cleanup" 1 2 3 6
+
 file="$HOME/.local/share/lists/progs.csv"
 
 pacInstall(){
@@ -61,11 +64,30 @@ gitInstall(){
 	cd /tmp || return ;
 }
 
-sudoRefresh() {
+sudoRefresh(){
  while [ -f /tmp/progs.csv ]; do
   sudo -v
   sleep 5
  done &
+}
+
+cleanup(){
+	printf "\n\033[34;1mCleaning up mess\033[0m\n"
+
+  # Delete the builder
+  userdel -f aurbuilder > /dev/null 2>&1
+
+  # Remove bulider's broken permissions
+  sed -i "/#builder/d" /etc/sudoers > /dev/null 2>&1
+
+  # Change owner of all files to root
+  chown -R root:root "/var/cache/aur" > /dev/null 2>&1
+
+  # remove tmp file
+  rm -f /tmp/progs.csv > /dev/null 2>&1
+
+  # exit script
+  exit
 }
 
 # Only run script if user is root
@@ -116,16 +138,8 @@ if [ -f "$file" ]; then
 
   done < /tmp/progs.csv ;
 
-  # Delete the builder
-  userdel -f aurbuilder
-
-  # Remove bulider's broken permissions
-  sed -i "/#builder/d" /etc/sudoers
-
-  # Change owner of all files to root
-  chown -R root:root "/var/cache/aur"
-
-  rm /tmp/progs.csv
+  # Do cleanup routine
+  cleanup
 else
   echo "$file is missing"
 fi
