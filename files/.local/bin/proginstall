@@ -88,6 +88,9 @@ cleanup(){
   # Delete the builder
   userdel -f aurbuilder > /dev/null 2>&1
 
+  # remove user home directory
+  rm -rf /tmp/aurbuilder > /dev/null 2>&1
+
   # Remove bulider's broken permissions
   sed -i "/#builder/d" /etc/sudoers > /dev/null 2>&1
 
@@ -115,8 +118,8 @@ if [ -f "$file" ]; then
   # Start refreshing the sudo session until program stops
   sudoRefresh
 
-  # Create temp user
-  useradd aurbuilder
+  # Create temp user with home directory for aur packages that might need it
+  useradd -m -b "/tmp" aurbuilder
 
   # Give temp user broken permissions
 	echo "aurbuilder ALL=(ALL) NOPASSWD: /usr/bin/pacman * #builder" >> /etc/sudoers ;
