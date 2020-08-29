@@ -17,7 +17,7 @@ while getopts ":ah" option; do
   esac
 done
 
-[ -z "$keymap" ] && keymap=default
+[ -z "$keymap" ] && keymap=default-keymap
 
 # keyboard settings
 xkbcomp ~/.config/keyboard/x11/lenovo/"$keymap" $DISPLAY
