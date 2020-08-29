@@ -22,7 +22,7 @@ export INPUTRC="${XDG_CONFIG_HOME:-$HOME/.config}/shells/bash/inputrc"
 export ANDROID_SDK_HOME="${XDG_CONFIG_HOME:-$HOME/.config}/android"
 
 # data storage paths
-export XAUTHORITY="$XDG_RUNTIME_DIR/Xauthority"
+export XAUTHORITY="$XDG_CONFIG_HOME/Xauthority"
 export PASSWORD_STORE_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/password-store"
 export GOPATH="${XDG_DATA_HOME:-$HOME/.local/share}/go"
 
