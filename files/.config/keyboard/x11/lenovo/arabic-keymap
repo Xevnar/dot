@@ -144,6 +144,18 @@ xkb_keymap {
          level_name[Level3]= "Num";
      };
 
+     type "X_LEVEL" {
+         modifiers= Control+Shift+Mod3;
+         map[Control]= Level1;
+         map[Shift]= Level2;
+         map[Mod3]= Level3;
+         map[Control+Mod3]= Level4;
+         level_name[Level1]= "Base";
+         level_name[Level2]= "Shift";
+         level_name[Level3]= "Num";
+         level_name[Level4]= "X";
+     };
+
      type "ALPHABETIC" {
          modifiers= Shift+Lock;
          map[Shift]= Level2;
@@ -207,6 +219,18 @@ xkb_keymap {
          action= SetMods(modifiers=Alt,clearLocks);
      };
 
+     interpret Prev_Virtual_Screen {
+         action = SwitchScreen(screen=-1,sameServer=false);
+     };
+
+     interpret Next_Virtual_Screen {
+         action = SwitchScreen(screen=+1,sameServer=false);
+     };
+
+     interpret Terminate_Server {
+         action= TerminateServer();
+     };
+
      interpret Any+AnyOf(all) {
          action= SetMods(modifiers=modMapMods,clearLocks);
      };
@@ -228,9 +252,10 @@ xkb_keymap {
      name[group1]= "Custom";
 
      // Function Row
+     key.type = "X_LEVEL";
+     key <FK01> { [                 F1, voidSymbol , voidSymbol, Prev_Virtual_Screen ] };
+     key <FK02> { [                 F2, voidSymbol , voidSymbol, Next_Virtual_Screen ] };
      key.type = "ONE_LEVEL";
-     key <FK01> { [                 F1 ] };
-     key <FK02> { [                 F2 ] };
      key <FK03> { [                 F3 ] };
      key <FK04> { [                 F4 ] };
      key <FK05> { [                 F5 ] };
@@ -244,7 +269,8 @@ xkb_keymap {
      key <FK13> { [                F13 ] };
      key <FK14> { [                F14 ] };
      key <FK15> { [                F15 ] };
-     key <FK16> { [                F16 ] };
+     key.type = "X_LEVEL";
+     key <FK16> { [                F16, voidSymbol , voidSymbol, Terminate_Server ] };
 
      // Symbol Row
      key.type = "ONE_LEVEL";
