@@ -37,7 +37,7 @@ y,A,xinit-xsession,"provides desktop session for the xinitrc."
 y,M,ntfs-3g,"allows accessing NTFS partitions."
 y,M,exfat-utils,"allows management of FAT drives."
 y,M,dosfstools,"allows your computer to access dos-like filesystems."
-y,A,simple-mtpfs-git,"enables the mounting of cell phones."
+y,A,simple-mtpfs,"enables the mounting of cell phones."
 
 ### Media Utilites ###
 y,M,pulseaudio-alsa,"is the audio system."
