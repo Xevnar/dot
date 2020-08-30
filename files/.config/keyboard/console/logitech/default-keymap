@@ -215,7 +215,9 @@ keycode 28 = Return
 ! Bottom Row
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-keycode 42 = SAlt
+keycode 42 = Control
+
+keycode 86 = SAlt
 
 keycode 44 = apostrophe
   shift keycode 44 = quotedbl
