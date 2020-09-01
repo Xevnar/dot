@@ -429,22 +429,22 @@ xkb_keymap {
 
     // Fn Layer
     key.type = "ONE_LEVEL";
-    key <FK17> { [          F17 ] }; // F1
-    key <FK18> { [          F18 ] }; // F2
-    key <FK19> { [          F19 ] }; // F3
-    key <FK20> { [          F20 ] }; // F4
-    key <FK21> { [          F21 ] }; // F6
-    key <FK22> { [          F22 ] }; // F6
-    key <FK23> { [          F23 ] }; // F7
-    key <FK24> { [          F24 ] }; // F8
-    key <FK25> { [          F25 ] }; // F11
-    key <FK26> { [          F26 ] }; // F12
+    key <FK17> { [   voidSymbol ] }; // F1
+    key <FK18> { [   voidSymbol ] }; // F2
+    key <FK19> { [   voidSymbol ] }; // F3
+    key <FK20> { [   voidSymbol ] }; // F4
+    key <FK21> { [   voidSymbol ] }; // F6
+    key <FK22> { [   voidSymbol ] }; // F6
+    key <FK23> { [   voidSymbol ] }; // F7
+    key <FK24> { [   voidSymbol ] }; // F8
+    key <FK25> { [   voidSymbol ] }; // F11
+    key <FK26> { [   voidSymbol ] }; // F12
     key <NV07> { [   voidSymbol ] }; // Insert
     key <NV08> { [   voidSymbol ] }; // Delete
-    key <AR05> { [          F28 ] }; // Up
-    key <AR06> { [          F27 ] }; // Left
-    key <AR07> { [          F29 ] }; // Down
-    key <AR08> { [          F30 ] }; // Right
+    key <AR05> { [   voidSymbol ] }; // Up
+    key <AR06> { [   voidSymbol ] }; // Left
+    key <AR07> { [   voidSymbol ] }; // Down
+    key <AR08> { [   voidSymbol ] }; // Right
 
     // Mapping Modifiers
     modifier_map Control { <CT01> }; // Left Control
