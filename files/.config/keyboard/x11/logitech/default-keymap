@@ -18,9 +18,6 @@ xkb_keymap {
     <FK11> = 76;
     <FK12> = 95;
     <FK13> = 96;
-    <FK14> = 107;
-    <FK15> = 118;
-    <FK16> = 119;
 
     // Number Row
     <AA01> = 49;
@@ -122,7 +119,7 @@ xkb_keymap {
     <KP13> = 90;
     <KP14> = 91;
     <KP15> = 82;
-    <KP16> = 83;
+    <KP16> = 86;
     <KP17> = 104;
 
     // Fn layer
@@ -136,12 +133,9 @@ xkb_keymap {
     <FK24> = 220; // F8
     <FK25> = 232; // F11
     <FK26> = 233; // F12
-    <NV07> = 112; // Insert
-    <NV08> = 110; // Delete
-    <AR05> = 112; // Up
-    <AR06> = 110; // Left
-    <AR07> = 117; // Down
-    <AR08> = 115; // Right
+    <NV07> = 78;  // Insert
+    <NV08> = 127; // Delete
+    <CT07> = 135; // Right Control
 
     // Have Shift + Delete act as Delete on a keyboard level
     // <FDEL> = 250;
@@ -305,11 +299,8 @@ xkb_keymap {
     key <FK10> { [   voidSymbol ] };
     key <FK11> { [   voidSymbol ] };
     key <FK12> { [   voidSymbol ] };
-    key <FK13> { [   voidSymbol ] };
-    key <FK14> { [   voidSymbol ] };
-    key <FK15> { [   voidSymbol ] };
     key.type = "X_LEVEL";
-    key <FK16> { [   voidSymbol, voidSymbol, voidSymbol, Terminate_Server ] };
+    key <FK13> { [   voidSymbol, voidSymbol, voidSymbol, Terminate_Server ] };
 
     // Symbol Row
     key.type = "ONE_LEVEL";
@@ -441,10 +432,7 @@ xkb_keymap {
     key <FK26> { [   voidSymbol ] }; // F12
     key <NV07> { [   voidSymbol ] }; // Insert
     key <NV08> { [   voidSymbol ] }; // Delete
-    key <AR05> { [   voidSymbol ] }; // Up
-    key <AR06> { [   voidSymbol ] }; // Left
-    key <AR07> { [   voidSymbol ] }; // Down
-    key <AR08> { [   voidSymbol ] }; // Right
+    key <CT07> { [   voidSymbol ] }; // Right Control
 
     // Mapping Modifiers
     modifier_map Control { <CT01> }; // Left Control
