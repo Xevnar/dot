@@ -260,41 +260,41 @@ xkb_keymap {
 
     // Function Row
     key.type = "X_LEVEL";
-    key <FK01> { [           F1, voidSymbol , voidSymbol, Prev_Virtual_Screen ] };
-    key <FK02> { [           F2, voidSymbol , voidSymbol, Next_Virtual_Screen ] };
+    key <FK01> { [   voidSymbol, voidSymbol, voidSymbol, Prev_Virtual_Screen ] };
+    key <FK02> { [   voidSymbol, voidSymbol, voidSymbol, Next_Virtual_Screen ] };
     key.type = "ONE_LEVEL";
-    key <FK03> { [           F3 ] };
-    key <FK04> { [           F4 ] };
-    key <FK05> { [           F5 ] };
-    key <FK06> { [           F6 ] };
-    key <FK07> { [           F7 ] };
-    key <FK08> { [           F8 ] };
-    key <FK09> { [           F9 ] };
-    key <FK10> { [          F10 ] };
-    key <FK11> { [          F11 ] };
-    key <FK12> { [          F12 ] };
-    key <FK13> { [          F13 ] };
-    key <FK14> { [          F14 ] };
-    key <FK15> { [          F15 ] };
+    key <FK03> { [   voidSymbol ] };
+    key <FK04> { [   voidSymbol ] };
+    key <FK05> { [   voidSymbol ] };
+    key <FK06> { [   voidSymbol ] };
+    key <FK07> { [   voidSymbol ] };
+    key <FK08> { [   voidSymbol ] };
+    key <FK09> { [   voidSymbol ] };
+    key <FK10> { [   voidSymbol ] };
+    key <FK11> { [   voidSymbol ] };
+    key <FK12> { [   voidSymbol ] };
+    key <FK13> { [   voidSymbol ] };
+    key <FK14> { [   voidSymbol ] };
+    key <FK15> { [   voidSymbol ] };
     key.type = "X_LEVEL";
-    key <FK16> { [          F16, voidSymbol , voidSymbol, Terminate_Server ] };
+    key <FK16> { [   voidSymbol, voidSymbol, voidSymbol, Terminate_Server ] };
 
     // Symbol Row
     key.type = "ONE_LEVEL";
-    key <AA01> { [   asciitilde ] };
-    key <AA02> { [       dollar ] };
-    key <AA03> { [  bracketleft ] };
-    key <AA04> { [    braceleft ] };
-    key <AA05> { [   braceright ] };
-    key <AA06> { [    parenleft ] };
-    key <AA07> { [    ampersand ] };
-    key <AA08> { [     asterisk ] };
-    key <AA09> { [   parenright ] };
-    key <AA10> { [         plus ] };
-    key <AA11> { [ bracketright ] };
-    key <AA12> { [       exclam ] };
-    key <AA13> { [   numbersign ] };
-    key <AA14> { [      percent ] };
+    key <AA01> { [   voidSymbol ] };
+    key <AA02> { [   voidSymbol ] };
+    key <AA03> { [   voidSymbol ] };
+    key <AA04> { [   voidSymbol ] };
+    key <AA05> { [   voidSymbol ] };
+    key <AA06> { [   voidSymbol ] };
+    key <AA07> { [   voidSymbol ] };
+    key <AA08> { [   voidSymbol ] };
+    key <AA09> { [   voidSymbol ] };
+    key <AA10> { [   voidSymbol ] };
+    key <AA11> { [   voidSymbol ] };
+    key <AA12> { [   voidSymbol ] };
+    key <AA13> { [   voidSymbol ] };
+    key <AA14> { [   voidSymbol ] };
 
     // Top Row
     key.type = "ONE_LEVEL";
