@@ -3,7 +3,7 @@ xkb_keymap {
     minimum = 8;
     maximum = 255;
 
-    //Function Row
+    // Function Row
     <FK01> = 9;
     <FK02> = 67;
     <FK03> = 68;
@@ -20,18 +20,8 @@ xkb_keymap {
     <FK14> = 107;
     <FK15> = 118;
     <FK16> = 119;
-    <FK17> = 121; // Fn + F1
-    <FK18> = 122; // Fn + F2
-    <FK19> = 123; // Fn + F3
-    <FK20> = 198; // Fn + F4
-    <FK21> = 200; // Fn + F6
-    <FK22> = 201; // Fn + F6
-    <FK23> = 255; // Fn + F7
-    <FK24> = 220; // Fn + F8
-    <FK25> = 232; // Fn + F11
-    <FK26> = 233; // Fn + F12
 
-    //Number Row
+    // Number Row
     <AA01> = 49;
     <AA02> = 10;
     <AA03> = 11;
@@ -47,7 +37,7 @@ xkb_keymap {
     <AA13> = 21;
     <AA14> = 22;
 
-    //Top Row
+    // Top Row
     <AB01> = 23;
     <AB02> = 24;
     <AB03> = 25;
@@ -63,7 +53,7 @@ xkb_keymap {
     <AB13> = 35;
     <AB14> = 51;
 
-    //Home Row
+    // Home Row
     <AC01> = 66;
     <AC02> = 38;
     <AC03> = 39;
@@ -78,7 +68,7 @@ xkb_keymap {
     <AC12> = 48;
     <AC13> = 36;
 
-    //Bottom Row
+    // Bottom Row
     <AD01> = 50;
     <AD02> = 94;
     <AD03> = 52;
@@ -93,7 +83,7 @@ xkb_keymap {
     <AD12> = 61;
     <AD13> = 62;
 
-    //Control Row
+    // Control Row
     <CT01> = 37;
     <CT02> = 133;
     <CT03> = 64;
@@ -104,10 +94,22 @@ xkb_keymap {
     <CT08> = 111; // Up
     <CT09> = 116; // Down
     <CT10> = 114; // Right
-    <CT11> = 110; // Fn + Left
-    <CT12> = 112; // Fn + Up
-    <CT13> = 117; // Fn + Down
-    <CT14> = 115; // Fn + Right
+
+    // Fn layer
+    <FK17> = 121; // F1
+    <FK18> = 122; // F2
+    <FK19> = 123; // F3
+    <FK20> = 198; // F4
+    <FK21> = 200; // F6
+    <FK22> = 201; // F6
+    <FK23> = 255; // F7
+    <FK24> = 220; // F8
+    <FK25> = 232; // F11
+    <FK26> = 233; // F12
+    <CT11> = 110; // Left
+    <CT12> = 112; // Up
+    <CT13> = 117; // Down
+    <CT14> = 115; // Right
 
     // Have Shift + Delete act as Delete on a keyboard level
     // <FDEL> = 250;
@@ -117,7 +119,6 @@ xkb_keymap {
 
 
   xkb_types "logitech-default" {
-
     virtual_modifiers Alt,Meta,Super;
 
     type "ONE_LEVEL" {
@@ -165,7 +166,6 @@ xkb_keymap {
 
 
   xkb_compatibility "logitech-default" {
-
     virtual_modifiers Alt,Meta,Super;
 
     interpret.useModMapMods= AnyLevel;
@@ -218,6 +218,11 @@ xkb_keymap {
         action= SetMods(modifiers=Alt,clearLocks);
     };
 
+    interpret Any+AnyOf(all) {
+        action= SetMods(modifiers=modMapMods,clearLocks);
+    };
+
+    // Xserver control
     interpret Prev_Virtual_Screen {
         action = SwitchScreen(screen=-1,sameServer=false);
     };
@@ -228,10 +233,6 @@ xkb_keymap {
 
     interpret Terminate_Server {
         action= TerminateServer();
-    };
-
-    interpret Any+AnyOf(all) {
-        action= SetMods(modifiers=modMapMods,clearLocks);
     };
 
     // Have BackSpace repeat when held pressed
@@ -383,18 +384,18 @@ xkb_keymap {
     key <CT14> { [          F30 ] }; // Right
 
     // Mapping Modifiers
-    modifier_map Control { <CT01> };  //Left Control
-    modifier_map Control { <AD01> };  //Left Control
-    modifier_map Control { <CT06> };  //Right Control
-    modifier_map Shift   { <AD13> };  //Left Shift
-    modifier_map Mod1    { <CT05> };  //Right Alt
-    modifier_map Mod2    { <CT02> };  //Left Super
-    modifier_map Mod3    { <AD02> };  //Right Num Layer
+    modifier_map Control { <CT01> }; // Left Control
+    modifier_map Control { <AD01> }; // Left Control
+    modifier_map Control { <CT06> }; // Right Control
+    modifier_map Shift   { <AD13> }; // Left Shift
+    modifier_map Mod1    { <CT05> }; // Right Alt
+    modifier_map Mod2    { <CT02> }; // Left Super
+    modifier_map Mod3    { <AD02> }; // Right Num Layer
 
-    // Have Shift + Delete act as Delete on a keyboard level
+    //// Have Shift + Delete act as Delete on a keyboard level
     // key.type = "ONE_LEVEL";
     // key <FDEL> { [      Delete ] };
-    // Replace the above <AC01> with this line for it to take effect
+    //// Replace the above <AC01> with this line for it to take effect
     // key <AC01> { [   BackSpace,      dead_grave ] };
   };
 };
