@@ -310,14 +310,12 @@ xkb_keymap {
     key <AB09> { [            c,           C,   bracketleft ] };
     key <AB10> { [            r,           R,     parenleft ] };
     key <AB11> { [            l,           L,     semicolon ] };
-    key.type = "TWO_LEVEL";
-    key <AB12> { [        slash,    question ] };
-    key <AB13> { [           at,   ampersand ] };
+    key <AB12> { [        slash,    question,         slash ] };
+    key <AB13> { [           at,   ampersand,            at ] };
 
     // Home Row
-    key.type = "TWO_LEVEL";
-    key <AC01> { [    BackSpace,      Delete ] };
     key.type = "THREE_LEVEL";
+    key <AC01> { [    BackSpace,      Delete,     BackSpace ] };
     key <AC02> { [            a,           A,             0 ] };
     key <AC03> { [            o,           O,             4 ] };
     key <AC04> { [            e,           E,             5 ] };
