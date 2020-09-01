@@ -1,3 +1,4 @@
+// vim:ft=c
 xkb_keymap {
   default xkb_keycodes "logitech-default" {
     minimum = 8;
@@ -90,10 +91,39 @@ xkb_keymap {
     <CT04> = 65;
     <CT05> = 108;
     <CT06> = 105;
-    <CT07> = 113; // Left
-    <CT08> = 111; // Up
-    <CT09> = 116; // Down
-    <CT10> = 114; // Right
+
+    // Nav Cluster
+    <NV01> = 118;
+    <NV02> = 110;
+    <NV03> = 112;
+    <NV04> = 119;
+    <NV05> = 115;
+    <NV06> = 117;
+
+    // Arrow Keys
+    <AR01> = 111;
+    <AR02> = 113;
+    <AR03> = 116;
+    <AR04> = 114;
+
+    // KeyPad
+    <KP01> = 77;
+    <KP02> = 106;
+    <KP03> = 63;
+    <KP04> = 79;
+    <KP05> = 80;
+    <KP06> = 81;
+    <KP07> = 83;
+    <KP08> = 84;
+    <KP09> = 85;
+    <KP10> = 87;
+    <KP11> = 88;
+    <KP12> = 89;
+    <KP13> = 90;
+    <KP14> = 91;
+    <KP15> = 82;
+    <KP16> = 83;
+    <KP17> = 104;
 
     // Fn layer
     <FK17> = 121; // F1
@@ -106,10 +136,12 @@ xkb_keymap {
     <FK24> = 220; // F8
     <FK25> = 232; // F11
     <FK26> = 233; // F12
-    <CT11> = 110; // Left
-    <CT12> = 112; // Up
-    <CT13> = 117; // Down
-    <CT14> = 115; // Right
+    <NV07> = 112; // Insert
+    <NV08> = 110; // Delete
+    <AR05> = 112; // Up
+    <AR06> = 110; // Left
+    <AR07> = 117; // Down
+    <AR08> = 115; // Right
 
     // Have Shift + Delete act as Delete on a keyboard level
     // <FDEL> = 250;
@@ -358,11 +390,42 @@ xkb_keymap {
     key <CT04> { [        space ] };
     key <CT05> { [        Alt_R ],   virtualMods= Alt };
     key <CT06> { [    Control_R ] };
+
+    // Nav Cluster
+    key.type = "ONE_LEVEL";
+    key <NV01> { [   voidSymbol ] };
+    key <NV02> { [   voidSymbol ] };
+    key <NV03> { [   voidSymbol ] };
+    key <NV04> { [   voidSymbol ] };
+    key <NV05> { [   voidSymbol ] };
+    key <NV06> { [   voidSymbol ] };
+
+    // Arrow keys
     key.type = "THREE_LEVEL";
-    key <CT07> { [         Left,        Home,          Home ] };
-    key <CT08> { [           Up,     Page_Up,       Page_Up ] };
-    key <CT09> { [         Down,   Page_Down,     Page_Down ] };
-    key <CT10> { [        Right,         End,           End ] };
+    key <AR01> { [           Up,     Page_Up,       Page_Up ] };
+    key <AR02> { [         Left,        Home,          Home ] };
+    key <AR03> { [         Down,   Page_Down,     Page_Down ] };
+    key <AR04> { [        Right,         End,           End ] };
+
+    // Keypad
+    key.type = "ONE_LEVEL";
+    key <KP01> { [   voidSymbol ] };
+    key <KP02> { [   voidSymbol ] };
+    key <KP03> { [   voidSymbol ] };
+    key <KP04> { [   voidSymbol ] };
+    key <KP05> { [   voidSymbol ] };
+    key <KP06> { [   voidSymbol ] };
+    key <KP07> { [   voidSymbol ] };
+    key <KP08> { [   voidSymbol ] };
+    key <KP09> { [   voidSymbol ] };
+    key <KP10> { [   voidSymbol ] };
+    key <KP11> { [   voidSymbol ] };
+    key <KP12> { [   voidSymbol ] };
+    key <KP13> { [   voidSymbol ] };
+    key <KP14> { [   voidSymbol ] };
+    key <KP15> { [   voidSymbol ] };
+    key <KP16> { [   voidSymbol ] };
+    key <KP17> { [   voidSymbol ] };
 
     // Fn Layer
     key.type = "ONE_LEVEL";
@@ -376,10 +439,12 @@ xkb_keymap {
     key <FK24> { [          F24 ] }; // F8
     key <FK25> { [          F25 ] }; // F11
     key <FK26> { [          F26 ] }; // F12
-    key <CT11> { [          F27 ] }; // Left
-    key <CT12> { [          F28 ] }; // Up
-    key <CT13> { [          F29 ] }; // Down
-    key <CT14> { [          F30 ] }; // Right
+    key <NV07> { [   voidSymbol ] }; // Insert
+    key <NV08> { [   voidSymbol ] }; // Delete
+    key <AR05> { [          F28 ] }; // Up
+    key <AR06> { [          F27 ] }; // Left
+    key <AR07> { [          F29 ] }; // Down
+    key <AR08> { [          F30 ] }; // Right
 
     // Mapping Modifiers
     modifier_map Control { <CT01> }; // Left Control
