@@ -51,7 +51,6 @@ xkb_keymap {
     <AB11> = 33;
     <AB12> = 34;
     <AB13> = 35;
-    <AB14> = 51;
 
     // Home Row
     <AC01> = 66;
@@ -66,7 +65,8 @@ xkb_keymap {
     <AC10> = 46;
     <AC11> = 47;
     <AC12> = 48;
-    <AC13> = 36;
+    <AC13> = 51;
+    <AC14> = 36;
 
     // Bottom Row
     <AD01> = 50;
@@ -313,7 +313,6 @@ xkb_keymap {
     key.type = "TWO_LEVEL";
     key <AB12> { [        slash,    question ] };
     key <AB13> { [           at, asciicircum ] };
-    key <AB14> { [    backslash,         bar ] };
 
     // Home Row
     key.type = "TWO_LEVEL";
@@ -331,8 +330,9 @@ xkb_keymap {
     key <AC11> { [            s,           S,    numbersign ] };
     key.type = "TWO_LEVEL";
     key <AC12> { [        minus,  underscore ] };
+    key <AC13> { [    backslash,         bar ] };
     key.type = "ONE_LEVEL";
-    key <AC13> { [       Return ] };
+    key <AC14> { [       Return ] };
 
     // Bottom Row
     key.type = "ONE_LEVEL";

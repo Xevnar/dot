@@ -52,7 +52,6 @@ xkb_keymap {
     <AB11> = 33;
     <AB12> = 34;
     <AB13> = 35;
-    <AB14> = 51;
 
     // Home Row
     <AC01> = 66;
@@ -67,7 +66,8 @@ xkb_keymap {
     <AC10> = 46;
     <AC11> = 47;
     <AC12> = 48;
-    <AC13> = 36;
+    <AC13> = 51;
+    <AC14> = 36;
 
     // Bottom Row
     <AD01> = 50;
@@ -305,8 +305,6 @@ xkb_keymap {
     key.type = "ONE_LEVEL";
     key <AB12> { [  Arabic_hamzaonyeh ] };
     key <AB13> { [         Arabic_dal ] };
-    key.type = "TWO_LEVEL";
-    key <AB14> { [          backslash,                   bar ] };
 
     // Home Row
     key.type = "TWO_LEVEL";
@@ -324,7 +322,10 @@ xkb_keymap {
     key <AC11> { [        Arabic_seen,                 slash, numbersign ] };
     key.type = "ONE_LEVEL";
     key <AC12> { [        Arabic_jeem ] };
-    key <AC13> { [             Return ] };
+    key.type = "TWO_LEVEL";
+    key <AC13> { [          backslash,                   bar ] };
+    key.type = "ONE_LEVEL";
+    key <AC14> { [             Return ] };
 
     // Bottom Row
     key.type = "ONE_LEVEL";

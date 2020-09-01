@@ -153,10 +153,6 @@ keycode 26 =  slash
 keycode 27 =  at
   shift keycode 27 = asciicircum
 
-keycode 43 =  backslash
-  shift keycode 43 = bar
-
-
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 ! Home Row
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -206,6 +202,9 @@ keycode 39 = s
 
 keycode 40 = minus
   shift keycode 40 = underscore
+
+keycode 43 =  backslash
+  shift keycode 43 = bar
 
 keycode 28 = Return
   alt keycode 28 = Return
