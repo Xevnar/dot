@@ -301,18 +301,18 @@ xkb_keymap {
     key <AB01> { [          Tab ] };
     key.type = "THREE_LEVEL";
     key <AB02> { [    semicolon,       colon,      asterisk ] };
-    key <AB03> { [        comma,        less,             1 ] };
-    key <AB04> { [       period,     greater,             2 ] };
+    key <AB03> { [        comma, asciicircum,             1 ] };
+    key <AB04> { [       period,      exclam,             2 ] };
     key <AB05> { [            p,           P,             3 ] };
     key <AB06> { [            y,           Y,          plus ] };
     key <AB07> { [            f,           F,          less ] };
-    key <AB08> { [            g,           G,             A ] };
-    key <AB09> { [            c,           C,             B ] };
-    key <AB10> { [            r,           R,             C ] };
-    key <AB11> { [            l,           L,    asciitilde ] };
+    key <AB08> { [            g,           G,     braceleft ] };
+    key <AB09> { [            c,           C,   bracketleft ] };
+    key <AB10> { [            r,           R,     parenleft ] };
+    key <AB11> { [            l,           L,     semicolon ] };
     key.type = "TWO_LEVEL";
     key <AB12> { [        slash,    question ] };
-    key <AB13> { [           at, asciicircum ] };
+    key <AB13> { [           at,   ampersand ] };
 
     // Home Row
     key.type = "TWO_LEVEL";
@@ -324,9 +324,9 @@ xkb_keymap {
     key <AC05> { [            u,           U,             6 ] };
     key <AC06> { [            i,           I,        period ] };
     key <AC07> { [            d,           D,         equal ] };
-    key <AC08> { [            h,           H,             D ] };
-    key <AC09> { [            t,           T,             E ] };
-    key <AC10> { [            n,           N,             F ] };
+    key <AC08> { [            h,           H,    asciitilde ] };
+    key <AC09> { [            t,           T,        dollar ] };
+    key <AC10> { [            n,           N,       percent ] };
     key <AC11> { [            s,           S,    numbersign ] };
     key.type = "TWO_LEVEL";
     key <AC12> { [        minus,  underscore ] };
@@ -345,10 +345,10 @@ xkb_keymap {
     key <AD06> { [            k,           K,             9 ] };
     key <AD07> { [            x,           X,         minus ] };
     key <AD08> { [            b,           B,       greater ] };
-    key <AD09> { [            m,           M,             h ] };
-    key <AD10> { [            w,           W,             j ] };
-    key <AD11> { [            v,           V,             k ] };
-    key <AD12> { [            z,           Z,             s ] };
+    key <AD09> { [            m,           M,    braceright ] };
+    key <AD10> { [            w,           W,  bracketright ] };
+    key <AD11> { [            v,           V,    parenright ] };
+    key <AD12> { [            z,           Z,         colon ] };
     key.type = "ONE_LEVEL";
     key <AD13> { [      Shift_R ] };
 
