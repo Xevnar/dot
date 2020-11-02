@@ -71,5 +71,5 @@ super + {_, shift + } f
 super + {_, shift + } t
   bspc node -t '~{tiled,pseudo_tiled}'
 
-{F1, F2}
-  setkeyboard {_,-a}
+F1
+  setkeyboard
