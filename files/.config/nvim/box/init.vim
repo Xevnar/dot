@@ -246,8 +246,8 @@
   autocmd BufWritePre * %s/\s\+$//e
   autocmd BufWritepre * %s/\n\+\%$//e
 
-" Disable automatic commenting on a newline
-  autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+" Disable automatic commenting using 'o'
+  autocmd FileType * setlocal fo-=o
 
 " Refresh sxhdrc when my keybind file is updated
   autocmd BufWritePost *sxhkdrc !pkill -USR1 sxhkd
