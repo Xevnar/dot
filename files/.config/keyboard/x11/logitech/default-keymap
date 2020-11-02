@@ -286,7 +286,7 @@ xkb_keymap {
 
     // Function Row
     key.type = "X_LEVEL";
-    key <FK01> { [   voidSymbol, voidSymbol, voidSymbol, Prev_Virtual_Screen ] };
+    key <FK01> { [           F1, voidSymbol, voidSymbol, Prev_Virtual_Screen ] };
     key <FK02> { [   voidSymbol, voidSymbol, voidSymbol, Next_Virtual_Screen ] };
     key.type = "ONE_LEVEL";
     key <FK03> { [   voidSymbol ] };
