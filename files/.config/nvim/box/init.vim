@@ -181,7 +181,7 @@
 " KEYBINDINGS "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Set custom leader character
-  let mapleader =";"
+  let mapleader =<space>
 
 " Normal, Visual, and Operator-pending modes
 
@@ -212,16 +212,19 @@
     noremap zz ZZ
   " Have 'zq' exit the buffer without saving
     noremap zq ZQ
-  " Have 'Shift' + 'Delete' act as 'Delete'
+  " Have 'zq' exit the buffer without saving
+    noremap <C-h> <C-w>h
+    noremap <C-j> <C-w>j
+    noremap <C-k> <C-w>k
+    noremap <C-s> <C-w>l
+    " Have 'Shift' + 'Delete' act as 'Delete'
     noremap <S-Del> <Del>
-  " Have 'Backspace' delete characters behind the cursor
-    noremap <BS> X
-  " Have ';' + 'o' spell-check the current document
-    map <leader>o :setlocal spell! spelllang=en_us,en_gb<CR>
-  " Have ';' + 'g' toggle Goyo
-    map <leader>g :Goyo<CR>
-  " Have ';' + 'c' toggle the cursor column
-    map <leader>c :setlocal cursorcolumn!<CR>
+  " Have 'leader' + 'o' spell-check the current document
+    map <silent> <leader>o :setlocal spell! spelllang=en_us,en_gb<CR>
+  " Have 'leader' + 'g' toggle Goyo
+    map <silent> <leader>g :Goyo<CR>
+  " Have 'leader' + 'c' toggle the cursor column
+    map <silent> <leader>c :setlocal cursorcolumn!<CR>
 
 " Insert, and Command-line modes
 
@@ -233,11 +236,8 @@
   " Have 'x', and 'X' not store the deleted character in any register
     nnoremap x "_x
     nnoremap X "_X
-  " Have 'o' and 'O' add a new line only
-    nnoremap o o<ESC>
-    nnoremap O O<ESC>
-  " Have 'Space' unhighlight my last search
-    nnoremap <silent> <space> :noh<CR>
+  " Have 'Space' + 'Space' unhighlight my last search
+    nnoremap <silent> <space><space> :noh<CR>
 
 
 " AUTO-COMMANDS "
