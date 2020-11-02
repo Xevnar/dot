@@ -262,3 +262,30 @@
             \ containedin=.*Comment,vimCommentTitle
   augroup END
   hi def link MyTodo Todo
+
+
+" FUNCTIONS "
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+  " Eat the space used to activate the abbrivation
+    function! Eatchar()
+      let c = nr2char(getchar())
+      return (c =~ '\s') ? '' : c
+    endfunction
+
+  " Replace abbreviation if we're not in comment or other unwanted places
+    function! MapNoContext(key, seq)
+      let syn = synIDattr(synID(line('.'), col('.') - 1, 1),'name')
+      if syn =~? 'comment\|string\|character\|doxygen\|javadoc'
+        return a:key
+      else
+        " Unescape all escaped vim key-codes
+        exe 'return "' . substitute(a:seq, '\\<\(.\{-}\)\\>', '"."\\<\1>"."', 'g') . '"'
+      endif
+    endfunction
+
+  " Create abbreviation suitable for MapNoContext
+    function! Iab (ab, full)
+      " Escape all vim key-codes before passing expanded abbr to MapNoContext
+      exe "iab <silent> <buffer> " . a:ab . " <C-R>=MapNoContext('" . a:ab . "', '" . escape (a:full . '<C-R>=Eatchar()<CR>', '<>\"') . "')<CR>"
+    endfunction
