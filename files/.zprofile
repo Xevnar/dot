@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/zsh
 
 export PATH="$PATH:$(du "$HOME/.local/bin/" | cut -f2 | paste -sd ':')"
 
@@ -71,5 +71,5 @@ export LESSOPEN="| /usr/bin/highlight -O ansi %s 2>/dev/null"
 # Fix for Java applications in dwm
 #export _JAVA_AWT_WM_NONREPARENTING=1
 
-# Starting in a graphical enviroment on login
-exec startx
+# Start graphical enviroment on tty1 if not already running.
+[[ "$(tty)" = "/dev/tty1"  && -z $(pgrep -u $USER "\bXorg$") ]]  && exec startx
