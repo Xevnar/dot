@@ -30,6 +30,73 @@
 
   call plug#end()
 
+" PLUGIN SETTINGS "
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Nord
+
+"  " Set vim's coloursheme
+"    colorscheme nord
+"    set background=dark
+"  " Change the colour of the current line and column highlights
+"    highlight CursorLine guibg=#121F30
+"    highlight CursorColumn guibg=#121F30
+
+" Gruvbox
+
+  " Set vim's coloursheme
+    let g:gruvbox_contrast_dark = 'hard'
+    colorscheme gruvbox
+    set background=dark
+
+" Hexokinase
+
+  " Colour display method
+    let g:Hexokinase_highlighters = ['virtual']
+
+" Goyo
+
+  " Change settings when entering goyo
+    function! s:goyo_enter()
+      set noshowmode
+      set noshowcmd
+      Limelight
+    endfunction
+
+  " Restore changed settings when exiting goyo
+    function! s:goyo_leave()
+      set showmode
+      set showcmd
+      Limelight!
+    endfunction
+
+  " Call the previous functions when entering or exiting goyo
+    autocmd! User GoyoEnter nested call <SID>goyo_enter()
+    autocmd! User GoyoLeave nested call <SID>goyo_leave()
+
+" GitGutter
+
+  " Disable GitGutter keymappings
+    let g:gitgutter_map_keys = 0
+
+  " Change GitGutter Symbols
+    let g:gitgutter_sign_added = '++'
+    let g:gitgutter_sign_modified = '~~'
+    let g:gitgutter_sign_removed = '--'
+    let g:gitgutter_sign_removed_first_line = '^^'
+    let g:gitgutter_sign_removed_above_and_below = '{}'
+    let g:gitgutter_sign_modified_removed = '~-'
+  " Change sign column color
+    highlight! link SignColumn LineNr
+
+" VimWiki
+
+  " General wiki
+    let wiki_1 = {}
+    let wiki_1.path = '~/documents/wiki/'
+
+  " Wiki list
+    let g:vimwiki_list = [wiki_1]
+
 " GENERAL SETTINGS "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Basic settings
@@ -195,70 +262,3 @@
             \ containedin=.*Comment,vimCommentTitle
   augroup END
   hi def link MyTodo Todo
-
-" PLUGIN SETTINGS "
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Nord
-
-"  " Set vim's coloursheme
-"    colorscheme nord
-"    set background=dark
-"  " Change the colour of the current line and column highlights
-"    highlight CursorLine guibg=#121F30
-"    highlight CursorColumn guibg=#121F30
-
-" Gruvbox
-
-  " Set vim's coloursheme
-    let g:gruvbox_contrast_dark = 'hard'
-    colorscheme gruvbox
-    set background=dark
-
-" Hexokinase
-
-  " Colour display method
-    let g:Hexokinase_highlighters = ['virtual']
-
-" Goyo
-
-  " Change settings when entering goyo
-    function! s:goyo_enter()
-      set noshowmode
-      set noshowcmd
-      Limelight
-    endfunction
-
-  " Restore changed settings when exiting goyo
-    function! s:goyo_leave()
-      set showmode
-      set showcmd
-      Limelight!
-    endfunction
-
-  " Call the previous functions when entering or exiting goyo
-    autocmd! User GoyoEnter nested call <SID>goyo_enter()
-    autocmd! User GoyoLeave nested call <SID>goyo_leave()
-
-" GitGutter
-
-  " Disable GitGutter keymappings
-    let g:gitgutter_map_keys = 0
-
-  " Change GitGutter Symbols
-    let g:gitgutter_sign_added = '++'
-    let g:gitgutter_sign_modified = '~~'
-    let g:gitgutter_sign_removed = '--'
-    let g:gitgutter_sign_removed_first_line = '^^'
-    let g:gitgutter_sign_removed_above_and_below = '{}'
-    let g:gitgutter_sign_modified_removed = '~-'
-  " Change sign column color
-    highlight! link SignColumn LineNr
-
-" VimWiki
-
-  " General wiki
-    let wiki_1 = {}
-    let wiki_1.path = '~/documents/wiki/'
-
-  " Wiki list
-    let g:vimwiki_list = [wiki_1]
