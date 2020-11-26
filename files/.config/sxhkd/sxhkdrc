@@ -17,7 +17,7 @@ super + p
 super + d
   dmenu_run -fn 'Droid Sans Mono-10'
 
-super + tab
+super + Tab
   togglekeymaps
 
 ### MOVING (THROUGH) DOMAINS ###
