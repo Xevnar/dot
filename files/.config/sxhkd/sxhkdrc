@@ -17,6 +17,9 @@ super + p
 super + d
   dmenu_run -fn 'Droid Sans Mono-10'
 
+super + tab
+  togglekeymaps
+
 ### MOVING (THROUGH) DOMAINS ###
 ###############################################################################
 
@@ -70,6 +73,3 @@ super + {_, shift + } f
 # Toggle the focused node between (psuedo)tiled mode and the previous mode
 super + {_, shift + } t
   bspc node -t '~{tiled,pseudo_tiled}'
-
-F1
-  setkeyboard

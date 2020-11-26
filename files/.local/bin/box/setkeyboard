@@ -20,8 +20,10 @@ done
 [ -z "$variant" ] && variant=dvorak
 
 # keyboard settings
-setxkbmap -model 'logitech_mk235' -layout "xev($variant)"
+setxkbmap -model 'logitech_mk235' -layout "xev" -variant "$variant"
 xset r rate 200 30
+
+echo "$variant" > /tmp/currentkeymap
 
 # Temporary fix for allowing capslock repeat
 for pid in `pgrep -u $USER "$(basename $0)"`; do

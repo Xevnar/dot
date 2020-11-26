@@ -1,0 +1,10 @@
+#!/bin/sh
+
+# Small script to toggle between different layouts quickly
+# Relies on 'setkeyboard'
+
+[ -f /tmp/currentkeymap ] || { setsid --fork setkeyboard && exit; }
+
+grep 'dvorak' /tmp/currentkeymap > /dev/null 2>&1 && variant='-a'
+
+setsid --fork setkeyboard "$variant"
