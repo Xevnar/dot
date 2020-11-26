@@ -36,7 +36,7 @@ super + shift + {h, s}
   bspc monitor {prev, next} -f
 
 # Move (a node) to a specific desktop on the focused monitor
-super + {_, shift + } mod3 + {a, comma, period, p, o, e, u, q, j, k}
+super + {_, shift + } mod3 + {a, apostrophe, grave, p, o, e, u, q, j, k}
   bspc {desktop -f, node -d} focused:'^{1, 2, 3, 4, 5, 6, 7, 8, 9, 10}'
 
 ### MANIPULATING DOMAINS ###
