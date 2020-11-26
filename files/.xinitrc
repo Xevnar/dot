@@ -1,5 +1,5 @@
 # General settings
-setkeyboard
+setkeyboard &
 setmonitors
 setwallpaper
 

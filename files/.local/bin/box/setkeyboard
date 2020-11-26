@@ -3,12 +3,12 @@
 while getopts ":ah" option; do
   case $option in
 
-    a) keymap=arabic-keymap ;;
+    a) variant=arabic ;;
 
     h)
       echo "$0 accepts the following options:\n"
       echo "\t-h\tprints this help message"
-      echo "\t-a\tsets the keymap to the arabic varient\n"
+      echo "\t-a\tsets the keymap to the arabic variant\n"
       exit
     ;;
 
@@ -17,8 +17,15 @@ while getopts ":ah" option; do
   esac
 done
 
-[ -z "$keymap" ] && keymap=default-keymap
+[ -z "$variant" ] && variant=dvorak
 
 # keyboard settings
-xkbcomp ~/.config/keyboard/x11/logitech/"$keymap" $DISPLAY
+setxkbmap -model 'logitech_mk235' -layout "xev($variant)"
 xset r rate 200 30
+
+# Temporary fix for allowing capslock repeat
+for pid in `pgrep -u $USER "$(basename $0)"`; do
+    [ "$pid" -ne $$ ] && kill -9 "$pid"
+done
+
+while true; do xset r 66; sleep 5; done
