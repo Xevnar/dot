@@ -17,10 +17,12 @@
       Plug 'vimwiki/vimwiki'
       Plug 'junegunn/goyo.vim'
       Plug 'junegunn/limelight.vim'
+      Plug 'tpope/vim-fugitive'
     " Quality of life improvements
       Plug 'airblade/vim-gitgutter'
       Plug 'tpope/vim-surround'
       Plug 'tpope/vim-commentary'
+      Plug 'jiangmiao/auto-pairs'
       Plug 'RRethy/vim-hexokinase', {'do': 'make hexokinase'}
     " Syntax highlighting
       Plug 'baskerville/vim-sxhkdrc'
@@ -72,6 +74,13 @@
   " Call the previous functions when entering or exiting goyo
     autocmd! User GoyoEnter nested call <SID>goyo_enter()
     autocmd! User GoyoLeave nested call <SID>goyo_leave()
+
+" AutoPairs
+
+    " Prevent AutoPairs from remapping space
+      let g:AutoPairsMapSpace = 0
+    " Avoid jumping to a closing pair in a new line
+      let g:AutoPairsMultilineClose = 0
 
 " GitGutter
 
