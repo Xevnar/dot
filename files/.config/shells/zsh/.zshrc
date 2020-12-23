@@ -202,6 +202,8 @@ stty stop undef
     bindkey -a '\-' autosuggest-accept
   # Shift + Delete: Have 'Shift + Delete' act like 'Delete'
     bindkey -a '^[[3;2~' delete-char
+  # Undbind the stupid key
+    bindkey -a ':' undefined-key
 
 # String Substition (works only in text insert mode)
 
