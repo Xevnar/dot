@@ -6,8 +6,11 @@ alias sudo='sudo -v; sudo '
 alias -g $=' '
 
 # Movement
+alias -='cd -' # Go to previous working directory
 alias ..='cd ..'
 alias ...='cd ../..'
+alias 4.='cd ../../..'
+alias 5.='cd ../../../..'
 
 # Adding flags
 alias mv='mv -vi'
@@ -33,6 +36,7 @@ alias pac='sudo pacman'
 alias pacr='sudo pacman -Rsn'
 alias pacs='sudo pacman -S'
 alias pacq='pacman -Q'
+alias pacf='pacman -F'
 
 # Substitutions
 alias ls='exa -la     --color=auto --group-directories-first'
