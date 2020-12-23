@@ -53,6 +53,8 @@ bspc rule -a Gimp follow=off
 
 bspc rule -a Zathura state=tiled
 
+bspc rule -a qBittorrent state=floating
+
 # Allow bspwm to Swallow
 pidof bspswallow || bspswallow &
 
