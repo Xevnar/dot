@@ -46,7 +46,7 @@ aurInstall(){
 
   # Build package
 	cd "$dir" || exit
-  sudo -u aurbuilder makepkg --noconfirm --needed -s
+  sudo -u aurbuilder makepkg --noconfirm --needed -s -f
   cd "$builddir" || exit
   pacman --noconfirm -U "$1"-*.pkg.tar.*
 	cd /tmp || return ;
