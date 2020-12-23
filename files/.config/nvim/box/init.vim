@@ -130,9 +130,9 @@
   " Use spaces instead of tabs
     set expandtab
   " Number of auto-indent spaces
-    set shiftwidth=2
+    set shiftwidth=4
   " Number of spaces per Tab
-    set tabstop=2
+    set tabstop=4
   " Enable unique indent options for C-style languages
     set smartindent
   " Tabs use 'shiftwidth' at start of line and 'tabstop' elsewhere
