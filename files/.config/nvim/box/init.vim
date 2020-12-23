@@ -293,3 +293,16 @@
       " Escape all vim key-codes before passing expanded abbr to MapNoContext
       exe "iab <silent> <buffer> " . a:ab . " <C-R>=MapNoContext('" . a:ab . "', '" . escape (a:full . '<C-R>=Eatchar()<CR>', '<>\"') . "')<CR>"
     endfunction
+
+  " Switch to English - function
+    function! EngType()
+    " To switch back from Arabic
+      set keymap= " Restore default (US) keyboard layout
+      set norightleft
+    endfunction
+
+  " Switch to Arabic - function
+    function! AraType()
+        set keymap=arabic-pc "Modified keymap. File in ~/.config/nvim/keymap/
+        set rightleft
+    endfunction
