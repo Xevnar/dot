@@ -180,9 +180,6 @@
 
 " KEYBINDINGS "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Set custom leader character
-  let mapleader =<space>
-
 " Normal, Visual, and Operator-pending modes
 
   " Switch the functions of 's' and 'l'
@@ -219,12 +216,19 @@
     noremap <C-s> <C-w>l
     " Have 'Shift' + 'Delete' act as 'Delete'
     noremap <S-Del> <Del>
+  " Have 'Space' act as the leader key
+    map <silent> <Space> <leader>
   " Have 'leader' + 'o' spell-check the current document
     map <silent> <leader>o :setlocal spell! spelllang=en_us,en_gb<CR>
   " Have 'leader' + 'g' toggle Goyo
     map <silent> <leader>g :Goyo<CR>
   " Have 'leader' + 'c' toggle the cursor column
     map <silent> <leader>c :setlocal cursorcolumn!<CR>
+  " Switch to English - mapping
+    map <silent> <Leader>e :<C-U>call EngType()<CR>
+  " Switch to Arabic - mapping
+    map <silent> <Leader>a :<C-U>call AraType()<CR>
+
 
 " Insert, and Command-line modes
 
