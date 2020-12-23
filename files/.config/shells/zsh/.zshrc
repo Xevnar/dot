@@ -119,8 +119,8 @@ _comp_options+=(globdots)
 # Enable using arrows to move in tab completion list
 zstyle ':completion:*' menu select
 
-# Tab complete aliases
-setopt COMPLETE_ALIASES
+# Unique tab completion for aliases
+#setopt COMPLETE_ALIASES
 
 ### MISC SETTINGS ###
 ###############################################################################
