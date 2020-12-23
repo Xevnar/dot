@@ -7,11 +7,15 @@
 
   " Get C-style paragrph comments by typing com
   " Usage: <abbr>
-    call Iab('comm', '/*<CR><CR>/<Up> ')
+    call Iab('pub', 'public ')
+    call Iab('pri', 'private ')
+    call Iab('pro', 'protected ')
+    call Iab('sta', 'static ')
     call Iab('cons', 'public static final ')
+    call Iab('comm', '/*<CR><CR>/<Up> ')
     call Iab('sout', 'System.out.printf("");<esc>2hi')
     call Iab('serr', 'System.err.printf("");<esc>2hi')
-    call Iab('psvm', 'public static void main(String[] args) {<CR>}<esc>ko')
+    call Iab('psvm', 'public static void main(String [] args) {<CR>}<esc>ko')
 
   " Usage: <array> <abbr>
     call Iab('fori', '<esc>^"ad$afor (int i = 0; i < <esc>"api.length; i++) {<CR>}<esc>ko')
