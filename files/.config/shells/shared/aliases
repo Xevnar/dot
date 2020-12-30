@@ -6,7 +6,6 @@ alias sudo='sudo -v; sudo '
 alias -g $=' '
 
 # Movement
-alias -='cd -' # Go to previous working directory
 alias ..='cd ..'
 alias ...='cd ../..'
 alias 4.='cd ../../..'
