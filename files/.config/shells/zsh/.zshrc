@@ -119,6 +119,9 @@ _comp_options+=(globdots)
 # Enable using arrows to move in tab completion list
 zstyle ':completion:*' menu select
 
+# Allow case-insensitve matching
+zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
+
 # Unique tab completion for aliases
 #setopt COMPLETE_ALIASES
 
