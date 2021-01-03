@@ -191,14 +191,8 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Normal, Visual, and Operator-pending modes
 
-  " Switch the functions of 's' and 'l'
-    noremap l s
-    noremap s l
-  " Substitute all to 'L'
-    noremap L :%s//g<Left><Left>
-  " Make 'H', and 'S' act like extreme versions of 's', and 'h'
-    noremap S $
-    noremap H 0
+  " Substitute all to 'S'
+    noremap S :%s//g<Left><Left>
   " Have 'j', and 'k' move through visual lines instead of logical ones
     noremap j gj
     noremap k gk
@@ -222,7 +216,7 @@
     noremap <C-h> <C-w>h
     noremap <C-j> <C-w>j
     noremap <C-k> <C-w>k
-    noremap <C-s> <C-w>l
+    noremap <C-l> <C-w>l
     " Have 'Shift' + 'Delete' act as 'Delete'
     noremap <S-Del> <Del>
   " Have 'Space' act as the leader key
