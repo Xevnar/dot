@@ -24,15 +24,15 @@ super + Tab
 ###############################################################################
 
 # Cycling through nodes in current desktop
-super + {h, s}
+super + {h, l}
   bspc node {prev, next}.local.!hidden.window -f
 
 # Cycling through desktops in current moniter
-super + mod3 + {h, s}
+super + mod3 + {h, l}
   bspc desktop {prev, next}.local -f
 
 # Cycling through moniter
-super + shift + {h, s}
+super + shift + {h, l}
   bspc monitor {prev, next} -f
 
 # Move (a node) to a specific desktop on the focused monitor
