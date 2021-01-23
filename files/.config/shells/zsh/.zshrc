@@ -21,6 +21,9 @@ BRANCH='%%{⎇ %%2G%%}'
 RIGHT_ARROW='%{❯ %2G%}'
 LEFT_ARROW='%{ ❮%2G%}'
 
+# Flush the history memory, and reload before drawing the prompt
+HIST_REFRESH='$(fc -AI; fc -RI)'
+
 # Splitting the prompts into sections
 if [ $(id -u) != "0" ]; then
   # Normal user prompt colours
@@ -37,29 +40,41 @@ else
 fi
 
 # The prompts
-PROMPT='${DIR}'"${GIT}"'${ARROW}'
+PROMPT="${HIST_REFRESH}"'${DIR}'"${GIT}"'${ARROW}'
 RPROMPT='${TIME}'
 
 ### HISTORY SETTINGS ###
 ###############################################################################
 
-# Number of commands stored in memory when starting zsh
-HISTSIZE=100000
+# No. of commands stored in memory
+HISTSIZE=1000000
 
-# Number of commands saved to the history file when exiting zsh
-SAVEHIST=100000
+# No. of commands saved to the history file, which is LONG_MAX from limits.h
+SAVEHIST=9223372036854775806
 
-# Store a command after it gets executed
-setopt INC_APPEND_HISTORY
+# Append to history file instead of overwriting it
+setopt APPEND_HISTORY
 
-# Once a command is executed the history of other zsh instances will be updated
-setopt SHARE_HISTORY
-
-# Store the time a commond was ran and how long it ran for
+# Store the time a command was ran and how long it ran for
 setopt EXTENDED_HISTORY
 
-# Store a command and remove all duplicates stored in the history file
+# Remove the oldest entry with a duplicate instead of unique entries for memory
+setopt HIST_EXPIRE_DUPS_FIRST
+
+# Ignore duplicates of commands already passed
+setopt HIST_FIND_NO_DUPS
+
+# Store a command and remove all duplicates stored in the memory
 setopt HIST_IGNORE_ALL_DUPS
+
+# Do not store command in memory if it is a duplicate of the previous command
+setopt HIST_IGNORE_DUPS
+
+# Do write duplicate entries to the history file
+setopt HIST_SAVE_NO_DUPS
+
+# Do not store the `history` (fc -l) commands
+setopt HIST_NO_STORE
 
 # Remove unneeded blank spaces from commands before they are stored
 setopt HIST_REDUCE_BLANKS
@@ -67,11 +82,11 @@ setopt HIST_REDUCE_BLANKS
 # Do not store lines that start with a space
 setopt HIST_IGNORE_SPACE
 
-# Do not store history or fc commands
-setopt HIST_NO_STORE
-
 # Ask you to confirm a command before re-executing it
 setopt HIST_VERIFY
+
+# Flush the history memory to a temp file before appending to the histfile
+setopt HIST_SAVE_BY_COPY
 
 # Move the zsh history file
 export HISTFILE="${XDG_CACHE_HOME:-$HOME/.cache}/history/zshhst"
@@ -163,10 +178,10 @@ stty stop undef
 
 # MenuSelect:
 
-  # h, j, k, s: Move through the tab complete menu using vim keys
+  # h, j, k, l: Move through the tab complete menu using vim keys
     bindkey -M menuselect 'h' vi-backward-char
     bindkey -M menuselect 'k' vi-up-line-or-history
-    bindkey -M menuselect 's' vi-forward-char
+    bindkey -M menuselect 'l' vi-forward-char
     bindkey -M menuselect 'j' vi-down-line-or-history
 
 # Vi Insert:
@@ -185,13 +200,8 @@ stty stop undef
 
 # Vi Command:
 
-  # l, L: Make 'l', and 'L' the substitute commands
-    bindkey -a 'l' vi-substitute
-    bindkey -a 'L' vi-change-whole-line
-  # s: Make 's' take the role of 'l'
-    bindkey -a 's' vi-forward-char
-  # S, H: Make 'S', and 'H' act like extreme versions of 's', and 'h'
-    bindkey -a 'S' vi-end-of-line
+  # L, H: Make 'L', and 'H' act like extreme versions of 'l', and 'h'
+    bindkey -a 'L' vi-end-of-line
     bindkey -a 'H' vi-beginning-of-line
   # J, K: Make 'J', and 'K' search through the history in a Fish-like manner
     bindkey -a 'J' history-substring-search-down
@@ -203,6 +213,8 @@ stty stop undef
     bindkey -a 'U' redo
   # -: Have '-' accept the current suggestion
     bindkey -a '\-' autosuggest-accept
+  # Ctrl+e: Edit current line in a vim buffer
+    bindkey -a '^e' edit-command-line
   # Shift + Delete: Have 'Shift + Delete' act like 'Delete'
     bindkey -a '^[[3;2~' delete-char
   # Undbind the stupid key
