@@ -1,0 +1,29 @@
+#!/usr/bin/sh
+# This script refreshes my wiki's html page whenever it's updated
+#
+# USAGE: <SCRIPT>
+# DEPENDENCIES: 'xdotool', 'coreutils'
+
+# whether to use SHIFT+CTRL+R to force reload without cache
+RELOAD_KEYS="shift+ctrl+r"
+
+# set to whatever's given as argument
+: "${BROWSER:="$1"}"
+
+# if was empty, default set to name of browser, firefox/chrome/opera/etc..
+: "${BROWSER:='firefox'}"
+
+# get which window is active right now
+MYWINDOW="$(xdotool getactivewindow)"
+[ -z "$MYWINDOW" ] && { printf 'Could not get current active window ID.' 1>&2 ; exit 1; }
+
+# search for the wiki window
+WIKI_WINDOW="$(xdotool search --name "Wiki .* $BROWSER")"
+[ -z "$WIKI_WINDOW" ] && { printf 'No wiki page is currently in focus.' 1>&2 ; exit 1; }
+
+# focus on the window and reload it
+xdotool windowactivate --sync "$WIKI_WINDOW" key --clearmodifiers "$RELOAD_KEYS"
+
+# sometimes the focus doesn't work, so follow up with activate
+xdotool windowfocus --sync "$MYWINDOW" 2>/dev/null
+xdotool windowactivate --sync "$MYWINDOW"
