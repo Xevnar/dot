@@ -1,0 +1,9 @@
+XDG_DOWNLOAD_DIR="$HOME/junk"
+XDG_DOCUMENTS_DIR="$HOME/docs"
+XDG_VIDEOS_DIR="$HOME/media/video"
+XDG_PICTURES_DIR="$HOME/media/images"
+XDG_MUSIC_DIR="$HOME/media/audio/music"
+
+XDG_DESKTOP_DIR="$HOME/trash"
+XDG_TEMPLATES_DIR="$HOME/trash"
+XDG_PUBLICSHARE_DIR="$HOME/trash"
