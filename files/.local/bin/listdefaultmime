@@ -1,0 +1,53 @@
+#!/usr/bin/sh
+# This script lists the default application for either:
+#     - every mime type passed to the script
+#     - all known mime types
+#
+# USAGE: <SCRIPT> {[<TYPE>/]<SUBTYPE>}
+# DEPENDENCIES: 'xdg-utils', 'findutils', 'coreutils'
+
+print_default_application_from_file() {
+	# Isolate the mimetype from the filepath
+	mime=${1##*mime/}
+	mime=${mime%.xml}
+
+	print_default_application "$mime"
+}
+
+print_default_application() {
+	printf 'For the filetype "%s", the default system application is\n' "$1"
+	printf '\t=> %s\n' "$(xdg-mime query default "$1")"
+}
+
+# Print the default application of every known mimetype
+if [ "$#" -eq "0" ]; then
+	for file in $(find /usr/share/mime -iregex ".*\.xml" -type f) ; do
+		print_default_application_from_file "$file"
+	done
+
+	exit 0
+fi
+
+# Go through each mimetype and print it's default application
+for mime in $@; do
+	# If the arg is a full mimetype
+	if contains "$mime" '/'; then
+		print_default_application "$mime"
+		continue
+	fi
+
+	# Check if arg was type
+	if [ -n "${dir:=$(find /usr/share/mime -iname "$mime" -type d)}" ]; then
+		for file in $(find "/usr/share/mime/$dir" -type f); do
+			print_default_application_from_file "$file"
+		done
+	fi
+
+	# Check if arg was a subtype
+	[ -z "${files:=$(find /usr/share/mime -iregex ".*/$mime\.xml" -type f)}" ] \
+		&& { printf 'Couldn'\''t locate subtype '\''%s'\'' in /usr/share/mime' "$mime"; continue; }
+
+	for file in $files; do
+		print_default_application_from_file "$file"
+	done
+done
