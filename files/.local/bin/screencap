@@ -1,0 +1,87 @@
+#!/usr/bin/sh
+# This script takes a screenshot of my currently focused monitor
+#
+# USAGE: <SCRIPT>  [-h] [-d delay] [-o output] [-t image_type]
+# DEPENDENCIES: 'util-linux', 'coreutils', 'bspwm', 'flameshot', 'ffmpeg'
+
+# Set the name of the script
+SCRIPT="${0##*/}"
+
+OPTS=$(getopt --options d:o:t:h \
+	--longoptions delay:,output:,type:,help \
+	--name "$SCRIPT" -- "$@")
+
+[ $? -ne 0 ] \
+	&& exit 1;
+
+eval set -- "$OPTS" && unset OPTS
+while :; do
+	case "$1" in
+		-d | --delay-dir) delay="$2"; shift 2 ;;
+
+		-o | --output)
+			capdir="${2%/*}"
+			capname="${2##*/}"
+			shift 2
+			;;
+
+		-t | --type) captype="$2"; shift 2 ;;
+
+		-h | --help)
+			printf '%s accepts the following options:\n' "$SCRIPT"
+			printf '\t-h, --help\tprints this help message\n'
+			printf '\t-d, --delay=TIME\tsepcify the amount of delay before screen capturing\n'
+			printf '\t-o, --output=FILE\tspecify the output file\n'
+			printf '\t-t, --type=EXTENTION\tspeciy the image'\''s file type\n'
+			printf 'The default location is specified using the enviroment variable: $DOTDIR\n'
+			exit
+			;;
+
+		-- ) shift; break ;;
+		* ) break ;;
+	esac
+done
+
+# Get the monitor specific details
+case "$(bspc query --names -M -m)" in
+
+	"${PRIMARY_MONITOR%%:*}")
+		capmonitor="${PRIMARY_MONITOR%%:*}"
+		capsize="${PRIMARY_MONITOR##*:}"
+		display="$DISPLAY+$(getMonitorPosition --primary | tr + ,)"
+	;;
+
+	"${SECONDARY_MONITOR%%:*}")
+		capmonitor="${SECONDARY_MONITOR%%:*}"
+		capsize="${SECONDARY_MONITOR##*:}"
+		display="$DISPLAY+$(getMonitorPosition --secondary | tr + ,)"
+	;;
+
+	"${TERTIARY_MONITOR%%:*}")
+		capmonitor="${TERTIARY_MONITOR%%:*}"
+		capsize="${TERTIARY_MONITOR##*:}"
+		display="$DISPLAY+$(getMonitorPosition --tertiary | tr + ,)"
+	;;
+
+esac
+
+# Assign default values
+: ${delay:="0"}
+: ${capdir:="$XDG_PICTURES_DIR/screencaps"}
+: ${capname:=$capmonitor-$(date +"%Y%m%d-%H%M%S")}
+: ${captype:="png"}
+
+# Create screenshot directory if missing
+[ -d $capdir ] \
+	|| mkdir -pv $capdir
+
+if command -v "flameshot" >/dev/null 2>&1; then
+	sleep "$delay"
+
+	# Use flame shot for screencaps if available
+	flameshot gui -p "$capdir/$capname.$captype"
+else
+	# Default is a full frame capture using ffmpeg
+	sleep "$delay"
+	ffmpeg -f x11grab -s "$capsize" -i "$display" -frames:v 1 "$capdir/$capname.$captype"
+fi
