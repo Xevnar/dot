@@ -1,0 +1,63 @@
+#!/usr/bin/sh
+# This script takes a screenshot of my currently focused monitor
+#
+# USAGE: <SCRIPT>  [-aoh]
+# DEPENDENCIES: 'util-linux', 'coreutils', 'procps-ng', 'xorg-xset'
+
+# Set the name of the script
+SCRIPT="${0##*/}"
+
+OPTS=$(getopt --options d:o:t:h \
+	--longoptions delay:,output:,type:,help \
+	--name "$SCRIPT" -- "$@")
+
+[ $? -ne 0 ] \
+	&& exit 1;
+
+eval set -- "$OPTS" && unset OPTS
+while :; do
+	case "$1" in
+		-a | --arabic) variant="arabic"; shift 2 ;;
+
+		-o | --original) variant="original"; shift 2 ;;
+
+		-h | --help)
+			printf '%s accepts the following options:\n' "$SCRIPT"
+			printf '\t-h, --help\tprints this help message\n'
+			printf '\t-a, --arabic\tset the keymap to arabic\n'
+			printf '\t-o, --original\tset the keymap to qwerty\n'
+			printf 'The default location is specified using the enviroment variable: $DOTDIR\n'
+			exit
+			;;
+
+		-- ) shift; break ;;
+		* ) break ;;
+	esac
+done
+
+# keyboard settings
+if [ "${variant:="dvorak"}" = "original" ]; then
+	setxkbmap \
+		-keycodes 'evdev+aliases(qwerty)' \
+		-types 'complete' \
+		-compat 'complete' \
+		-symbols 'pc+us+inet(evdev)'
+else
+	KEYBOARD_MODEL="$(cat "$XDG_CONFIG_HOME/keyboard/model")"
+	setxkbmap \
+		-rules 'xev' \
+		-model "$KEYBOARD_MODEL" \
+		-layout "xev" \
+		-variant "$variant"
+fi
+
+xset r rate 200 30
+
+echo "$variant" > "/tmp/$(whoami)_currentkeymap"
+
+# Temporary fix for allowing capslock repeat
+for pid in $(pgrep -u $USER "$(basename $0)"); do
+	[ "$pid" -ne $$ ] && kill -9 "$pid"
+done
+
+while true; do xset r 66; sleep 5; done
