@@ -1,0 +1,82 @@
+super + {_, shift +, mod3 +, shift + mod3 +} Return
+  $TERMINAL
+
+# TODO  Make it a toggle
+super + b
+  bspc desktop -f focused:'^{1}'
+
+super + n
+  $TERMINAL -e $EDITOR
+
+super + underscore
+  scratchpad
+
+super + mod3 + backslash
+  scratchpad
+
+super + p
+  screencap
+
+super + d
+  dmenu_run -fn 'Droid Sans Mono-10'
+
+super + Tab
+  togglekeymaps
+
+### MOVING (THROUGH) DOMAINS ###
+###############################################################################
+
+# Cycling through nodes in current desktop
+super + {h, l}
+  bspc node {prev, next}.local.!hidden.window -f
+
+# Cycling through desktops in current moniter
+super + mod3 + {h, l}
+  bspc desktop {prev, next}.local -f
+
+# Cycling through moniter
+super + shift + {h, l}
+  bspc monitor {prev, next} -f
+
+# Move (a node) to a specific desktop on the focused monitor
+super + {_, shift + } mod3 + {a, apostrophe, grave, p, o, e, u, q, j, k}
+  bspc {desktop -f, node -d} focused:'^{1, 2, 3, 4, 5, 6, 7, 8, 9, 10}'
+
+### MANIPULATING DOMAINS ###
+###############################################################################
+
+# Close nodes
+super + {_, shift + } BackSpace
+  bspc node focused {-c, -k}
+
+# Increase/Decrease node size vertically
+super + j
+  bspc node -z bottom 0 10; bspc node -z top 0 -10
+super + shift + j
+  bspc node -z top 0 10; bspc node -z bottom 0 -10
+
+# Increase/Decrease node size horizontally
+super + k
+  bspc node -z right 10 0; bspc node -z left -10 0
+super + shift + k
+  bspc node -z left 10 0; bspc node -z right -10 0
+
+# Set the currently focused node as the biggest
+super + r
+ bspc node -s biggest.local || bspc node -s smallest.local
+
+# Change the currently focused node to be the largest node
+# super + shift + r
+#  TODO figure out how to do that
+
+# super + r but it cycles the nodes
+# super + c
+#  TODO figure out how to do that
+
+# Toggle the focused node between fullscreen/floating mode and the previous mode
+super + {_, shift + } f
+  bspc node -t '~{fullscreen,floating}'
+
+# Toggle the focused node between (psuedo)tiled mode and the previous mode
+super + {_, shift + } t
+  bspc node -t '~{tiled,pseudo_tiled}'
