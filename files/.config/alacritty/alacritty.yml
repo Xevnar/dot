@@ -1,0 +1,122 @@
+window:
+  # Window padding
+  padding:
+    x: 2
+    y: 2
+
+  # Background opacity
+  opacity: 0.95
+
+scrolling:
+  # Maximum number of lines in the scrollback buffer.
+  history: 100000
+
+  # Scrolling distance multiplier.
+  multiplier: 20
+
+# Font configuration
+font:
+  normal:
+    family: Monospace
+    style: Regular
+
+  bold:
+    family: Monospace
+    style: Bold
+
+  italic:
+    family: Monospace
+    style: Italic
+
+  bold_italic:
+    family: Monospace
+    style: Bold Italic
+
+  # Point size
+  size: 6.0
+
+colors:
+
+# Nord
+#  primary:
+#    background: '#0D1723'
+#    foreground: '#D8DEE9'
+#
+#  normal:
+#    black:   '#3B4252'
+#    red:     '#BF616A'
+#    green:   '#A3BE8C'
+#    yellow:  '#EBCB8B'
+#    blue:    '#81A1C1'
+#    magenta: '#B48EAD'
+#    cyan:    '#88C0D0'
+#    white:   '#E5E9F0'
+#
+#  bright:
+#    black:   '#4C566A'
+#    red:     '#BF616A'
+#    green:   '#A3BE8C'
+#    yellow:  '#EBCB8B'
+#    blue:    '#81A1C1'
+#    magenta: '#B48EAD'
+#    cyan:    '#8FBCBB'
+#    white:   '#ECEFF4'
+
+# Gruvbox Dark
+  primary:
+    background: '#1d2021'
+    foreground: '#ebdbb2'
+
+  normal:
+    black:   '#282828'
+    red:     '#cc241d'
+    green:   '#98971a'
+    yellow:  '#d79921'
+    blue:    '#458588'
+    magenta: '#b16286'
+    cyan:    '#689d6a'
+    white:   '#a89984'
+
+  bright:
+    black:   '#928374'
+    red:     '#fb4934'
+    green:   '#b8bb26'
+    yellow:  '#fabd2f'
+    blue:    '#83a598'
+    magenta: '#d3869b'
+    cyan:    '#8ec07c'
+    white:   '#ebdbb2'
+
+# Live config reload (changes require restart)
+live_config_reload: true
+
+key_bindings:
+  - { key: Return,   mods: Shift,   chars: "\x1b[13;2u" }
+  - { key: Return,   mods: Control, chars: "\x1b[13;5u" }
+
+  - { key: A,        mods: Shift|Control,   chars: "\x1b[65;5u" }
+  - { key: B,        mods: Shift|Control,   chars: "\x1b[66;5u" }
+  - { key: C,        mods: Shift|Control,   chars: "\x1b[67;5u" }
+  - { key: D,        mods: Shift|Control,   chars: "\x1b[68;5u" }
+  - { key: E,        mods: Shift|Control,   chars: "\x1b[69;5u" }
+  - { key: F,        mods: Shift|Control,   chars: "\x1b[70;5u" }
+  - { key: G,        mods: Shift|Control,   chars: "\x1b[71;5u" }
+  - { key: H,        mods: Shift|Control,   chars: "\x1b[72;5u" }
+  - { key: I,        mods: Shift|Control,   chars: "\x1b[73;5u" }
+  - { key: J,        mods: Shift|Control,   chars: "\x1b[74;5u" }
+  - { key: K,        mods: Shift|Control,   chars: "\x1b[75;5u" }
+  - { key: L,        mods: Shift|Control,   chars: "\x1b[76;5u" }
+  - { key: M,        mods: Shift|Control,   chars: "\x1b[77;5u" }
+  - { key: N,        mods: Shift|Control,   chars: "\x1b[78;5u" }
+  - { key: O,        mods: Shift|Control,   chars: "\x1b[79;5u" }
+  - { key: P,        mods: Shift|Control,   chars: "\x1b[80;5u" }
+  - { key: Q,        mods: Shift|Control,   chars: "\x1b[81;5u" }
+  - { key: R,        mods: Shift|Control,   chars: "\x1b[82;5u" }
+  - { key: S,        mods: Shift|Control,   chars: "\x1b[83;5u" }
+  - { key: T,        mods: Shift|Control,   chars: "\x1b[84;5u" }
+  - { key: U,        mods: Shift|Control,   chars: "\x1b[85;5u" }
+  - { key: V,        mods: Shift|Control,   chars: "\x1b[86;5u" }
+  - { key: W,        mods: Shift|Control,   chars: "\x1b[87;5u" }
+  - { key: X,        mods: Shift|Control,   chars: "\x1b[88;5u" }
+  - { key: Y,        mods: Shift|Control,   chars: "\x1b[89;5u" }
+  - { key: Z,        mods: Shift|Control,   chars: "\x1b[90;5u" }
