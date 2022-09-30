@@ -1,0 +1,55 @@
+#!/usr/bin/sh
+# This script does the following:
+#   - It takes the window ids of all the active scratchpads and determines
+#     which id belongs to which scratchpad.
+#   - Then it determines which monitor is currently in focus
+#   - And if the scratchpad corresponding to this monitor is not active, then
+#     it spawns an instance
+#   - Finally it focuses on the scratchpad
+#
+# USAGE: <SCRIPT> [-d]
+# DEPENDENCIES: 'xdotool', 'util-linux', 'bspwm', 'coreutils'
+
+# Requires 'util-linux' package
+eval set -- $(getopt --options d --longoptions drop-pad --name ${0##/} -- "$@")
+
+while :; do
+	case "$1" in
+		-d | --drop-pad ) DROP=true; shift ;;
+		-- ) shift; break ;;
+		* ) break ;;
+	esac
+done
+
+# Script variables
+SCRATCHPAD_CLASS="Scratchpad"
+SCRATCHPAD_NAME_PRIMARY="primary"
+SCRATCHPAD_NAME_SECONDARY="secondary"
+SCRATCHPAD_NAME_TERTIARY="tertiary"
+
+spawn_or_toggle_scratchpad() {
+	local w_name="$1"
+
+	# Spawn a new hidden scratch pad if there are none
+	local wid="$(xdotool search --classname "$w_name")"
+	if [  -z "$wid" ]; then
+		setsid --fork uniqueterm "$SCRATCHPAD_CLASS" "$w_name"
+		until wid="$(xdotool search --classname "$w_name")"; do sleep .05; done
+	fi
+
+	# Demote scratch pad to regular terminal if specified
+	if [ -n "$DROP" ]; then
+		xdotool set_window --name "$TERM" --class "$TERM" --classname "$TERM" "$wid"
+		bspc node "$wid" --flag hidden=off --flag sticky=off --flag locked=off --state tiled
+
+		return
+	fi
+
+	bspc node "$wid" --flag hidden -f
+}
+
+case "$(bspc query --names -M -m)" in
+	"${PRIMARY_MONITOR%%:*}") spawn_or_toggle_scratchpad "$SCRATCHPAD_NAME_PRIMARY" ;;
+	"${SECONDARY_MONITOR%%:*}") spawn_or_toggle_scratchpad "$SCRATCHPAD_NAME_SECONDARY" ;;
+	"${TERTIARY_MONITOR%%:*}") spawn_or_toggle_scratchpad "$SCRATCHPAD_NAME_TERTIARY" ;;
+esac
