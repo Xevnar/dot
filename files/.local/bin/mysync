@@ -1,0 +1,238 @@
+#!/usr/bin/sh
+# This is a script for syncing important directories between my desktop and my
+# laptop. The script either reads directories from the command line or from
+# a file located in the script's data directory.
+#
+# USAGE: <SCRIPT> {<DIRECTORIES>}
+# DEPENDENCIES: 'coreutils', 'openssh', 'rsync', 'findutils'
+
+main() {
+	init_variables
+
+	local exit_status
+	exit_status="$?"
+
+	if [ "$exit_status" -ne 0 ]; then
+		return "$exit_status"
+	fi
+
+	# Scratch file for directories
+	local tmpfile
+	tmpfile="$(mktemp --tmpdir "$(whoami).mysync.XXXXXXXXX")"
+
+	# if the user specified directories through the command line
+	if [ "$#" -ne 0 ]; then
+		local arg
+		for arg in "$@"; do
+			printf '%s\n' "$(realpath $arg)" >> "$tmpfile"
+		done
+	else
+		cp "$SYNC_DATA_DIR/directories" "$tmpfile" >/dev/null 2>&1
+	fi
+
+	# While loop body is wrapped in braces is so that stdin can be disabled by
+	# redirecting /dev/null into the loop body to disable commands from consuming
+	# the loops input
+	local dir
+	while IFS= read -r dir || [ -n "$dir" ]; do {
+		# UNSAFE! But hey, what are you gonna do?!? ¯\_(ツ)_/¯
+		# Use eval to expand env variables in paths
+		dir="$(eval "printf '%s\n' '$dir'")"
+
+		printf 'Syncing "%s" between '\''%s'\'' and '\''%s'\'':\n\n' "$dir" "$LOCAL" "$REMOTE" 1>&2
+		sync_directory "$dir"
+		if [ "$exit_status" -ne 0 ]; then
+			printf '\nSyncing "%s" failed with exit code %s.\n' "$dir" "$?" 1>&2
+		fi
+
+		printf '\n======================================================\n\n'
+	} < /dev/null; done < "$tmpfile"
+
+	return $exit_status
+}
+
+init_variables() {
+	# Assign the variables using the machines hostname
+	# There could be a better way to define this, but I don't know
+	local hostname
+	[ -z "${hostname:="$(uname -n 2>/dev/null)"}" ] && \
+		{ printf 'Hostname can'\''t be established!\n' 1>&2; return 1; }
+
+	if [ -z ${hostname##*box} ]; then
+		LOCAL='archbox'
+		REMOTE='archtop'
+	elif [ -z ${hostname##*top} ]; then
+		LOCAL='archtop'
+		REMOTE="$(get_archbox_remote)"
+	else
+		printf "$hostname: hostname must end with either 'box' or 'top'\n" 1>&2
+		return 2
+	fi
+
+	SYNC_DATA_DIR="$XDG_DATA_HOME/mysync"
+	[ -d "$SYNC_DATA_DIR" ] || mkdir -p "$SYNC_DATA_DIR"
+
+	SYNC_CACHE_DIR="$XDG_CACHE_HOME/mysync"
+	[ -d "$SYNC_DATA_DIR" ] || mkdir -p "$SYNC_DATA_DIR"
+
+	return 0
+}
+
+get_archbox_remote() {
+	# SSH connection should timeout
+	if ssh archbox 'true'; then
+		printf 'archbox'
+	else
+		printf 'archbox_tunnel'
+	fi
+}
+
+# TODO: Implement git mergining behaviour by having a base copy and and if there
+#       is a conflict, preform a three-way merge between the remote, local, and
+#       base compies
+sync_directory() {
+	local sync_dir
+	sync_dir="$1"
+
+	# Make a cache directory in both the remote and local machines if it doesn't
+	# exist
+	local sync_cache_dir
+	sync_cache_dir="$SYNC_CACHE_DIR/${sync_dir#"$HOME/"}"
+	[ -d "$sync_cache_dir" ] || mkdir -p "$sync_cache_dir"
+	ssh "$REMOTE" "[ -d '$sync_cache_dir' ]" || ssh "$REMOTE" "mkdir -p '$sync_cache_dir'"
+
+	# Read the date in seconds of the last sync if exists
+	local sync_date_file
+	sync_date_file="$sync_cache_dir/sync_date"
+
+	local sync_date
+	if [ -f "$sync_date_file" ]; then
+		sync_date="$(cat "$sync_date_file")"
+	else
+		sync_date="0"
+	fi
+
+	# Get the date of the most recent modification from the local sync dir if it
+	# exists
+	local local_last_modified
+	if [ -d "$sync_dir" ]; then
+		local_last_modified="$(find "$sync_dir" -type f -print0 | xargs -0 stat -c '%Y' | sort -nr | head -n1)"
+	else
+		local_last_modified="-1"
+	fi
+
+	# Get the date of the most recent modification from the remote sync dir if
+	# it exists
+	local remote_last_modified
+	if ssh $REMOTE "[ -d '$sync_dir' ]"; then
+		remote_last_modified="$(ssh "$REMOTE" "find '$sync_dir' -type f -print0 | xargs -0 stat -c '%Y' | sort -nr | head -n1")"
+	else
+		remote_last_modified="-1"
+	fi
+
+	# Both dirs are completely synced
+	if [ "$local_last_modified" -eq "$remote_last_modified" ]; then
+		printf 'Both machines are already synced!\n'
+		printf 'Updating sync date to current date.\n'
+
+		update_sync_date "$sync_date_file"
+		return 0
+	fi
+
+	# If the local dir is more recent
+	if [ "$local_last_modified" -ge "$sync_date" ] && [ "$remote_last_modified" -lt "$sync_date" ]; then
+		printf 'Local machine is more recent!\n'
+		printf 'Updating Remote machine.\n'
+
+		sync_command "$sync_dir" "$REMOTE:$sync_dir"
+
+		update_sync_date "$sync_date_file"
+		return 0
+	fi
+
+	# If the remote dir is more recent
+	if [ "$remote_last_modified" -ge "$sync_date" ] && [ "$local_last_modified" -lt "$sync_date" ]; then
+		printf 'Remote machine is more recent!\n'
+		printf 'Updating Local machine.\n'
+
+		sync_command "$REMOTE:$sync_dir" "$sync_dir"
+
+		update_sync_date "$sync_date_file"
+		return 0
+	fi
+
+	# Both are newer than the last sync date
+	if [ "$remote_last_modified" -ge "$sync_date" ] && [ "$local_last_modified" -ge "$sync_date" ]; then
+		printf 'Both machines contain modified files!\n' 1>&2
+		printf 'Syncing aborted! Manual syncing is needed.\n\n' 1>&2
+
+		local local_diff_dir
+		local_diff_dir="$sync_cache_dir/local"
+
+		local remote_diff_dir
+		remote_diff_dir="$sync_cache_dir/remote"
+
+		mkdir -p "$local_diff_dir" "$remote_diff_dir"
+
+		# Don't rsync the local dir if we already synced it
+		local most_recent_file
+		most_recent_file="$local_diff_dir/.most_recent_file"
+		if [ ! -e "$most_recent_file" ] || [ "$local_last_modified" -ne "$(cat "$most_recent_file")"  ]; then
+			sync_command "$sync_dir" "$local_diff_dir" > /dev/null 2>&1
+			printf '%s\n' "$local_last_modified" > "$most_recent_file"
+		fi
+
+		# Don't rsync the remote dir if we already synced it
+		most_recent_file="$remote_diff_dir/.most_recent_file"
+		if [ ! -e "$most_recent_file" ] || [ "$remote_last_modified" -ne "$(cat "$most_recent_file")"  ]; then
+			sync_command "$REMOTE:$sync_dir" "$remote_diff_dir" > /dev/null 2>&1
+			printf '%s\n' "$remote_last_modified" > "$most_recent_file"
+		fi
+
+		# Call diff twice to allow colored output in stdout
+		printf 'Here is the diff of both between the local and the remote `diff $REMOTE $LOCAL`:\n' 1>&2
+		diff --color=auto -r -x '.most_recent_file' "$remote_diff_dir" "$local_diff_dir"
+		diff -r -x '.most_recent_file' "$remote_diff_dir" "$local_diff_dir" > "$sync_cache_dir/directories.diff" 2>&1 &
+		return 0
+	fi
+
+
+	printf 'Bug where no branch was executed.\n'
+	printf 'Sync_date: %s\n' "$sync_date"
+	printf 'remote_last_date: %s\n' "$remote_last_modified"
+	printf 'local_last_date: %s\n' "$local_last_modified"
+	return 4
+}
+
+sync_command() {
+	local src
+	local dist
+	local extra_opts
+
+	if [ "$#" -eq 2 ]; then
+		src="$1"
+		dist="$2"
+	elif [ "$#" -eq 3 ]; then
+		extra_opts="$1"
+		src="$2"
+		dist="$3"
+	else
+		printf "Incorrect number of args specified\n" 1>&2
+		return 5
+	fi
+
+	rsync -PEahvz --delete --mkpath $extra_opts "$src/" "$dist/"
+}
+
+update_sync_date() {
+	local new_sync_date
+	new_sync_date="$(date +%s)"
+
+	local sync_date_file
+	sync_date_file="$1"
+
+	printf '%s\n' "$new_sync_date" > "$sync_date_file"
+	ssh "$REMOTE" "printf '%s\n' '$new_sync_date' > '$sync_date_file'"
+}
+
+main "$@"
