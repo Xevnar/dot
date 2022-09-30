@@ -1,0 +1,17 @@
+# Copy to main clipboard instead of selection
+set selection-clipboard clipboard
+
+# Have u and d, be stronger scroll options
+map u scroll half-up
+map d scroll half-down
+
+# Use arrow keys to navigate pages
+map <Up> navigate previous
+map <Down> navigate next
+
+# Flip 'r' and 'R'
+map r reload
+map R rotate
+
+# Invert page colors
+map i recolor
