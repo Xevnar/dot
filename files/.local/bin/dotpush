@@ -1,0 +1,65 @@
+#!/usr/bin/sh
+# This script copies my config files to my home directory. Since I use the same
+# dotfiles repository across different machines, I sometimes need to store a
+# separate config for each device.
+#
+# The devices are separated by their suffix (box & top)
+# USAGE: <SCRIPT> [-dnh]
+# DEPENDENCIES: 'util-linux', 'coreutils', 'find-utils', 'sed'
+
+# Set the name of the script
+SCRIPT="${0##*/}"
+
+OPTS=$(getopt --options d:n:h \
+	--longoptions dot-dir:,hostname:,help \
+	--name "$SCRIPT" -- "$@")
+
+[ $? -ne 0 ] \
+	&& exit 1;
+
+eval set -- "$OPTS" && unset OPTS
+while true; do
+	case "$1" in
+		-d | --dot-dir) DOTDIR="$2"; shift 2 ;;
+
+		-n | --hostname) HOSTNAME="$2"; shift 2 ;;
+
+		-h | --help)
+			printf '%s accepts the following options:\n' "$SCRIPT"
+			printf '\t-h, --help\tprints this help message\n'
+			printf '\t-d, --dot-dir\tsepcify the location of the dot directory\n'
+			printf '\t-n, --hostname\tspecify the hostname of the device\n'
+			printf 'The default location is specified using the enviroment variable: $DOTDIR\n'
+			exit
+			;;
+
+		-- ) shift; break ;;
+		* ) break ;;
+	esac
+done
+
+[ -z "$DOTDIR" ] && \
+	{ echo "DOTDIR in not defined"; exit 1; }
+
+[ -z "${HOSTNAME:="$(uname -n 2> /dev/null)"}" ] && \
+	{ echo "Hostname can't be established"; exit 1; }
+
+copy_files_to_home() {
+	base_dir="$1"
+	ignored_dir="$2"
+	for file in $(find $DOTDIR -path "$DOTDIR/*$ignored_dir" -prune -false -o -type f); do
+		dir=$(echo "${file##$DOTDIR}" | sed "s|/$base_dir/|/|g")
+		dir="$HOME${dir%/*}"
+		[ ! -d $dir ] && mkdir -pv $dir
+
+		cp -vuf $file $dir
+	done
+}
+
+if [ -z "${HOSTNAME##*box}" ]; then
+	copy_files_to_home box top
+elif [ -z "${HOSTNAME##*top}" ]; then
+	copy_files_to_home top box
+else
+	echo "$HOSTNAME: Invalid hostnamE" && exit 1
+fi
