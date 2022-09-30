@@ -1,0 +1,35 @@
+#!/usr/bin/sh
+# This is script to set up my desktop's monitors on first start up
+#
+# USAGE: <SCRIPT>
+# DEPENDENCIES: 'xrandr'
+
+# If only a single monitor is connected
+if isMonitorConnected -1 && ! isMonitorConnected -2 && ! isMonitorConnected -3; then
+	xrandr --output "${PRIMARY_MONITOR%%:*}" --mode "${PRIMARY_MONITOR##*:}" --primary
+	exit
+fi
+
+if ! isMonitorConnected -1 && isMonitorConnected -2 && ! isMonitorConnected -3; then
+	xrandr --output "${SECONDARY_MONITOR%%:*}" --mode "${SECONDARY_MONITOR##*:}" --primary
+	exit
+fi
+
+if ! isMonitorConnected -1 && ! isMonitorConnected -2 && isMonitorConnected -3; then
+	xrandr --output "${TERTIARY_MONITOR%%:*}" --mode "${TERTIARY_MONITOR##*:}" --primary
+	exit
+fi
+
+# If only the secondary and tertiary monitors are connected
+if ! isMonitorConnected -1 && isMonitorConnected -2 && isMonitorConnected -3; then
+	xrandr --output "${SECONDARY_MONITOR%%:*}" --mode "${SECONDARY_MONITOR##*:}" --primary
+	xrandr --output "${TERTIARY_MONITOR%%:*}" --mode "${TERTIARY_MONITOR##*:}"
+	xrandr --output "${SECONDARY_MONITOR%%:*}" --auto --output "${TERTIARY_MONITOR%%:*}" --left-of "${SECONDARY_MONITOR%%:*}"
+	exit
+fi
+
+# If the primary & secondary or the primary & tertiary or all 3 monitors are connected
+xrandr --output "${PRIMARY_MONITOR%%:*}" --mode "${PRIMARY_MONITOR##*:}" --primary
+xrandr --output "${SECONDARY_MONITOR%%:*}" --mode "${SECONDARY_MONITOR##*:}"
+xrandr --output "${TERTIARY_MONITOR%%:*}" --mode "${TERTIARY_MONITOR##*:}"
+xrandr --output "${PRIMARY_MONITOR%%:*}" --auto --output "${SECONDARY_MONITOR%%:*}" --left-of "${PRIMARY_MONITOR%%:*}" --output "${TERTIARY_MONITOR%%:*}" --right-of "${PRIMARY_MONITOR%%:*}"
