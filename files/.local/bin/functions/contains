@@ -1,0 +1,10 @@
+#!/usr/bin/sh
+# This is a small script for checking if the first arg contains a substring
+#
+# USAGE: <SCRIPT> <STRING> <SUBSTRING>
+# DEPENDENCIES: 'coreutils'
+
+case "$1" in
+	*"$2"*) true ;;
+	*) false ;;
+esac

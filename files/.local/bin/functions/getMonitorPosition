@@ -1,0 +1,39 @@
+#!/usr/bin/sh
+# This is a small script to output the coordinates of a specific monitor.
+# There are shorthand args for my already defined monitors
+#
+# USAGE: <SCRIPT> ([-1 primary_monitor] | [-2 secondary_monitor] | [-3 tertiary_monitor] | <MONITOR>)
+# DEPENDANCIES: 'util-linux', 'xrandr', 'grep', 'coreutils'
+
+# Set the name of the script
+script="${0##*/}"
+
+# Requires 'util-linux' package
+OPTS=$(getopt --options 123h \
+	--longoptions primary,secondary,tertiary,help \
+	--name "$script" -- "$@")
+
+# Exit if getopt fails
+[ $? -ne 0 ] \
+	&& exit 1;
+
+eval set -- "$OPTS" && unset OPTS
+while true; do
+	case "$1" in
+		-1 | --primary ) monitor="$PRIMARY_MONITOR"; break ;;
+		-2 | --secondary ) monitor="$SECONDARY_MONITOR"; break ;;
+		-3 | --tertiary ) monitor="$TERTIARY_MONITOR"; break ;;
+		-h | --help ) ;;
+		-- ) shift; ;;
+		* ) monitor="$1"; break ;;
+	esac
+done
+
+# Assign an invalid string as monitor if it was unset
+: ${monitor:='String that will not ever be outputed by xrandr'}
+
+# Strip resolution from monitor definition
+monitor="${monitor%%:*}"
+
+# Check if monitor is connectd
+xrandr -q | grep "$monitor connected" | cut -d'+' -f2-3 | cut -d' ' -f1
