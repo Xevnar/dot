@@ -1,0 +1,16 @@
+#!/usr/bin/sh
+# This is a small script to notify me whenever my battery gets below 20%
+# USAGE: <SCRIPT> &
+# DEPENDANCIES: 'acpi', 'coreutils', 'libnotify'
+
+while :; do
+    acpi_out="$(acpi -b)"
+    BAT_STATUS="$(echo "$acpi_out" | cut -d' ' -f3 | tr -d ',')"
+    BAT_LEVEL="$(echo "$acpi_out" | cut -d',' -f2 | tr -d ' %')"
+    BAT_TIME="$(echo "$acpi_out" | cut -d',' -f3)"
+    if [ "$BAT_STATUS" = "Discharging" ] && [ "$BAT_LEVEL" -lt "20" ]; then
+        notify-send -u critical  -t 0 "Battery low" "Battery level is ${BAT_LEVEL}%!\n${BAT_TIME# }!"
+    fi
+
+    sleep 2.5m
+done
