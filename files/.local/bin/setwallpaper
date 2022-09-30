@@ -1,0 +1,28 @@
+#!/usr/bin/sh
+# This is small script to set up monitors' wallpapers.
+# This script takes a single argument and:
+#     - if the arg is a directory, set the wallpaper to a random pic from the directoy
+#     - if the arg is a file, set it as the wallpaper
+#
+# USAGE: <SCRIPT> <PATH>
+# DEPENDENCIES: 'xwallpaper', 'coreutils',
+
+if [ -d "$1" ]; then
+	wall=$(find "$1" -iregex '.*.\(jpe?g\|png\|gif\)' -type f | shuf -n 1)
+elif [ -f "$1" ]; then
+	wall="$(readlink $1)"
+fi
+
+# Assign the default wallpaper if none is specified
+: ${wall:="$XDG_PICTURES_DIR/wallpapers/default"}
+
+isMonitorConnected --primary \
+	&& primary_flags="--output ${PRIMARY_MONITOR%:*} --zoom $wall"
+
+isMonitorConnected --secondary \
+	&& secondary_flags="--output ${SECONDARY_MONITOR%:*} --zoom $wall"
+
+isMonitorConnected --tertiary \
+	&& tertiary_flags="--output ${TERTIARY_MONITOR%:*} --zoom $wall"
+
+xwallpaper $primary_flags $secondary_flags $tertiary_flags
