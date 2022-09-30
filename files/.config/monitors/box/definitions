@@ -1,0 +1,6 @@
+export PRIMARY_MONITOR='HDMI-1:1920x1080'
+export SECONDARY_MONITOR='DP-3:1920x1080'
+export TERTIARY_MONITOR=''
+
+# Syntak highlighting
+# vim:ft=sh
