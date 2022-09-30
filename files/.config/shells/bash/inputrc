@@ -1,0 +1,58 @@
+$include /etc/inputrc
+
+### CONFIGURATIONS ##
+###############################################################################
+
+# List all possible arguments if tab completion is ambiguous
+set show-all-if-ambiguous on
+# Color files by types
+set colored-stats On
+# Color the common prefix
+set colored-completion-prefix On
+# Color the common prefix in menu-complete
+set menu-complete-display-prefix On
+# Don't echo ^C when <ctrl + c> is pressed
+set echo-control-characters off
+# Show whether you're in command or insert mode in the prompt
+set show-mode-in-prompt on
+# Vi mode in terminal
+set editing-mode vi
+
+### VI MODE SETTINGS ###
+###############################################################################
+
+$if mode=vi
+
+	# Change cursor shape for the different modes
+	$if term=linux
+		set vi-ins-mode-string \1\e[?0c\2
+		set vi-cmd-mode-string \1\e[?8c\2
+	$else
+		set vi-ins-mode-string \1\e[6 q\2
+		set vi-cmd-mode-string \1\e[2 q\2
+	$endif
+
+	# These are for vi-command mode
+	set keymap vi-command
+	Control-l: clear-screen
+	Control-a: beginning-of-line
+
+	# Rebinding movement commands
+	s: forward-char
+	S: end-of-line
+	H: beginning-of-line
+	K: reverse-search-history
+	J: forward-search-history
+
+	# Have Shift+Delete act like Delete
+	"\e[3;2~": delete-char
+
+	# These are for vi-insert mode
+	set keymap vi-insert
+	Control-l: clear-screen
+	Control-a: beginning-of-line
+
+	# Have Shift+Delete act like Delete
+	"\e[3;2~": delete-char
+
+$endif

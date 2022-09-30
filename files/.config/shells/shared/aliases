@@ -1,0 +1,85 @@
+# Syntax highlighting
+# vim: filetype=sh
+
+# Alias expansion
+alias sudo='sudo -v; sudo '
+alias -g $=' '
+
+# Movement
+alias ..='cd ..'
+alias ...='cd ../..'
+alias 4.='cd ../../..'
+alias 5.='cd ../../../..'
+
+# Special Directories
+alias h="cd $HOME && ls"
+alias r="cd $HOME/repos && ls"
+alias m="cd $HOME/media && ls"
+alias a="cd $HOME/media/audio && ls"
+alias d="cd $XDG_DOCUMENTS_DIR && ls"
+alias j="cd $XDG_DOWNLOAD_DIR && ls"
+alias i="cd $XDG_PICTURES_DIR && ls"
+alias v="cd $XDG_VIDEOS_DIR && ls"
+alias mi="cd $HOME/misc && ls"
+alias mu="cd $XDG_MUSIC_DIR && ls"
+alias scr="cd $HOME/.local/bin && ls"
+alias con="cd $XDG_CONFIG_HOME && ls"
+alias cac="cd $XDG_CACHE_HOME/.cache && ls"
+alias dat="cd $XDG_DATA_HOME && ls"
+alias dot="cd $DOTDIR && ls"
+alias dotc="cd $DOTDIR/.config && ls"
+alias dots="cd $DOTDIR/.local/bin && ls"
+alias dotd="cd $DOTDIR/.local/share && ls"
+
+# Shortcuts to files I edit regularly
+alias zsrc="$EDITOR $DOTDIR/.config/shells/zsh/.zshrc"
+alias zdir="$EDITOR $DOTDIR/.config/shells/zsh/nameddir"
+alias bsrc="$EDITOR $DOTDIR/.config/shells/bash/.bashrc"
+alias alrc="$EDITOR $DOTDIR/.config/shells/shared/aliases"
+alias hkrc="$EDITOR $DOTDIR/.config/sxhkd/sxhkdrc"
+alias virc="$EDITOR $DOTDIR/.config/nvim/init.vim"
+alias bwrc="$EDITOR $DOTDIR/.config/bspwm/bspwmrc"
+
+# Adding flags
+alias mv='mv -vi'
+alias rm='rm -vi'
+alias cp='cp -vi'
+alias mkdir='mkdir -pv'
+alias rmdir='rmdir -v'
+
+# Abbreviations
+alias e='$EDITOR'
+alias c='clear'
+alias o='$OPENER'
+alias ka='killall'
+alias ex='extract'
+alias hist='history'
+alias open='$OPENER'
+
+alias g='git'
+alias ga='git add'
+alias gg='git clone'
+alias gs='git status'
+alias gc='git commit'
+alias gcm='git commit -m'
+
+alias pac='sudo pacman'
+alias pacr='sudo pacman -Rsn'
+alias pacs='sudo pacman -S'
+alias pacq='pacman -Q'
+alias pacf='pacman -F'
+
+# Substitutions
+alias ls='exa -la     --color=auto --group-directories-first'
+alias ll='exa -l      --color=auto --group-directories-first'
+alias lt='exa -laTL=2 --color=auto --group-directories-first'
+alias lx='exa -x      --color=auto --group-directories-first'
+alias la='exa -xa     --color=auto --group-directories-first'
+
+# Commands
+alias brc='source $BDOTDIR/.bashrc'
+alias zrc='source $ZDOTDIR/.zshrc'
+alias mkmine='sudo chown -R ${USER}'
+
+# Just clean my home dir
+alias nvidia-settings="nvidia-settings --config=${XDG_CONFIG_HOME}/nvidia/settings"

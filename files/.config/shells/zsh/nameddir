@@ -1,0 +1,20 @@
+# Syntax highlighting
+# vim: filetype=sh
+
+hash -d r="$HOME/repos"
+hash -d m="$HOME/media"
+hash -d a="$HOME/media/audio"
+hash -d d="$XDG_DOCUMENTS_DIR"
+hash -d j="$XDG_DOWNLOAD_DIR"
+hash -d i="$XDG_PICTURES_DIR"
+hash -d v="$XDG_VIDEOS_DIR"
+hash -d mi="$HOME/misc"
+hash -d mu="$XDG_MUSIC_DIR"
+hash -d scr="$HOME/.local/bin"
+hash -d con="$XDG_CONFIG_HOME"
+hash -d cac="$XDG_CACHE_HOME/.cache"
+hash -d dat="$XDG_DATA_HOME"
+hash -d dot="$DOTDIR"
+hash -d dotc="$DOTDIR/.config"
+hash -d dots="$DOTDIR/.local/bin"
+hash -d dotd="$DOTDIR/.local/share"

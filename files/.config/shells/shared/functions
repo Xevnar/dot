@@ -1,0 +1,31 @@
+# Syntax highlighting
+# vim: filetype=sh
+#
+# This file contains a list of functions to be sourced by shells on startup
+#
+# USAGE: source <FILE>
+# DEPENDENCIES: 'coreutils', 'lf'
+
+lfcd() {
+	local lf_command
+	if command -v lfrun > /dev/null 2>&1; then
+		lf_command='lfrun'
+	else
+		lf_command='lf'
+	fi
+
+	tmpfile="$(mktemp --tmpdir "$(whoami).lfdir.XXXXXXXXX")"
+	"$lf_command" -last-dir-path="$tmpfile" "$@"
+	if [ ! -f "$tmpfile" ]; then
+		return 1
+	fi
+
+	dir="$(cat "$tmpfile")"
+	/usr/bin/rm -f "$tmpfile"
+
+	# if dir is not a directory get its parent directory
+	[ ! -d "$dir" ] && dir="$(dirname $dir)"
+
+	# cd if not current directory
+	[ "$dir" != "$(pwd)" ] && cd "$dir"
+}
