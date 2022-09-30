@@ -1,0 +1,29 @@
+#!/usr/bin/sh
+# A wrapper for starting up my status bars
+#
+# USAGE: <SCRIPT> &
+# DEPENDENCIES: 'polybar', 'procps-ng', 'bspwm', 'coreutils'
+
+until pgrep -u $USER -x bspwm > /dev/null; do sleep 0.1; done
+
+p_log="/tmp/$(whoami)_p_bar_$LOGINTIME.log"
+s_log="/tmp/$(whoami)_s_bar_$LOGINTIME.log"
+t_log="/tmp/$(whoami)_t_bar_$LOGINTIME.log"
+
+date=$(date +"%a %d, %B %Y - %I:%M %p")
+printf '\n%s\n' "$date" | tee -a "$p_log" "$s_log" "$t_log" > /dev/null
+
+if isMonitorConnected --primary; then
+    export P_MONITOR_NAME="${PRIMARY_MONITOR%%:*}"
+    polybar --reload primary >> "$p_log" 2>&1 &
+fi
+
+if isMonitorConnected --secondary; then
+    export S_MONITOR_NAME="${SECONDARY_MONITOR%%:*}"
+    polybar --reload secondary >> "$s_log" 2>&1 &
+fi
+
+if isMonitorConnected --secondary; then
+    export T_MONITOR_NAME="${TERTIARY_MONITOR%%:*}"
+    polybar --reload tertiary >> "$t_log" 2>&1 &
+fi

@@ -1,0 +1,7 @@
+#!/usr/bin/sh
+# This is a small script to open pavucontrol on the output tab
+#
+# USAGE: <SCRIPT>
+# DEPENDENCIES: 'pavucontrol'
+
+exec pavucontrol --tab=1

@@ -1,0 +1,29 @@
+#!/usr/bin/sh
+# This script is a temporary fix for picom flickering after waking for devices
+# with from dpms
+#
+# USAGE: <SCRIPT> &
+# DEPENDENCIES: 'picom', 'coreutils', 'procps-ng', 'psmisc'
+
+
+monitor_dpms_status() {
+    while :; do
+        case "$(cat "$1")" in
+            "Off") killall -q picom ;;
+            "On") launch_picom ;;
+        esac
+
+        sleep 0.5
+    done
+}
+
+launch_picom() {
+    pgrep --exact picom > /dev/null 2>&1 || picom -b
+}
+
+dpms_file="/sys/class/drm/card0-eDP-1/dpms"
+if [ -e "$dpms_file" ]; then
+    monitor_dpms_status "$dpms_file"
+else
+    launch_picom
+fi

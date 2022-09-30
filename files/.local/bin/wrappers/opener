@@ -1,0 +1,9 @@
+#!/usr/bin/sh
+# Small script to open a set of files as seprate process from the terminal
+#
+# USAGE: <SCRIPT> {<FILE>}
+# DEPENDENCIES: 'util-linux', 'xdg-utils'
+
+for file in $@; do
+	setsid --fork xdg-open "$file" >/dev/null 2>&1
+done

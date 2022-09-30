@@ -1,0 +1,7 @@
+#!/usr/bin/sh
+# This is a small script to open the java documentation in surf window
+#
+# USAGE: <SCRIPT>
+# DEPENDENCIES: 'surf', 'openjdk-doc'
+
+exec surf '/usr/share/doc/java-openjdk/api/index.html'

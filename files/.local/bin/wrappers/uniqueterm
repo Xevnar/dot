@@ -1,0 +1,8 @@
+#!/usr/bin/sh
+# This script is used to spawn a terminal instances  with a different title and class,
+# and if I ever change my default terminal I only have to change the flags once
+#
+# USAGE: <SCRIPT> <WINDOW_CLASS> <CLASSNAME>
+# DEPENDENCIES: '$TERMINAL'
+
+$TERMINAL --title "$2" --class "$2","$1"

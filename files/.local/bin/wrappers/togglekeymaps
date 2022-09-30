@@ -1,0 +1,8 @@
+#!/usr/bin/sh
+# Small script to toggle between my arabic and dvorak keyboard layouts
+#
+# USAGE: <SCRIPT>
+# DEPENDENCIES: 'util-linux', 'grep', 'coreutils'
+
+grep 'dvorak' "/tmp/$(whoami)_currentkeymap" >/dev/null 2>&1 && variant='--arabic'
+setsid --fork setkeyboard "$variant"
