@@ -7,8 +7,8 @@
 # Set the name of the script
 SCRIPT="${0##*/}"
 
-OPTS=$(getopt --options d:o:t:h \
-	--longoptions delay:,output:,type:,help \
+OPTS=$(getopt --options adoh \
+	--longoptions arabic,dvorak,original,help \
 	--name "$SCRIPT" -- "$@")
 
 [ $? -ne 0 ] \
@@ -17,14 +17,17 @@ OPTS=$(getopt --options d:o:t:h \
 eval set -- "$OPTS" && unset OPTS
 while :; do
 	case "$1" in
-		-a | --arabic) variant="arabic"; shift 2 ;;
+		-a | --arabic) variant="arabic"; shift ;;
 
-		-o | --original) variant="original"; shift 2 ;;
+		-d | --dvorak) variant="dvorak"; shift ;;
+
+		-o | --original) variant="original"; shift ;;
 
 		-h | --help)
 			printf '%s accepts the following options:\n' "$SCRIPT"
 			printf '\t-h, --help\tprints this help message\n'
 			printf '\t-a, --arabic\tset the keymap to arabic\n'
+			printf '\t-d, --dvorak\tset the keymap to dvorak. the default behaviour\n'
 			printf '\t-o, --original\tset the keymap to qwerty\n'
 			printf 'The default location is specified using the enviroment variable: $DOTDIR\n'
 			exit
