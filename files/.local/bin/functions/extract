@@ -17,8 +17,8 @@ if [ -f "$1" ] ; then
 		*.zip)      unzip      "$1"  ;;
 		*.Z)        uncompress "$1"  ;;
 		*.7z)       7z x       "$1"  ;;
-		*)          printf '\''%s'\'' cannot be extracted via %s' "$1" "$0" >2 ;;
+		*)          printf '\''%s'\'' cannot be extracted via %s' "$1" "$0" 1>&2 ;;
 	esac
 else
-	printf '\''%s'\'' is not a file' "$1" >2 ;;
+	printf '\''%s'\'' is not a file' "$1" 1>&2
 fi
