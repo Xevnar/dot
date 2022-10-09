@@ -54,9 +54,9 @@ copy_files_to_home() {
 	for file in $files; do
 		dir=$(echo "${file##$DOTDIR}" | sed "s|/$base_dir/|/|g")
 		dir="$HOME${dir%/*}"
-		[ ! -d $dir ] && mkdir -pv $dir
+		[ ! -d "$dir" ] && mkdir -pv "$dir"
 
-		cp -vuf $file $dir
+		cp -vuf "$file" "$dir"
 	done
 
 	# Copy all packer files execpt the .git file
@@ -64,15 +64,15 @@ copy_files_to_home() {
 	for file in $packer_files; do
 		dir="${file##$DOTDIR}"
 		dir="$HOME${dir%/*}"
-		[ ! -d $dir ] && mkdir -pv $dir
+		[ ! -d "$dir" ] && mkdir -pv "$dir"
 
-		cp -vuf $file $dir
+		cp -vuf "$file" "$dir"
 	done
 
 	# Copy .git meta data from git submodule
 	local actual_gitdir="$(realpath "$packer_dir/$(cat "$packer_dir/.git" | cut -d ' ' -f2)/")"
 	local dest_gitdir="$HOME/${packer_dir##$DOTDIR/}/.git"
-	[ ! -d "$dest_gitdir" ] && mkdir -pv $dest_gitdir
+	[ ! -d "$dest_gitdir" ] && mkdir -pv "$dest_gitdir"
 	cp -vufRfT "$actual_gitdir" "$dest_gitdir"
 	sed -i -E '/worktree.*/d' "$dest_gitdir/config"
 }
@@ -82,5 +82,5 @@ if [ -z "${HOSTNAME##*box}" ]; then
 elif [ -z "${HOSTNAME##*top}" ]; then
 	copy_files_to_home top box
 else
-	echo "$HOSTNAME: Invalid hostnamE" && exit 1
+	echo "$HOSTNAME: Invalid hostname" && exit 1
 fi
