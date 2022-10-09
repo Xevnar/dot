@@ -45,15 +45,36 @@ done
 	{ echo "Hostname can't be established"; exit 1; }
 
 copy_files_to_home() {
-	base_dir="$1"
-	ignored_dir="$2"
-	for file in $(find $DOTDIR -path "$DOTDIR/*$ignored_dir" -prune -false -o -type f); do
+	local base_dir="$1"
+	local prune_dir="$2"
+	local packer_dir="$DOTDIR/.local/share/nvim/site/pack/packer/start/packer.nvim"
+
+	# Ignore both files in $prune_dir and packer.nvim files
+	local files="$(find $DOTDIR \( -path "$DOTDIR/*$prune_dir" -prune -o -path "$packer_dir" -prune \) -false -o -type f)"
+	for file in $files; do
 		dir=$(echo "${file##$DOTDIR}" | sed "s|/$base_dir/|/|g")
 		dir="$HOME${dir%/*}"
 		[ ! -d $dir ] && mkdir -pv $dir
 
 		cp -vuf $file $dir
 	done
+
+	# Copy all packer files execpt the .git file
+	local packer_files="$(find "$packer_dir" -type f \( ! -iname '.git' \))"
+	for file in $packer_files; do
+		dir="${file##$DOTDIR}"
+		dir="$HOME${dir%/*}"
+		[ ! -d $dir ] && mkdir -pv $dir
+
+		cp -vuf $file $dir
+	done
+
+	# Copy .git meta data from git submodule
+	local actual_gitdir="$(realpath "$packer_dir/$(cat "$packer_dir/.git" | cut -d ' ' -f2)/")"
+	local dest_gitdir="$HOME/${packer_dir##$DOTDIR/}/.git"
+	[ ! -d "$dest_gitdir" ] && mkdir -pv $dest_gitdir
+	cp -vufRfT "$actual_gitdir" "$dest_gitdir"
+	sed -i -E '/worktree.*/d' "$dest_gitdir/config"
 }
 
 if [ -z "${HOSTNAME##*box}" ]; then
