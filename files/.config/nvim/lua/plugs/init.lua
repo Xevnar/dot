@@ -8,12 +8,15 @@ return require('packer').startup(function(use)
 	-- Packer can manage itself
 	use 'wbthomason/packer.nvim'
 
+	-- Nice library
+	use 'nvim-lua/plenary.nvim'
+
 	-- Productivity
 	use {
 		'xevnar/vimwiki',
 		branch = 'dev',
 		requires = {
-		--	{ 'xevnar/goyo.vim', config = configs('goyo') },
+			{ "folke/zen-mode.nvim", config = configs('zen-mode') },
 			'junegunn/limelight.vim',
 		},
 		config = configs('vimwiki'),

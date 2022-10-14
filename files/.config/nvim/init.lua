@@ -153,7 +153,7 @@
 	-- Have 'leader' + 'o' spell-check the current document
 	keybind('', '<leader>o', t':setlocal spell! spelllang=en_us,en_gb<CR>', { silent = true, })
 	-- Have 'leader' + 'g' toggle Goyo
-	keybind('', t'<leader>g', t':Goyo<CR>', { silent = true, })
+	keybind('', t'<leader>g', t':ZenMode<CR>', { silent = true, })
 	-- Have 'leader' + 'c' toggle the cursor column
 	keybind('', t'<leader>c', t':setlocal cursorcolumn!<CR>', { silent = true, })
 	-- Have 'leader' + 'wg' go to my general wiki
