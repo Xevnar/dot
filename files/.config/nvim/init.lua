@@ -245,10 +245,11 @@
 	-- Recompile packer if any plugin configs are modified
 	make_autocmd('BufWritePost', {
 		group = au_group_id,
-		pattern = vim.env.DOTDIR .. '/.config/nvim/lua/plugs/configs/*',
+		pattern = vim.env.DOTDIR .. '/.config/nvim/lua/{plugs/configs,keybindings}/*',
 		callback = function(args)
 			-- Reload my plugin list and their configs
 			require('plenary.reload').reload_module('plugs', false)
+			require('plenary.reload').reload_module('keybindings', false)
 			require('plugs')
 
 			vim.cmd([[echo ':PackerCompile' | PackerCompile]])
