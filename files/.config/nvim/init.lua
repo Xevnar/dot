@@ -186,13 +186,6 @@
 	    clear = false
 	})
 
-	-- Set the default filetype for all text fles
-	make_autocmd({ 'BufNewFile', 'BufRead', 'BufEnter' }, {
-		group = au_group_id,
-		pattern = '*',
-		command = [[if &ft == '' | set ft=txt | endif]],
-	})
-
 	-- Delete all trailing whitespace and newlines at end of file on save
 	make_autocmd('BufWritePre', {
 		group = au_group_id,
