@@ -235,6 +235,26 @@
 		command = [[silent! checktime]],
 	})
 
+	-- Update plugins if plugin list is modified
+	make_autocmd('BufWritePost', {
+		group = au_group_id,
+		pattern = vim.env.DOTDIR .. '/.config/nvim/lua/plugs/init.lua',
+		command = [[source <afile> | PackerSync]],
+	})
+
+	-- Recompile packer if any plugin configs are modified
+	make_autocmd('BufWritePost', {
+		group = au_group_id,
+		pattern = vim.env.DOTDIR .. '/.config/nvim/lua/plugs/configs/*',
+		callback = function(args)
+			-- Reload my plugin list and their configs
+			require('plenary.reload').reload_module('plugs', false)
+			require('plugs')
+
+			vim.cmd([[echo ':PackerCompile' | PackerCompile]])
+		end,
+	})
+
 -- PLUGINS
 -------------------------------------------------------------------------------
 
