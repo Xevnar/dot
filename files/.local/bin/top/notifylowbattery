@@ -4,14 +4,14 @@
 # DEPENDANCIES: 'acpi', 'coreutils', 'libnotify'
 
 while :; do
-    ACPI_OUT="$(acpi -b | head -n1)"
-    BAT_STATUS="$(echo "$ACPI_OUT" | cut -d' ' -f3 | tr -d ',')"
-    BAT_LEVEL="$(echo "$ACPI_OUT" | cut -d',' -f2 | tr -d ' %')"
-    BAT_TIME="$(echo "$ACPI_OUT" | cut -d',' -f3)"
-    echo "$ACPI_OUT--$BAT_STATUS--$BAT_LEVEL--$BAT_TIME"
-    if [ "$BAT_STATUS" = "Discharging" ] && [ "$BAT_LEVEL" -lt "20" ]; then
-        notify-send -u critical  -t 0 "Battery low" "Battery level is ${BAT_LEVEL}%!\n${BAT_TIME# }!"
-    fi
+	ACPI_OUT="$(acpi -b | head -n1)"
+	BAT_STATUS="$(echo "$ACPI_OUT" | cut -d' ' -f3 | tr -d ',')"
+	BAT_LEVEL="$(echo "$ACPI_OUT" | cut -d',' -f2 | tr -d ' %')"
+	BAT_TIME="$(echo "$ACPI_OUT" | cut -d',' -f3)"
+	echo "$ACPI_OUT--$BAT_STATUS--$BAT_LEVEL--$BAT_TIME"
+	if [ "$BAT_STATUS" = "Discharging" ] && [ "$BAT_LEVEL" -lt "20" ]; then
+		notify-send -u critical  -t 0 "Battery low" "Battery level is ${BAT_LEVEL}%!\n${BAT_TIME# }!"
+	fi
 
-    sleep 2.5m
+	sleep 2.5m
 done
