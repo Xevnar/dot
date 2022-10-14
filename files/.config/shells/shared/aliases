@@ -37,7 +37,7 @@ alias zdir="$EDITOR $DOTDIR/.config/shells/zsh/nameddir"
 alias bsrc="$EDITOR $DOTDIR/.config/shells/bash/.bashrc"
 alias alrc="$EDITOR $DOTDIR/.config/shells/shared/aliases"
 alias hkrc="$EDITOR $DOTDIR/.config/sxhkd/sxhkdrc"
-alias virc="$EDITOR $DOTDIR/.config/nvim/init.vim"
+alias virc="$EDITOR $DOTDIR/.config/nvim/init.lua"
 alias bwrc="$EDITOR $DOTDIR/.config/bspwm/bspwmrc"
 
 # Adding flags
