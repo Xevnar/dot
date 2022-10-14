@@ -2,7 +2,7 @@
 # Wrapper script to startup jdtls from neovim
 #
 # USAGE: <SCRIPT> <WORKSPACE_DIR>
-# DEPENDENCIES: 'jdtls', 'java-11-openjdk', 'coreutils'
+# DEPENDENCIES: 'jdtls', 'java-17-openjdk', 'coreutils'
 
 # copy the configuration folder to tmp to be writable
 tmp_dir="$(mktemp -d /tmp/jdtls.XXXXX)"
@@ -13,13 +13,12 @@ trap "{ rm -rf ${tmp_dir}; }" EXIT
 JDTLS_HOME="$(echo /usr/share/java/jdtls/plugins/org.eclipse.equinox.launcher_*.jar)"
 
 # Java-11 is required to run the lsp
-/usr/lib/jvm/java-11-openjdk/bin/java \
+/usr/lib/jvm/java-17-openjdk/bin/java \
 	-Declipse.application=org.eclipse.jdt.ls.core.id1 \
 	-Dosgi.bundles.defaultStartLevel=4 \
 	-Declipse.product=org.eclipse.jdt.ls.core.product \
 	-Dlog.protocol=true \
 	-Dlog.level=ALL \
-	-noverify \
 	-Xmx1g \
 	-jar "$JDTLS_HOME" \
 	-configuration "${tmp_dir}/config_linux" \
