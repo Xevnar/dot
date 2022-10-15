@@ -13,7 +13,7 @@ local function get_runtimes()
 	-- java version, the first JDK is used
 	local jdk_path = '/usr/lib/jvm'
 	local available_jdks = vim.fn.globpath(jdk_path, 'java-*-*', false, true)
-	for jdk in available_jdks do
+	for _, jdk in ipairs(available_jdks) do
 		local jdk_ver = jdk:match('java-(%d+)-.*')
 		if type(runtimes[jdk_ver]) ~= nil then
 			goto continue
@@ -31,14 +31,14 @@ local function get_runtimes()
 
 		local jdk_doc_path = '/usr/share/doc'
 		local docs_path = jdk_doc_path .. '/java' .. jdk_ver .. '-openjdk/api'
-		if vim.fn.isdirectory(docs_path) == 1; then
+		if vim.fn.isdirectory(docs_path) == 1 then
 			runtime.javadoc = docs_path
 		end
 
 		-- Check if this jdk is the default jdk
 		local default_jdk = jdk_path .. '/default'
 		if vim.fn.isdirectory(default_jdk) == 1 and vim.fn.resolve(default_jdk) == jdk_path then
-			runtime.default == true
+			runtime.default = true
 		end
 
 		runtimes[jdk_ver] = runtime
@@ -59,13 +59,13 @@ local config = {
 	},
 
 	-- Setup completion engine
-	capabilities = require('plugs.configs.autocmp').setup_for_source()
+	capabilities = require('plugs.configs.autocmp').setup_for_source(),
 
 	-- Modify lsp settings, more can be found below:
 	-- https://github.com/eclipse/eclipse.jdt.ls/wiki/Running-the-JAVA-LS-server-from-the-command-line#initialize-request
 	settings = {
 		java = {
-			signatureHelp = { enabled = true };
+			signatureHelp = { enabled = true },
 			configuration = {
 				runtimes = get_runtimes(),
 			},
