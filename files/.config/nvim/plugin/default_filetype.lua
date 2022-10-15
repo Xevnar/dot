@@ -2,5 +2,5 @@
 vim.api.nvim_create_autocmd({ 'BufNewFile', 'BufRead', 'BufEnter' }, {
 	group = 'xev',
 	pattern = '*',
-	command = [[if &ft == '' | set ft=txt | endif]],
+	command = [[if &ft == '' | set ft=text | endif]],
 })
