@@ -1,11 +1,10 @@
--- Setup completion engine
-local capabilities = require('plugs.configs.autocmp').setup_for_source()
-
 -- Launch language server
 require('lspconfig').html.setup {
 	cmd = { "vscode-html-languageserver", "--stdio" },
 	filetypes = { "html", "xhtml", "php", },
-	capabilities = capabilities,
+
+	-- Setup completion engine
+	capabilities = require('plugs.configs.autocmp').setup_for_source(),
 
 	on_attach = function(client, bufnr)
 		require('keybindings.lsp').common()

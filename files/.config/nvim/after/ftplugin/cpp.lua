@@ -1,9 +1,7 @@
--- Setup completion engine
-local capabilities = require('plugs.configs.autocmp').setup_for_source()
-
 -- Launch lanquage server
 require('lspconfig').ccls.setup {
-	capabilities = capabilities,
+	-- Setup completion engine
+	capabilities = require('plugs.configs.autocmp').setup_for_source(),
 
 	on_attach = function(client, bufnr)
 		require('keybindings.lsp').common()
