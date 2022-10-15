@@ -183,7 +183,7 @@
 
 	-- Define autogroup for my autocommands
 	local au_group_id = vim.api.nvim_create_augroup('xev', {
-	    clear = false
+	    clear = true
 	})
 
 	-- Delete all trailing whitespace and newlines at end of file on save
