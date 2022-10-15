@@ -7,6 +7,8 @@ function M.setup_for_source()
 			{ name = 'buffer', keyword_length = 5 },
 			{ name = 'nvim_lsp' },
 		},
+
+		setup_dict = false,
 	}
 end
 
@@ -44,6 +46,7 @@ function M.setup(args)
 			['<C-e>'] = cmp.mapping.close(),
 			['<SPACE>'] = function(original_mapping)
 				if cmp.visible() and cmp.get_active_entry() ~= nil  then
+					local callback = nil
 					if args.space_after_cmp then
 						callback = original_mapping
 					end
