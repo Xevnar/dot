@@ -1,1 +1,2 @@
-lua require('ftplugin.txt')
+" Disable runtime ftplugin
+let b:did_ftplugin = 1

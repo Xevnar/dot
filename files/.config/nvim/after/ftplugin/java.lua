@@ -1,6 +1,3 @@
--- Disable runtime ftplugin
-vim.b.did_ftplugin = 1
-
 -- Dynamacially build available java runtimes
 local function get_runtimes()
 	local runtimes = {}
