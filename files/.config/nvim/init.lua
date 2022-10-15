@@ -262,5 +262,10 @@
 	vim.g.loaded_netrwPlugin = 1
 	vim.g.loaded_netrwSettings = 1
 
--- Plugins and their configs are stored in 'lua/plugins'
+-- Initialize global logger for the files in 'lua/'
+logger = require("vlog").new {
+    plugin = 'xev_log',
+}
+
+-- Plugins and their configs are stored in 'lua/plugs'
 require('plugs')
