@@ -102,11 +102,6 @@
 
 	-- Change specify that the histogram algorithm is used to generate diffs
 	opts.diffopt = { 'internal', 'filler', 'closeoff', 'algorithm:histogram' }
-	-- Change the highlighting of the diffs to make it clearer and easier on the eyes
-	vim.cmd([[hi DiffAdd    gui=NONE                  guifg=NONE guibg=#0F3D07]])
-	vim.cmd([[hi DiffChange gui=NONE                  guifg=NONE guibg=#32302F]])
-	vim.cmd([[hi DiffDelete gui=bold                  guifg=NONE guibg=#490707]])
-	vim.cmd([[hi DiffText   gui=bold,italic,underline guifg=NONE guibg=#004649]])
 
 -- KEYBINDINGS "
 --------------------------------------------------------------------------------
