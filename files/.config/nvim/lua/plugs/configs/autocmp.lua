@@ -38,12 +38,9 @@ function M.setup(args)
 			end,
 		},
 
-		mapping = {
-			['<C-n>'] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
-			['<C-p>'] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
+		mapping = cmp.mapping.preset.insert({
 			['<C-d>'] = cmp.mapping.scroll_docs(-4),
 			['<C-f>'] = cmp.mapping.scroll_docs(4),
-			['<C-e>'] = cmp.mapping.close(),
 			['<SPACE>'] = function(original_mapping)
 				if cmp.visible() and cmp.get_active_entry() ~= nil  then
 					local callback = nil
@@ -70,7 +67,7 @@ function M.setup(args)
 					original_mapping()
 				end
 			end,
-		},
+		}),
 
 		-- DO NOT PRESELECT ANYTHING FOR ME
 		preselect = cmp.PreselectMode.None,
