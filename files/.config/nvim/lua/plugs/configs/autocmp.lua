@@ -43,17 +43,30 @@ function M.setup(args)
 			['<C-f>'] = cmp.mapping.scroll_docs(4),
 			['<SPACE>'] = function(original_mapping)
 				if cmp.visible() and cmp.get_active_entry() ~= nil  then
-					local callback = nil
-					if args.always_insert_space then
-						callback = original_mapping
-					end
+					local get_callback = function(mapping, always_insert_space)
+						if always_insert_space then
+							return mapping
+						end
 
-					-- TODO: Figure out how to conditionally add space char depending on whats
-					-- inserted
-					-- local entry = cmp.get_active_entry()
-					-- cmp.close()
-					-- print(vim.inspect(entry))
-					-- print(te())
+						-- Conditionally add space char depending on what's inserted
+						local entry = cmp.get_active_entry()
+						logger.trace('Entry Name: ' .. entry.source.name)
+
+						-- Never insert a space if the source was a snippet
+						if entry.source.name == 'vsnip' then
+							return nil
+						end
+
+						-- If source was the lsp, only insert a space if it was not a snippet
+						if entry.source.name == 'nvim_lsp' then
+							local view = entry:get_view(0, vim.api.nvim_get_current_buf())
+							logger.trace('Entry View: ' .. vim.inspect(view))
+
+							if view.kind.text ~= 'Snippet' then
+								return mapping
+							end
+						end
+					end
 
 					cmp.confirm ({
 						-- Insert selection instead of replacing current text
@@ -61,7 +74,7 @@ function M.setup(args)
 
 						-- Don't select the first item if nothing is selected
 						select = false,
-					}, callback)
+					}, get_callback(original_mapping, args.always_insert_space))
 				else
 					-- Most likely just insert space after confirming
 					original_mapping()
