@@ -103,6 +103,8 @@ function M.setup(args)
 	})
 
 	cmp.setup.cmdline('/', {
+		mapping = cmp.mapping.preset.cmdline(),
+
 		sources = {
 			args.search or {
 				name = 'buffer', keyword_length = 3
@@ -111,6 +113,8 @@ function M.setup(args)
 	})
 
 	cmp.setup.cmdline(':', {
+		mapping = cmp.mapping.preset.cmdline(),
+
 		sources = cmp.config.sources(
 			args.cmd or {
 				{ name = 'path' },
