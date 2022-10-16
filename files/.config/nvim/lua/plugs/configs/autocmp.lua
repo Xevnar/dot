@@ -21,7 +21,7 @@ function M.setup_for_prose()
 		},
 
 		setup_dict = true,
-		space_after_cmp = true,
+		always_insert_space = true,
 	}
 end
 
@@ -47,7 +47,7 @@ function M.setup(args)
 			['<SPACE>'] = function(original_mapping)
 				if cmp.visible() and cmp.get_active_entry() ~= nil  then
 					local callback = nil
-					if args.space_after_cmp then
+					if args.always_insert_space then
 						callback = original_mapping
 					end
 
