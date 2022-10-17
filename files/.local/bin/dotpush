@@ -1,7 +1,9 @@
 #!/usr/bin/sh
 # This script copies my config files to my home directory. Since I use the same
 # dotfiles repository across different machines, I sometimes need to store a
-# separate config for each device.
+# separate config for each device. The script also manages to copy the plugins
+# stored here as git submodles as normal git repositories into their proper
+# locations.
 #
 # The devices are separated by their suffix (box & top)
 # USAGE: <SCRIPT> [-dnh]
@@ -47,10 +49,14 @@ done
 copy_files_to_home() {
 	local base_dir="$1"
 	local prune_dir="$2"
-	local packer_dir="$DOTDIR/.local/share/nvim/site/pack/packer/start/packer.nvim"
 
-	# Ignore both files in $prune_dir and packer.nvim files
-	local files="$(find $DOTDIR \( -path "$DOTDIR/*$prune_dir" -prune -o -path "$packer_dir" -prune \) -false -o -type f)"
+	# Find all git submodules, and format them as prune commands for `find`
+	local git_submodules="$(find $DOTDIR -type f -name '.git' -printf '-path "%h" -prune -o ')"
+	git_submodules="${git_submodules% -o }" # Remove the last -o flag
+
+	# Ignore files in $prune_dir and $git_submodules,
+	local find_command="find \"$DOTDIR\" \( -path \"$DOTDIR/*$prune_dir\" -prune -o $git_submodules \) -false -o -type f"
+	local files="$(eval "$find_command")" # allows for malicious code, but keeps the script clean. ¯\_(ツ)_/¯
 	for file in $files; do
 		dir=$(echo "${file##$DOTDIR}" | sed "s|/$base_dir/|/|g")
 		dir="$HOME${dir%/*}"
@@ -59,9 +65,19 @@ copy_files_to_home() {
 		cp -vuf "$file" "$dir"
 	done
 
-	# Copy all packer files execpt the .git file
-	local packer_files="$(find "$packer_dir" -type f \( ! -iname '.git' \))"
-	for file in $packer_files; do
+ 	# Clean up from `find` args
+	git_submodules="$(echo "${git_submodules%\" -prune}" | sed -e 's/" -prune -o -path "/\n/g' -e 's/^-path "//')"
+	for module in $git_submodules; do
+		copy_git_submodule "$module"
+	done
+}
+
+copy_git_submodule() {
+	local module_dir="$1"
+
+	# Copy all module files execpt the .git file
+	local module_files="$(find "$module_dir" -type f \( ! -iname '.git' \))"
+	for file in $module_files; do
 		dir="${file##$DOTDIR}"
 		dir="$HOME${dir%/*}"
 		[ ! -d "$dir" ] && mkdir -pv "$dir"
@@ -70,8 +86,8 @@ copy_files_to_home() {
 	done
 
 	# Copy .git meta data from git submodule
-	local actual_gitdir="$(realpath "$packer_dir/$(cat "$packer_dir/.git" | cut -d ' ' -f2)/")"
-	local dest_gitdir="$HOME/${packer_dir##$DOTDIR/}/.git"
+	local actual_gitdir="$(realpath "$module_dir/$(cat "$module_dir/.git" | cut -d ' ' -f2)/")"
+	local dest_gitdir="$HOME/${module_dir##$DOTDIR/}/.git"
 	[ ! -d "$dest_gitdir" ] && mkdir -pv "$dest_gitdir"
 	cp -vufRfT "$actual_gitdir" "$dest_gitdir"
 	sed -i -E '/worktree.*/d' "$dest_gitdir/config"
