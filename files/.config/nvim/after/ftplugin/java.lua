@@ -13,9 +13,10 @@ local function get_runtimes()
 	-- java version, the first JDK is used
 	local jdk_path = '/usr/lib/jvm'
 	local available_jdks = vim.fn.globpath(jdk_path, 'java-*-*', false, true)
+	logger.trace('Available JDKs: ' .. vim.inspect(available_jdks))
 	for _, jdk in ipairs(available_jdks) do
-		local jdk_ver = jdk:match('java-(%d+)-.*')
-		if type(runtimes[jdk_ver]) ~= nil then
+		local jdk_ver = jdk:match('%d+')
+		if runtimes[jdk_ver] then
 			goto continue
 		end
 
@@ -37,7 +38,7 @@ local function get_runtimes()
 
 		-- Check if this jdk is the default jdk
 		local default_jdk = jdk_path .. '/default'
-		if vim.fn.isdirectory(default_jdk) == 1 and vim.fn.resolve(default_jdk) == jdk_path then
+		if vim.fn.isdirectory(default_jdk) == 1 and vim.fn.resolve(default_jdk) == jdk then
 			runtime.default = true
 		end
 
@@ -45,6 +46,7 @@ local function get_runtimes()
 		::continue::
 	end
 
+	logger.trace('Java runtimes: ' .. vim.inspect(runtimes))
 	return runtimes
 end
 
