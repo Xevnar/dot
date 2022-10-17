@@ -177,7 +177,7 @@
 	local make_autocmd = vim.api.nvim_create_autocmd
 
 	-- Define autogroup for my autocommands
-	local au_group_id = vim.api.nvim_create_augroup('xev', {
+	local au_group_id = vim.api.nvim_create_augroup(vim.env.USER, {
 	    clear = true
 	})
 
@@ -259,7 +259,7 @@
 
 -- Initialize global logger for the files in 'lua/'
 logger = require("vlog").new {
-    plugin = 'xev_log',
+	plugin = vim.env.USER,
 }
 
 -- Plugins and their configs are stored in 'lua/plugs'
