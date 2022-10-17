@@ -73,21 +73,19 @@ local config = {
 	},
 
 	-- One dedicated LSP server & client will be started per unique root_dir
-	root_dir = function(fname)
-		return require('plugs.util').find_root({
-			-- Zero-module projects
-			{ '.git', 'src', 'code', 'Code', },
-			-- Single-module projects
-			{
-				'build.xml', -- Ant
-				'pom.xml', -- Maven
-				'settings.gradle', -- Gradle
-				'settings.gradle.kts', -- Gradle
-			},
-			-- Multi-module projects
-			{ 'build.gradle', 'build.gradle.kts', },
-		})
-	end,
+	root_dir = require('plugs.util').find_root({
+		-- Zero-module projects
+		{ '.git', 'src', 'code', 'Code', },
+		-- Single-module projects
+		{
+			'build.xml', -- Ant
+			'pom.xml', -- Maven
+			'settings.gradle', -- Gradle
+			'settings.gradle.kts', -- Gradle
+		},
+		-- Multi-module projects
+		{ 'build.gradle', 'build.gradle.kts', },
+	}),
 
 	on_init = function(client, _)
 		client.notify('workspace/didChangeConfiguration', { settings = config.settings })
