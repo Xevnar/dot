@@ -6,11 +6,11 @@ function M.t(str)
 end
 
 -- Wrappers
-function M.buf_set_keymap(...)
+function M.buf_set_keymap(bufnr, ...)
 	vim.api.nvim_buf_set_keymap(bufnr, ...)
 end
 
-function M.buf_set_option(...)
+function M.buf_set_option(bufnr, ...)
 	vim.api.nvim_buf_set_option(bufnr, ...)
 end
 

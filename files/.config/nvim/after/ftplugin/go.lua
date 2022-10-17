@@ -4,7 +4,7 @@ require('lspconfig').gopls.setup {
 	capabilities = require('plugs.configs.autocmp').setup_for_source(),
 
 	on_attach = function(client, bufnr)
-		require('keybindings.lsp').common()
+		require('keybindings.lsp').common(bufnr)
 	end,
 }
 

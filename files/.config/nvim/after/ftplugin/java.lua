@@ -94,7 +94,7 @@ local config = {
 	-- Define on_attach first since it doesn't work if defined below for some reason
 	on_attach = function(client, bufnr)
 		require('jdtls.setup').add_commands()
-		require('keybindings.lsp').jdtls()
+		require('keybindings.lsp').jdtls(bufnr)
 	end,
 }
 
