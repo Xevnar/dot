@@ -48,6 +48,7 @@ return require('packer').startup(function(use)
 		'neovim/nvim-lspconfig',
 		'mfussenegger/nvim-jdtls',
 		'simrat39/rust-tools.nvim',
+		{ 'Hoffs/omnisharp-extended-lsp.nvim', requires =  { 'nvim-telescope/telescope.nvim', branch = '0.1.x', } },
 	}
 
 	-- Debugging

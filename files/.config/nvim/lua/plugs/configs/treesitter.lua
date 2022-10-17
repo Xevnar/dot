@@ -4,7 +4,7 @@ function M.setup()
 	require'nvim-treesitter.configs'.setup {
 		ensure_installed = {
 			'lua', 'vim', 'bash', 'python', 'javascript', 'typescript', 'php', 'r',
-			'c', 'go', 'rust', 'java', 'kotlin',
+			'c', 'go', 'rust', 'java', 'kotlin', 'c_sharp',
 			'toml', 'query', 'markdown', 'html', 'css',
 			'comment', 'regex'
 		},
