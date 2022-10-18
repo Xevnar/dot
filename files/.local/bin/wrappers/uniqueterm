@@ -5,4 +5,4 @@
 # USAGE: <SCRIPT> <WINDOW_CLASS> <CLASSNAME>
 # DEPENDENCIES: '$TERMINAL'
 
-$TERMINAL --title "$2" --class "$2","$1"
+$TERMINAL --title "$2" --class "$1","$2"
