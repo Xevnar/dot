@@ -20,8 +20,8 @@ while true; do
 		-i | --interpeter ) INTERPETER="$2"; shift 2 ;;
 		-s | --shebang ) SHEBANG="$2"; shift 2 ;;
 		-E | --editor ) EDITOR="$2"; shift 2 ;;
-		-e | --edit ) EDIT="yes"; shift ;;
-		-r | --as-root) AS_ROOT="TRUE"; shift ;;
+		-e | --edit ) EDIT='yes'; shift ;;
+		-r | --as-root) AS_ROOT='yes'; shift ;;
 		-h | --help)
 			printf '%s accepts the following options:\n' "$SCRIPT"
 			printf '\t-h, --help\tprints this help message and exit\n'
@@ -37,12 +37,12 @@ while true; do
 	esac
 done
 
-[ "$(id -u)" -ne 0 ] && [ -n "$AS_ROOT" ] \
+[ "$(id -u)" -ne '0' ] && [ -n "$AS_ROOT" ] \
 	&& { eval set -- "$OPTS"; exec sudo -E -- "$SCRIPT" "$@"; }
 
 # Assigning default values to the variables
-: ${INTERPETER:="sh"} && : ${SHEBANG:="#!/usr/bin/$INTERPETER"}
-: ${EDITOR:=vi}
+: ${INTERPETER:='sh'} && : ${SHEBANG:="#!/usr/bin/$INTERPETER"}
+: ${EDITOR:='vi'}
 
 [ -z "$1" ] \
 	&& { printf '%s: No file specified\n' "$script" >&2; exit 1; }
@@ -55,4 +55,4 @@ done
 	|| { chmod ug+x "$1"; printf '%s: Set "%s" to executable\n' "$script" "$1"; }
 
 [ -n "$EDIT" ] \
-	&& sh -c "$EDITOR $1"
+	&& sh -c "\"$EDITOR\" \"$1\""
