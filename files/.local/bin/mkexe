@@ -54,5 +54,5 @@ done
 	&& { printf '%s: "%s" is not a file\n' "$script" "$1" >&2; exit 1; } \
 	|| { chmod ug+x "$1"; printf '%s: Set "%s" to executable\n' "$script" "$1"; }
 
-[ -n "$edit" ] \
+[ -n "$EDIT" ] \
 	&& sh -c "$EDITOR $1"
