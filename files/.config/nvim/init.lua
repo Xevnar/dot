@@ -47,94 +47,94 @@ logger = require("vlog").new {
 --------------------------------------------------------------------------------
 
 -- Basic settings
-	local opts = vim.opt
+	local opt = vim.opt
 
 	-- Set vim's file encoding
-	opts.encoding = 'utf-8'
+	opt.encoding = 'utf-8'
 	-- Ensure all text files opened in vim are treated as unix text files
-	opts.fileformat = 'unix'
-	opts.fileformats = 'unix'
+	opt.fileformat = 'unix'
+	opt.fileformats = 'unix'
 	-- Disable the making of annoying swap files
-	opts.swapfile = false
+	opt.swapfile = false
 
 -- Search settings
 
 	-- Highlight search matches
-	opts.hlsearch = true
+	opt.hlsearch = true
 	-- Display the results that match the search pattern as you are typing it
-	opts.incsearch = true
+	opt.incsearch = true
 	-- Case insensitive searching
-	opts.ignorecase = true
+	opt.ignorecase = true
 	-- Override ignorecase if search pattern has an uppercase character
-	opts.smartcase = true
+	opt.smartcase = true
 
 -- Tab/Indent settings
 
 	-- Copy the indent of the current line when you start a new line
-	opts.autoindent = true
+	opt.autoindent = true
 	-- Preserves Indent when line wraps
-	opts.breakindent = true
+	opt.breakindent = true
 	-- Do not use spaces instead of tabs
-	opts.expandtab = false
+	opt.expandtab = false
 	-- Number of auto-indent spaces
-	opts.shiftwidth = 4
+	opt.shiftwidth = 4
 	-- Number of spaces per Tab
-	opts.tabstop = 4
+	opt.tabstop = 4
 	-- Enable unique indent options for C-style languages
-	opts.smartindent = true
+	opt.smartindent = true
 	-- Tabs use 'shiftwidth' at start of line and 'tabstop' elsewhere
-	opts.smarttab = true
+	opt.smarttab = true
 
 -- Quality of life Settings
 
 	-- Enable mouse control
-	opts.mouse = 'a'
+	opt.mouse = 'a'
 	-- Display the outcome a command as you are typing it
-	opts.inccommand = 'nosplit'
+	opt.inccommand = 'nosplit'
 	-- Keep the cursor in the middle of the screen when scrolling
-	opts.scrolloff = 999
+	opt.scrolloff = 999
 	-- Use the system clipboard as the default register
-	opts.clipboard = 'unnamedplus'
+	opt.clipboard = 'unnamedplus'
 	-- Don't redraw the screen when preforming a macro
-	opts.lazyredraw = true
+	opt.lazyredraw = true
 	-- Complete longest common match, then each full match
-	opts.wildmode = { 'longest', 'full', }
+	opt.wildmode = { 'longest', 'full', }
 	-- Change the default way vim splits
-	opts.splitbelow = true
-	opts.splitright = true
+	opt.splitbelow = true
+	opt.splitright = true
 	-- Change the delay vim take before updating buffer
-	opts.updatetime = 100
+	opt.updatetime = 100
 	-- Don't adjust case of string to staisfy a match
-	opts.infercase = true
+	opt.infercase = true
 
 -- Aesthetic Settings
 
 	-- Enable 24-bit colour RGB
-	opts.termguicolors = true
+	opt.termguicolors = true
 	-- Highlight the current line the cursor is on
-	opts.cursorline = true
+	opt.cursorline = true
 	-- Displays line numbers relative to the current line
-	opts.relativenumber = true
+	opt.relativenumber = true
 	-- Display whitespace characters
-	opts.list = true
+	opt.list = true
 	-- Define the minimum width of the line number column
-	opts.numberwidth = 3
+	opt.numberwidth = 3
 	-- Define the hight of the command mode line
-	opts.cmdheight = 1
+	opt.cmdheight = 1
 	-- Define the hight of the previously executed commands window
-	opts.cmdwinheight = 10
+	opt.cmdwinheight = 10
 	-- Change the way command completion suggestions are displayed
-	opts.wildoptions = 'tagfile'
+	opt.wildoptions = 'tagfile'
 	-- Change the way lines that are too long is displayed
-	opts.wrap = true
-	opts.linebreak = true
+	opt.wrap = true
+	opt.linebreak = true
 	-- Change cursor shape for the different vim modes
 	vim.o.guicursor = 'n-v-c-sm:bloc,i-ci-r-cr-o:hor20,i-ci:blinkon100-blinkoff100-blinkwait0'
 
 -- Diff Settings
 
 	-- Change specify that the histogram algorithm is used to generate diffs
-	opts.diffopt = { 'internal', 'filler', 'closeoff', 'algorithm:histogram' }
+	opt.diffopt = { 'internal', 'filler', 'closeoff', 'algorithm:histogram' }
 
 -- KEYBINDINGS "
 --------------------------------------------------------------------------------
