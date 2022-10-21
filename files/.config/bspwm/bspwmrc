@@ -38,19 +38,11 @@ bspc config pointer_action3 resize_corner
 # Window Rules
 bspc rule -r "*"
 
-bspc rule -a Scratchpad:primary sticky=on
-bspc rule -a Scratchpad:primary state=floating
-bspc rule -a Scratchpad:primary locked=on
+bspc rule -a Scratchpad:* sticky=on
+bspc rule -a Scratchpad:* state=floating
+bspc rule -a Scratchpad:* locked=on
 bspc rule -a Scratchpad:primary monitor="${PRIMARY_MONITOR%%:*}"
-
-bspc rule -a Scratchpad:secondary sticky=on
-bspc rule -a Scratchpad:secondary state=floating
-bspc rule -a Scratchpad:secondary locked=on
 bspc rule -a Scratchpad:secondary monitor="${SECONDARY_MONITOR%%:*}"
-
-bspc rule -a Scratchpad:tertiary sticky=on
-bspc rule -a Scratchpad:tertiary state=floating
-bspc rule -a Scratchpad:tertiary locked=on
 bspc rule -a Scratchpad:tertiary monitor="${TERTIARY_MONITOR%%:*}"
 
 bspc rule -a Brave-browser desktop='^1'
