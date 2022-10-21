@@ -1,17 +1,17 @@
 local M = {}
 
+-- Options to be used with `vim.keymap.set`
+M.opts = {
+	none = { }, -- Behaves the same as `opts.noremap` since the default is 'remap = false'
+	remap = { remap = true, },
+	noremap = { remap = false, },
+	silent = { silent = true, remap = true, },
+	both = { silent = true, remap = false, },
+}
+
 -- The function is called `t` for `termcodes`.
 function M.t(str)
 	return vim.api.nvim_replace_termcodes(str, true, true, true)
-end
-
--- Wrappers
-function M.buf_set_keymap(bufnr, ...)
-	vim.api.nvim_buf_set_keymap(bufnr, ...)
-end
-
-function M.buf_set_option(bufnr, ...)
-	vim.api.nvim_buf_set_option(bufnr, ...)
 end
 
 return M

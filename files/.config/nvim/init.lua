@@ -142,67 +142,75 @@ logger = require("vlog").new {
 	-- replace termcodes
 	local t = require('keybindings.utils').t
 
+	local opts = require('keybindings.utils').opts
+
 -- Normal, Visual, and Operator-pending modes
 
-	local keybind = vim.api.nvim_set_keymap
+	local keybind = vim.keymap.set
 	-- Substitute all to 'S'
-	keybind('', 'S', ':%s//g<Left><Left>', { noremap = true, })
+	keybind('', 'S', ':%s//g<Left><Left>', opts.noremap)
 	-- Have 'j', and 'k' move through visual lines instead of logical ones
-	keybind('', 'j', 'gj', { noremap = true, })
-	keybind('', 'k', 'gk', { noremap = true, })
+	keybind('', 'j', 'gj', opts.noremap)
+	keybind('', 'k', 'gk', opts.noremap)
 	-- Have 'c', and 'C' not store the changed text in any register
-	keybind('', 'c', '"_c', { noremap = true, })
-	keybind('', 'C', '"_C', { noremap = true, })
+	keybind('', 'c', '"_c', opts.noremap)
+	keybind('', 'C', '"_C', opts.noremap)
 	-- Have 'U' redo my last undo
-	keybind('', 'U', t'<C-R>', { noremap = true, })
+	keybind('', 'U', t'<C-R>', opts.noremap)
 	-- Have 'q' replay previously activated macros
-	keybind('', 'q', '@@', { noremap = true, })
+	keybind('', 'q', '@@', opts.noremap)
 	-- Have 'Q' replay previously activated macros
-	keybind('', 'Q', 'q', { noremap = true, })
+	keybind('', 'Q', 'q', opts.noremap)
 	-- Have 'zz' save and exit the buffer
-	keybind('', 'zz', 'ZZ', { noremap = true, })
+	keybind('', 'zz', 'ZZ', opts.noremap)
 	-- Have 'zq' exit the buffer without saving
-	keybind('', 'zq', 'ZQ', { noremap = true, })
+	keybind('', 'zq', 'ZQ', opts.noremap)
 	-- Have 'zb' delete the current buffer
-	keybind('', 'zb', t':Bwipeout<CR>', { noremap = true, silent = true })
+	keybind('', 'zb', t':Bwipeout<CR>', opts.both)
 	-- Have 'zq' exit the buffer without saving
-	keybind('', '<C-h>', '<C-w>h', { noremap = true, })
-	keybind('', '<C-j>', '<C-w>j', { noremap = true, })
-	keybind('', '<C-k>', '<C-w>k', { noremap = true, })
-	keybind('', '<C-l>', '<C-w>l', { noremap = true, })
+	keybind('', '<C-h>', '<C-w>h', opts.noremap)
+	keybind('', '<C-j>', '<C-w>j', opts.noremap)
+	keybind('', '<C-k>', '<C-w>k', opts.noremap)
+	keybind('', '<C-l>', '<C-w>l', opts.noremap)
 	-- Have 'Shift' + 'Deete' act as 'Delete'
-	keybind('', t'<S-Del>', '<Del>', { noremap = true, })
+	keybind('', t'<S-Del>', '<Del>', opts.noremap)
 	-- Have 'Ctrl' + 'f' call fuzzyfind
-	keybind('', t'<C-f>', t':FZF<CR>', { noremap = true, })
+	keybind('', t'<C-f>', t':FZF<CR>', opts.noremap)
 	-- Have '<C-R>' Resize the window to the default
-	keybind('', t'<C-r>', t'<C-w>=', {})
+	keybind('', t'<C-r>', t'<C-w>=', opts.remap)
 	-- Have 'Space' act as the leader key
-	keybind('', t'<Space>', t'<leader>', { silent = true, })
+	keybind('', t'<Space>', t'<leader>', opts.silent)
 	-- Have 'leader' + 'o' spell-check the current document
-	keybind('', '<leader>o', t':setlocal spell! spelllang=en_us,en_gb<CR>', { silent = true, })
+	keybind('', '<leader>o', t':setlocal spell! spelllang=en_us,en_gb<CR>', opts.silent)
 	-- Have 'leader' + 'g' toggle Goyo
-	keybind('', t'<leader>g', t':ZenMode<CR>', { silent = true, })
+	keybind('', t'<leader>g', t':ZenMode<CR>', opts.silent)
 	-- Have 'leader' + 'c' toggle the cursor column
-	keybind('', t'<leader>c', t':setlocal cursorcolumn!<CR>', { silent = true, })
+	keybind('', t'<leader>c', t':setlocal cursorcolumn!<CR>', opts.silent)
 	-- Have 'leader' + 'wg' go to my general wiki
-	keybind('', t'<leader>ww', t':VimwikiIndex<CR>', { silent = true, })
+	keybind('', t'<leader>ww', t':VimwikiIndex<CR>', opts.silent)
 
 -- Insert, and Command-line modes
 
 	-- Have 'Shift' + 'Delete' act as 'Delete'
-	keybind('!', t'<S-Del>', t'<Del>', { noremap = true, })
+	keybind('!', t'<S-Del>', t'<Del>', opts.noremap)
 
 -- Normal Mode Only
 
 	-- Have 'x', and 'X' not store the deleted character in any register
-	keybind('n', 'x', '"_x', { noremap = true })
-	keybind('n', 'X', '"_X', { noremap = true })
+	keybind('n', 'x', '"_x', opts.noremap)
+	keybind('n', 'X', '"_X', opts.noremap)
 	-- Have 'Space' + 'Space' unhighlight my last search
-	keybind('n', t'<space><space>', t':noh<CR>', { noremap = true, silent = true })
+	keybind('n', t'<space><space>', t':noh<CR>', opts.both)
 	-- Have 'leader' + 'wh' convert only the current wiki
-	keybind('n', t'<Leader>wh', t':Vimwiki2HTML<CR>', {})
+	keybind('n', t'<Leader>wh', t':Vimwiki2HTML<CR>', opts.remap)
 	-- Have 'leader' + 'whh' convert all wikis to html
-	keybind('n', t'<Leader>whh', t':VimwikiAll2HTML<CR>', {})
+	keybind('n', t'<Leader>whh', t':VimwikiAll2HTML<CR>', opts.remap)
+
+	-- Diagnostic keymappings
+	keybind('n', t'<leader>e', vim.diagnostic.open_float, opts.both)
+	keybind('n', '[d', vim.diagnostic.goto_prev, opts.both)
+	keybind('n', ']d', vim.diagnostic.goto_next, opts.both)
+	keybind('n', t'<leader>q', vim.diagnostic.setloclist, opts.both)
 
 -- AUTOCOMMANDS
 -------------------------------------------------------------------------------

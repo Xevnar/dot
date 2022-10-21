@@ -2,40 +2,40 @@ local utils = require('keybindings.utils')
 
 local M = {}
 
-local opts = { noremap = true, silent = true }
+local opts = utils.opts
 
 function M.common(bufnr)
 	-- Set Omnifunc
-	utils.buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
+	vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 
 	-- Mappings.
-	utils.buf_set_keymap(bufnr, 'n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
-	utils.buf_set_keymap(bufnr, 'n', 'gD', '<Cmd>lua vim.lsp.buf.declaration()<CR>', opts)
-	utils.buf_set_keymap(bufnr, 'n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
-	utils.buf_set_keymap(bufnr, 'n', 'gr', '<cmd>lua vim.lsp.buf.references() && vim.cmd("copen")<CR>', opts)
-	utils.buf_set_keymap(bufnr, 'n', '<leader>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
-	utils.buf_set_keymap(bufnr, 'n', 'K', '<Cmd>lua vim.lsp.buf.hover()<CR>', opts) -- Displays help ctxt-menu
-	utils.buf_set_keymap(bufnr, 'n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
-	utils.buf_set_keymap(bufnr, 'n', '<leader>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
-	utils.buf_set_keymap(bufnr, 'n', '<leader>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
-	utils.buf_set_keymap(bufnr, 'n', '<leader>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
-	utils.buf_set_keymap(bufnr, 'n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
-	utils.buf_set_keymap(bufnr, 'n', '<leader>e', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
-	utils.buf_set_keymap(bufnr, 'n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
-	utils.buf_set_keymap(bufnr, 'n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
-	utils.buf_set_keymap(bufnr, 'n', '<leader>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
+	local bufopts = vim.tbl_extend('force', opts.both, { buffer = bufnr, })
+
+	vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
+	vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
+	vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
+	vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
+	vim.keymap.set('n', '<leader>D', vim.lsp.buf.type_definition, bufopts)
+	vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts) -- Displays help ctxt-menu
+	vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, bufopts)
+	vim.keymap.set('n', '<leader>wa', vim.lsp.buf.add_workspace_folder, bufopts)
+	vim.keymap.set('n', '<leader>wr', vim.lsp.buf.remove_workspace_folder, bufopts)
+	vim.keymap.set('n', '<leader>wl', function() print(vim.inspect(vim.lsp.buf.list_workspace_folders())) end, bufopts)
+	vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, bufopts)
+	vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, bufopts)
+	vim.keymap.set('n', '<leader>f', function() vim.lsp.buf.format { async = true } end, bufopts)
 end
 
 function M.jdtls(bufnr)
 	M.common(bufnr)
+
 	-- Java specific
-	utils.buf_set_keymap(bufnr, "n", "<leader>di", "<Cmd>lua require'jdtls'.organize_imports()<CR>", opts)
-	utils.buf_set_keymap(bufnr, "n", "<leader>dt", "<Cmd>lua require'jdtls'.test_class()<CR>", opts)
-	utils.buf_set_keymap(bufnr, "n", "<leader>dn", "<Cmd>lua require'jdtls'.test_nearest_method()<CR>", opts)
-	utils.buf_set_keymap(bufnr, "v", "<leader>de", "<Esc><Cmd>lua require('jdtls').extract_variable(true)<CR>", opts)
-	utils.buf_set_keymap(bufnr, "n", "<leader>de", "<Cmd>lua require('jdtls').extract_variable()<CR>", opts)
-	utils.buf_set_keymap(bufnr, "v", "<leader>dm", "<Esc><Cmd>lua require('jdtls').extract_method(true)<CR>", opts)
-	utils.buf_set_keymap(bufnr, "n", "<leader>cf", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
+	local bufopts = vim.tbl_extend('force', opts.both, { buffer = bufnr, })
+
+	vim.keymap.set('n', '<leader>di', require('jdtls').organize_imports(), bufopts)
+	vim.keymap.set('n', '<leader>dt', require('jdtls').test_class(), bufopts)
+	vim.keymap.set('n', '<leader>dn', require('jdtls').test_nearest_method(), bufopts)
+	vim.keymap.set('n', '<leader>de', require('jdtls').extract_variable(), bufopts)
 end
 
 return M
