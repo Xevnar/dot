@@ -32,10 +32,13 @@ function M.jdtls(bufnr)
 	-- Java specific
 	local bufopts = vim.tbl_extend('force', opts.both, { buffer = bufnr, })
 
-	vim.keymap.set('n', '<leader>di', require('jdtls').organize_imports(), bufopts)
-	vim.keymap.set('n', '<leader>dt', require('jdtls').test_class(), bufopts)
-	vim.keymap.set('n', '<leader>dn', require('jdtls').test_nearest_method(), bufopts)
-	vim.keymap.set('n', '<leader>de', require('jdtls').extract_variable(), bufopts)
+	vim.keymap.set('n', '<leader>di', function() require('jdtls').organize_imports() end, bufopts)
+	vim.keymap.set('n', '<leader>dt', function() require('jdtls').test_class() end, bufopts)
+	vim.keymap.set('n', '<leader>dn', function() require('jdtls').test_nearest_method() end, bufopts)
+	vim.keymap.set('n', '<leader>de', function() require('jdtls').extract_variable() end, bufopts)
+
+	vim.keymap.set('v', '<leader>de', function() require('jdtls').extract_variable(true) end, bufopts)
+	vim.keymap.set('v', '<leader>dm', function() require('jdtls').extract_method(true) end, bufopts)
 end
 
 return M
