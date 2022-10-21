@@ -14,14 +14,14 @@ OPTS=$(getopt --options erhi:s:E: \
 [ $? -ne 0 ] \
 	&& exit 1;
 
-eval set -- "$OPTS" && unset OPTS
+eval set -- "$OPTS"
 while true; do
 	case "$1" in
 		-i | --interpeter ) INTERPETER="$2"; shift 2 ;;
 		-s | --shebang ) SHEBANG="$2"; shift 2 ;;
 		-E | --editor ) EDITOR="$2"; shift 2 ;;
 		-e | --edit ) EDIT="yes"; shift ;;
-		-r | --as-root) $AS_ROOT=TRUE ;;
+		-r | --as-root) AS_ROOT="TRUE"; shift ;;
 		-h | --help)
 			printf '%s accepts the following options:\n' "$SCRIPT"
 			printf '\t-h, --help\tprints this help message and exit\n'
@@ -38,7 +38,7 @@ while true; do
 done
 
 [ "$(id -u)" -ne 0 ] && [ -n "$AS_ROOT" ] \
-	{ exec sudo -- "$SCRIPT" "$@"}
+	&& { eval set -- "$OPTS"; exec sudo -E -- "$SCRIPT" "$@"; }
 
 # Assigning default values to the variables
 : ${INTERPETER:="sh"} && : ${SHEBANG:="#!/usr/bin/$INTERPETER"}
