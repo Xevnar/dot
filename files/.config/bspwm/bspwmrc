@@ -71,8 +71,8 @@ bspc rule -a Zotero:* state=floating
 bspc rule -a 'VirtualBoxVM' state=floating
 bspc rule -a 'VirtualBoxVM' desktop='^10'
 
-# Allow bspwm to Swallow
-pidof bspswallow || bspswallow &
+## Allow bspwm to Swallow
+#pidof bspswallow || bspswallow &
 
 # Default Desktop
 bspc desktop -f focused:'^2'
