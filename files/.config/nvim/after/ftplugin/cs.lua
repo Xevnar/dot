@@ -1,3 +1,18 @@
+-- Check if omnisharp is already attached to this process or not. This is to avoid
+-- starting a new client when editing multiple CS files.
+local pid = tostring(vim.fn.getpid())
+
+local handle = io.popen([[pgrep -u "$(whoami)" --list-full omnisharp 2>&1 | cut -d' ' -f6]])
+local pids = handle:read('*a')
+handle.close()
+
+for p in pids:gmatch("[^\r\n]+") do
+	if p == pid then
+		logger.trace('Omnishapr already connected to buffer')
+		return
+	end
+end
+
 local util = require('plugs.util')
 
 -- Launch language server
@@ -6,7 +21,7 @@ require('lspconfig').omnisharp.setup {
 	cmd = {
 		'omnisharp', '-z',
 		'--languageserver' ,
-		'--hostPID', tostring(vim.fn.getpid()),
+		'--hostPID', pid,
 		'--encoding', 'utf-8',
 		'DotNet:enablePackageRestore=false',
 	},
