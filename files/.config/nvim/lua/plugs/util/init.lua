@@ -14,8 +14,8 @@ function M.find_root(markers, bufname)
 	end
 
 	while getparent(dirname) ~= dirname do
-		for _, marker in ipairs(markers) do
-			for _, path in ipairs(vim.fn.glob(M.path.join(dirname, pattern), true, true)) do
+		for _, marker in pairs(markers) do
+			for _, path in pairs(vim.fn.glob(M.path.join(dirname, marker), true, true)) do
 				if M.path.exists(path) then
 					return dirname
 				end
