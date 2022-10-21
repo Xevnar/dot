@@ -1,7 +1,8 @@
 #!/usr/bin/sh
-# This is a small script to notify me whenever my battery gets below 20%
+# This is a small script to notify me whenever my battery gets below 20% and
+# hibernate the system if it's below 5%
 # USAGE: <SCRIPT> &
-# DEPENDANCIES: 'acpi', 'coreutils', 'libnotify'
+# DEPENDANCIES: 'acpi', 'coreutils', 'libnotify', 'systemd'
 
 while :; do
 	ACPI_OUT="$(acpi -b | head -n1)"
@@ -11,6 +12,10 @@ while :; do
 	echo "$ACPI_OUT--$BAT_STATUS--$BAT_LEVEL--$BAT_TIME"
 	if [ "$BAT_STATUS" = "Discharging" ] && [ "$BAT_LEVEL" -lt "20" ]; then
 		notify-send -u critical  -t 0 "Battery low" "Battery level is ${BAT_LEVEL}%!\n${BAT_TIME# }!"
+	fi
+
+	if [ "$BAT_STATUS" = "Discharging" ] && [ "$BAT_LEVEL" -lt "5" ]; then
+		systemctl hibernate
 	fi
 
 	sleep 2.5m

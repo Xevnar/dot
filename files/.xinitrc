@@ -11,7 +11,7 @@ volctl &
 unclutter &
 nm-applet &
 picom-wrapper &
-notifylowbattery &
+monitorlowbattery &
 
 # Start window manager
 exec bspwm
