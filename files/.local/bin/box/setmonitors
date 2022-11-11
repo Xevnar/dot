@@ -20,6 +20,22 @@ if ! isMonitorConnected -1 && ! isMonitorConnected -2 && isMonitorConnected -3; 
 	exit
 fi
 
+# If only the primary and secondary monitors are connected
+if isMonitorConnected -1 && isMonitorConnected -2 && ! isMonitorConnected -3; then
+	xrandr --output "${PRIMARY_MONITOR%%:*}" --mode "${PRIMARY_MONITOR##*:}" --primary
+	xrandr --output "${SECONDARY_MONITOR%%:*}" --mode "${SECONDARY_MONITOR##*:}"
+	xrandr --output "${PRIMARY_MONITOR%%:*}" --auto --output "${SECONDARY_MONITOR%%:*}" --left-of "${PRIMARY_MONITOR%%:*}"
+	exit
+fi
+
+# If only the primary and tertiary monitors are connected
+if isMonitorConnected -1 && ! isMonitorConnected -2 && isMonitorConnected -3; then
+	xrandr --output "${PRIMARY_MONITOR%%:*}" --mode "${PRIMARY_MONITOR##*:}" --primary
+	xrandr --output "${TERTIARY_MONITOR%%:*}" --mode "${TERTIARY_MONITOR##*:}"
+	xrandr --output "${PRIMARY_MONITOR%%:*}" --auto --output "${TERTIARY_MONITOR%%:*}" --right-of "${PRIMARY_MONITOR%%:*}"
+	exit
+fi
+
 # If only the secondary and tertiary monitors are connected
 if ! isMonitorConnected -1 && isMonitorConnected -2 && isMonitorConnected -3; then
 	xrandr --output "${SECONDARY_MONITOR%%:*}" --mode "${SECONDARY_MONITOR##*:}" --primary
@@ -28,7 +44,7 @@ if ! isMonitorConnected -1 && isMonitorConnected -2 && isMonitorConnected -3; th
 	exit
 fi
 
-# If the primary & secondary or the primary & tertiary or all 3 monitors are connected
+# If all 3 monitors are connected
 xrandr --output "${PRIMARY_MONITOR%%:*}" --mode "${PRIMARY_MONITOR##*:}" --primary
 xrandr --output "${SECONDARY_MONITOR%%:*}" --mode "${SECONDARY_MONITOR##*:}"
 xrandr --output "${TERTIARY_MONITOR%%:*}" --mode "${TERTIARY_MONITOR##*:}"
