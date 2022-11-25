@@ -63,4 +63,4 @@ for pid in $(pgrep -u $USER "$(basename $0)"); do
 	[ "$pid" -ne $$ ] && kill -9 "$pid"
 done
 
-while true; do xset r 66; sleep 5; done
+while true; do xset r 66; sleep 5; done &
