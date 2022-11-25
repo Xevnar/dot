@@ -1,9 +1,9 @@
 #!/usr/bin/sh
-# Small script to open a set of files as seprate process from the terminal
+# Small script to asynchronously open a set of files as separate process from the terminal
 #
 # USAGE: <SCRIPT> {<FILE>}
 # DEPENDENCIES: 'util-linux', 'xdg-utils'
 
 for file in $@; do
-	setsid --fork xdg-open "$file" >/dev/null 2>&1
+	setsid --fork xdg-open "$file" >/dev/null 2>&1 & # Don't wait for a file to open before opening the next
 done
