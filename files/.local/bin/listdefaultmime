@@ -8,7 +8,7 @@
 
 print_default_application_from_file() {
 	# Isolate the mimetype from the filepath
-	mime=${1##*mime/}
+	local mime=${1##*mime/}
 	mime=${mime%.xml}
 
 	print_default_application "$mime"
