@@ -8,7 +8,7 @@
 tmp_dir="$(mktemp -d /tmp/jdtls.XXXXX)"
 cp -R '/usr/share/java/jdtls/config_linux' "${tmp_dir}"
 # Ensure that it is removed on exit
-trap "{ rm -rf ${tmp_dir}; }" EXIT
+trap "{ rm -rf ${tmp_dir}; }" EXIT INT HUP TERM QUIT TSTP
 
 JDTLS_HOME="$(echo /usr/share/java/jdtls/plugins/org.eclipse.equinox.launcher_*.jar)"
 
