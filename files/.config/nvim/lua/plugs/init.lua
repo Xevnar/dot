@@ -13,13 +13,9 @@ return require('packer').startup(function(use)
 
 	-- Productivity
 	use {
-		'xevnar/vimwiki',
-		branch = 'dev',
-		requires = {
-			{ "folke/zen-mode.nvim", config = configs('zen-mode') },
-			'junegunn/limelight.vim',
-		},
-		config = configs('vimwiki'),
+		"folke/zen-mode.nvim",
+		requires = 'junegunn/limelight.vim',
+		config = configs('zen-mode'),
 	}
 
 	-- git Integration
