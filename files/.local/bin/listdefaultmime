@@ -41,9 +41,11 @@ for mime in $@; do
 		for file in $(find "$dir" -type f); do
 			print_default_application_from_file "$file"
 		done
+		continue
 	fi
 
 	# Check if arg was a subtype
+	# TODO: Detect alises of mime types
 	[ -z "${files:=$(find /usr/share/mime -iregex ".*/$mime\.xml" -type f)}" ] \
 		&& { printf 'Couldn'\''t locate subtype '\''%s'\'' in /usr/share/mime\n' "$mime"; continue; }
 
