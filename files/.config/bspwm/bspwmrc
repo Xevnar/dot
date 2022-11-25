@@ -1,4 +1,4 @@
-#! /bin/sh
+#!/usr/bin/sh
 
 # Rename window manager to fix java display issues
 wmname LG3D
