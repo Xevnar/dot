@@ -1,5 +1,6 @@
 # IDE  stuff
 .idea
+.vscode
 .factorypath
 .classpath
 .project
@@ -10,11 +11,15 @@
 *.[oa]
 
 # Output directories
-out/
+[oO]ut/
 [bB]uild/
-target/
-debug/
+[tT]arget/
+[dD]ebug/
 
 # Unnecessary files
 perf.data*
 hs_err_*.log
+
+# Sed and Git merge files
+*.bk
+*.orig
