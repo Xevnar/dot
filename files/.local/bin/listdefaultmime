@@ -38,14 +38,14 @@ for mime in $@; do
 
 	# Check if arg was type
 	if [ -n "${dir:=$(find /usr/share/mime -iname "$mime" -type d)}" ]; then
-		for file in $(find "/usr/share/mime/$dir" -type f); do
+		for file in $(find "$dir" -type f); do
 			print_default_application_from_file "$file"
 		done
 	fi
 
 	# Check if arg was a subtype
 	[ -z "${files:=$(find /usr/share/mime -iregex ".*/$mime\.xml" -type f)}" ] \
-		&& { printf 'Couldn'\''t locate subtype '\''%s'\'' in /usr/share/mime' "$mime"; continue; }
+		&& { printf 'Couldn'\''t locate subtype '\''%s'\'' in /usr/share/mime\n' "$mime"; continue; }
 
 	for file in $files; do
 		print_default_application_from_file "$file"
