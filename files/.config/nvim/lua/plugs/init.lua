@@ -33,7 +33,7 @@ return require('packer').startup(function(use)
 			'hrsh7th/cmp-path',
 			'hrsh7th/cmp-cmdline',
 			'hrsh7th/cmp-vsnip',
-			'uga-rosa/cmp-dictionary',
+			{ 'uga-rosa/cmp-dictionary', requires = { 'nvim-lua/plenary.nvim' } },
 			'kdheepak/cmp-latex-symbols',
 			'onsails/lspkind-nvim',
 		},
