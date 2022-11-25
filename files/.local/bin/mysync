@@ -23,7 +23,7 @@ main() {
 	# if the user specified directories through the command line
 	if [ "$#" -ne 0 ]; then
 		local arg
-		for arg in "$@"; do
+		for arg; do # CURSED: it is equivalent to `for arg in $@`
 			printf '%s\n' "$(realpath $arg)" >> "$tmpfile"
 		done
 	else

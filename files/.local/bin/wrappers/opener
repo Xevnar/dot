@@ -4,6 +4,6 @@
 # USAGE: <SCRIPT> {<FILE>}
 # DEPENDENCIES: 'util-linux', 'xdg-utils'
 
-for file in $@; do
+for file; do # CURSED: it is equivalent to `for file in "$@"`
 	setsid --fork xdg-open "$file" >/dev/null 2>&1 & # Don't wait for a file to open before opening the next
 done

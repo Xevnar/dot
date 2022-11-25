@@ -29,7 +29,7 @@ if [ "$#" -eq "0" ]; then
 fi
 
 # Go through each mimetype and print it's default application
-for mime in $@; do
+for mime; do # CURSED: it is equivalent to `for mime in $@`
 	# If the arg is a full mimetype
 	if contains "$mime" '/'; then
 		print_default_application "$mime"
