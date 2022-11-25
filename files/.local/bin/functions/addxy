@@ -1,0 +1,51 @@
+#!/usr/bin/sh
+# This is a small script to add string that are formatted as '<No#><delim><No#>'
+#
+# USAGE: <SCRIPT> [-d delimiter] <Value 1> <Value 2>
+# DEPENDANCIES: 'util-linux', 'coreutils'
+
+# Set the name of the script
+script="${0##*/}"
+
+# Requires 'util-linux' package
+OPTS=$(getopt --options hd: \
+	--longoptions help,delimiter: \
+	--name "$script" -- "$@")
+
+# Exit if getopt fails
+[ $? -ne 0 ] \
+	&& exit 1;
+
+eval set -- "$OPTS" && unset OPTS
+while true; do
+	case "$1" in
+		-d | --delimiter ) DELIMITER="$2"; shift 2 ;;
+		-h | --help)
+			echo "USAGE: $script [-dh] [--delimiter] [--help] <No#><delim><No#> <No#><delim><No#>"
+			exit
+			;;
+		-- ) shift; ;;
+		* ) break ;;
+	esac
+done
+
+# Assign a default delimiter if the user didn't specify 1
+: ${DELIMITER:='+'}
+
+# Values to add must be specified
+[ -z "$1" ] && \
+	{ printf '%s\n' 'No values were specified.' >&2; exit 1; }
+
+# Fast exit since the user only specified a single value
+[ -z "$2" ] && \
+	{ printf '%s\n' "$1" ; exit; }
+
+# Sum the two values
+
+x1="${1%%$DELIMITER*}"
+y1="${1##*$DELIMITER}"
+
+x2="${2%%$DELIMITER*}"
+y2="${2##*$DELIMITER}"
+
+printf '%s%s%s\n' "$((x1 + x2))" "$DELIMITER" "$((y1 + y2))"
