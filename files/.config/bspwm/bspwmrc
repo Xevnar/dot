@@ -4,9 +4,9 @@
 wmname LG3D
 
 # Moniters
-isMonitorConnected --primary   && bspc monitor ${PRIMARY_MONITOR%%:*}   -d 0 1 2 3 4 5 6 7 8 9
-isMonitorConnected --secondary && bspc monitor ${SECONDARY_MONITOR%%:*} -d 0 1 2 3 4 5 6 7 8 9
-isMonitorConnected --tertiary  && bspc monitor ${TERTIARY_MONITOR%%:*}  -d 0 1 2 3 4 5 6 7 8 9
+isMonitorConnected -1 && bspc monitor "${PRIMARY_MONITOR%%:*}"   -d 0 1 2 3 4 5 6 7 8 9
+isMonitorConnected -2 && bspc monitor "${SECONDARY_MONITOR%%:*}" -d 0 1 2 3 4 5 6 7 8 9
+isMonitorConnected -3 && bspc monitor "${TERTIARY_MONITOR%%:*}"  -d 0 1 2 3 4 5 6 7 8 9
 
 # General Settings
 bspc config border_width         2
