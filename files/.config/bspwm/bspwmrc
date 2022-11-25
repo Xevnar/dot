@@ -1,12 +1,12 @@
-#! /bin/sh
+#!/usr/bin/sh
 
 # Rename window manager to fix java display issues
 wmname LG3D
 
 # Moniters
-isMonitorConnected --primary   && bspc monitor ${PRIMARY_MONITOR%%:*}   -d 0 1 2 3 4 5 6 7 8 9
-isMonitorConnected --secondary && bspc monitor ${SECONDARY_MONITOR%%:*} -d 0 1 2 3 4 5 6 7 8 9
-isMonitorConnected --tertiary  && bspc monitor ${TERTIARY_MONITOR%%:*}  -d 0 1 2 3 4 5 6 7 8 9
+isMonitorConnected -1 && bspc monitor "${PRIMARY_MONITOR%%:*}"   -d 0 1 2 3 4 5 6 7 8 9
+isMonitorConnected -2 && bspc monitor "${SECONDARY_MONITOR%%:*}" -d 0 1 2 3 4 5 6 7 8 9
+isMonitorConnected -3 && bspc monitor "${TERTIARY_MONITOR%%:*}"  -d 0 1 2 3 4 5 6 7 8 9
 
 # General Settings
 bspc config border_width         2
@@ -38,35 +38,35 @@ bspc config pointer_action3 resize_corner
 # Window Rules
 bspc rule -r "*"
 
-bspc rule -a Scratchpad:* sticky=on
-bspc rule -a Scratchpad:* state=floating
-bspc rule -a Scratchpad:* locked=on
-bspc rule -a Scratchpad:primary monitor="${PRIMARY_MONITOR%%:*}"
-bspc rule -a Scratchpad:secondary monitor="${SECONDARY_MONITOR%%:*}"
-bspc rule -a Scratchpad:tertiary monitor="${TERTIARY_MONITOR%%:*}"
+bspc rule -a 'Scratchpad:*' sticky=on
+bspc rule -a 'Scratchpad:*' state=floating
+bspc rule -a 'Scratchpad:*' locked=on
+bspc rule -a 'Scratchpad:primary' monitor="${PRIMARY_MONITOR%%:*}"
+bspc rule -a 'Scratchpad:secondary' monitor="${SECONDARY_MONITOR%%:*}"
+bspc rule -a 'Scratchpad:tertiary' monitor="${TERTIARY_MONITOR%%:*}"
 
-bspc rule -a Brave-browser desktop='^1'
-bspc rule -a Brave-browser locked=on
-bspc rule -a Brave-browser focus=on
+bspc rule -a 'Brave-browser' desktop='^1'
+bspc rule -a 'Brave-browser' locked=on
+bspc rule -a 'Brave-browser' focus=on
 
-bspc rule -a Brave-browser-beta desktop='^1'
-bspc rule -a Brave-browser-beta locked=on
-bspc rule -a Brave-browser-beta focus=on
+bspc rule -a 'Brave-browser-beta' desktop='^1'
+bspc rule -a 'Brave-browser-beta' locked=on
+bspc rule -a 'Brave-browser-beta' focus=on
 
-bspc rule -a Gimp focus=off
-bspc rule -a Gimp follow=off
+bspc rule -a 'Gimp' focus=off
+bspc rule -a 'Gimp' follow=off
 
-bspc rule -a Zathura state=tiled
+bspc rule -a 'Zathura' state=tiled
 
-bspc rule -a qBittorrent state=floating
+bspc rule -a 'qBittorrent' state=floating
 
-bspc rule -a Pavucontrol state=floating
-bspc rule -a Pavucontrol rectangle=906x425+1000+20
+bspc rule -a 'Pavucontrol' state=floating
+bspc rule -a 'Pavucontrol' rectangle=906x425+1000+20
 
-bspc rule -a Volctl:volctl:Preferences state=floating
-bspc rule -a Volctl:volctl:Preferences rectangle=421x357+1485+20
+bspc rule -a 'Volctl:volctl:Preferences' state=floating
+bspc rule -a 'Volctl:volctl:Preferences' rectangle=421x357+1485+20
 
-bspc rule -a Zotero:* state=floating
+bspc rule -a 'Zotero:*' state=floating
 
 bspc rule -a 'VirtualBoxVM' state=floating
 bspc rule -a 'VirtualBoxVM' desktop='^10'
