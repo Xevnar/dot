@@ -1,0 +1,29 @@
+#!/usr/bin/sh
+
+# General applications to launch on startup
+setsid --fork unclutter > /dev/null 2>&1
+
+# Launch notification manager
+setsid --fork dunst > /dev/null 2>&1
+
+# Start script that monitors low battery
+setsid --fork monitorlowbattery > /dev/null 2>&1
+
+# Setup keyboard and hotkey deamon
+setkeyboard
+setsid --fork sxhkd > /dev/null 2>&1
+
+# Monitor setup should be delayed so that all monitors can be detected first
+setmonitors; setmonitors # Should be called twice so that monitor setup is correct
+setwallpaper
+
+# Launch my taskbars and the tray apps
+bars
+setsid --fork volctl > /dev/null 2>&1
+setsid --fork nm-applet > /dev/null 2>&1
+
+# Launch compositor
+picom-wrapper
+
+# Rename window manager to fix java display issues
+wmname LG3D

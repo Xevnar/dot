@@ -1,13 +1,5 @@
 #!/usr/bin/sh
 
-# Rename window manager to fix java display issues
-wmname LG3D
-
-# Moniters
-isMonitorConnected -1 && bspc monitor "${PRIMARY_MONITOR%%:*}"   -d 0 1 2 3 4 5 6 7 8 9
-isMonitorConnected -2 && bspc monitor "${SECONDARY_MONITOR%%:*}" -d 0 1 2 3 4 5 6 7 8 9
-isMonitorConnected -3 && bspc monitor "${TERTIARY_MONITOR%%:*}"  -d 0 1 2 3 4 5 6 7 8 9
-
 # General Settings
 bspc config border_width         2
 bspc config window_gap           5
@@ -34,6 +26,14 @@ bspc config pointer_modifier mod4
 bspc config pointer_action1 move
 bspc config pointer_action3 resize_side
 bspc config pointer_action3 resize_corner
+
+# Launch startup applications
+startup_script
+
+# Moniters
+isMonitorConnected -1 && bspc monitor "${PRIMARY_MONITOR%%:*}"   -d 0 1 2 3 4 5 6 7 8 9
+isMonitorConnected -2 && bspc monitor "${SECONDARY_MONITOR%%:*}" -d 0 1 2 3 4 5 6 7 8 9
+isMonitorConnected -3 && bspc monitor "${TERTIARY_MONITOR%%:*}"  -d 0 1 2 3 4 5 6 7 8 9
 
 # Window Rules
 bspc rule -r "*"
