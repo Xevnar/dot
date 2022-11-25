@@ -239,4 +239,4 @@ source $XDG_CONFIG_HOME/shells/zsh/plugins/substring/zsh-history-substring-searc
 # Fish-style auto-suggestions
 source $XDG_CONFIG_HOME/shells/zsh/plugins/autosuggestions/zsh-autosuggestions.zsh
 # Fish-style syntax highlighting
-source $XDG_CONFIG_HOME/shells/zsh/plugins/syntax/fast-syntax-highlighting.plugin.zsh
+source $XDG_CONFIG_HOME/shells/zsh/plugins/syntax/F-Sy-H.plugin.zsh
