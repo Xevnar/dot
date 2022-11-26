@@ -6,7 +6,7 @@ local function get_runtimes()
 	 local jdk_envs = {
 		 _5 = 'J2SE-1.5',   _6 = 'JavaSE-1.6', _7 = 'JavaSE-1.7', _8 = 'JavaSE-1.8', _9 = 'JavaSE-9',
 		_11 = 'JavaSE-11', _10 = 'JavaSE-10', _12 = 'JavaSE-12', _13 = 'JavaSE-13', _14 = 'JavaSE-14',
-		_15 = 'JavaSE-15', _16 = 'JavaSE-16', _17 = 'JavaSE-17', _18 = 'JavaSE-18',
+		_15 = 'JavaSE-15', _16 = 'JavaSE-16', _17 = 'JavaSE-17', _18 = 'JavaSE-18', _19 = 'JavaSE-19',
 	 }
 
 	-- Loop over JDKs in the jvm directory. if multiple JDKs exist for the same
