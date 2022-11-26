@@ -94,6 +94,7 @@ return require('packer').startup(function(use)
 	-- Themes
 	use {
 		{ 'arcticicestudio/nord-vim', config = configs('nord'), disable = true, },
+		{ 'rebelot/kanagawa.nvim', config = configs('kanagawa'), disable = true, },
 		{ 'morhetz/gruvbox', config = configs('gruvbox'), },
 	}
 end)
