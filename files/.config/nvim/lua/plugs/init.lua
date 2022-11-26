@@ -53,7 +53,8 @@ return require('packer').startup(function(use)
 		requires = {
 			'rcarriga/nvim-dap-ui',
 			'leoluz/nvim-dap-go',
-		}
+		},
+		config = configs('dap'),
 	}
 
 	-- Snippits

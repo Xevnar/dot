@@ -24,6 +24,21 @@ function M.common(bufnr)
 	vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, bufopts)
 	vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, bufopts)
 	vim.keymap.set('n', '<leader>f', function() vim.lsp.buf.format { async = true } end, bufopts)
+
+	vim.keymap.set('n', '<F5>', function() require('dap').continue() end, bufopts)
+	vim.keymap.set('n', '<F10>', function() require('dap').step_over() end, bufopts)
+	vim.keymap.set('n', '<F11>', function() require('dap').step_into() end, bufopts)
+	vim.keymap.set('n', '<F12>', function() require('dap').step_out() end, bufopts)
+	vim.keymap.set('n', '<Leader>b', function() require('dap').toggle_breakpoint() end, bufopts)
+	vim.keymap.set('n', '<Leader>B', function() require('dap').set_breakpoint(vim.fn.input('Breakpoint condition: ')) end, bufopts)
+	vim.keymap.set('n', '<Leader>lp', function() require('dap').set_breakpoint(nil, nil, vim.fn.input('Log point message: ')) end, bufopts)
+	vim.keymap.set('n', '<Leader>dr', function() require('dap').repl.open() end, bufopts)
+	vim.keymap.set('n', '<Leader>dl', function() require('dap').run_last() end, bufopts)
+
+	vim.keymap.set('i', '<F5>', function() require('dap').continue() end, bufopts)
+	vim.keymap.set('i', '<F10>', function() require('dap').step_over() end, bufopts)
+	vim.keymap.set('i', '<F11>', function() require('dap').step_into() end, bufopts)
+	vim.keymap.set('i', '<F12>', function() require('dap').step_out() end, bufopts)
 end
 
 function M.jdtls(bufnr)
