@@ -63,6 +63,12 @@ return require('packer').startup(function(use)
 		config = configs('vsnip'),
 	}
 
+	-- Fuzzy searching
+	use {
+		'nvim-telescope/telescope.nvim', branch = '0.1.x',
+		requires = { 'nvim-lua/plenary.nvim' }
+	}
+
 	-- Syntax highlighting
 	use {
 		'baskerville/vim-sxhkdrc',
