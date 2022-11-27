@@ -125,6 +125,8 @@ logger = require("vlog").new {
 	opt.cmdwinheight = 10
 	-- Change the way command completion suggestions are displayed
 	opt.wildoptions = 'tagfile'
+	-- Change the maximum width of text
+	opt.textwidth = 120
 	-- Change the way lines that are too long is displayed
 	opt.wrap = true
 	opt.linebreak = true
