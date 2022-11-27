@@ -13,13 +13,9 @@ return require('packer').startup(function(use)
 
 	-- Productivity
 	use {
-		'xevnar/vimwiki',
-		branch = 'dev',
-		requires = {
-			{ "folke/zen-mode.nvim", config = configs('zen-mode') },
-			'junegunn/limelight.vim',
-		},
-		config = configs('vimwiki'),
+		"folke/zen-mode.nvim",
+		requires = 'junegunn/limelight.vim',
+		config = configs('zen-mode'),
 	}
 
 	-- git Integration
@@ -37,7 +33,7 @@ return require('packer').startup(function(use)
 			'hrsh7th/cmp-path',
 			'hrsh7th/cmp-cmdline',
 			'hrsh7th/cmp-vsnip',
-			'uga-rosa/cmp-dictionary',
+			{ 'uga-rosa/cmp-dictionary', requires = { 'nvim-lua/plenary.nvim' } },
 			'kdheepak/cmp-latex-symbols',
 			'onsails/lspkind-nvim',
 		},
@@ -57,7 +53,8 @@ return require('packer').startup(function(use)
 		requires = {
 			'rcarriga/nvim-dap-ui',
 			'leoluz/nvim-dap-go',
-		}
+		},
+		config = configs('dap'),
 	}
 
 	-- Snippits
@@ -65,6 +62,12 @@ return require('packer').startup(function(use)
 		'hrsh7th/vim-vsnip',
 		requires = 'hrsh7th/vim-vsnip-integ',
 		config = configs('vsnip'),
+	}
+
+	-- Fuzzy searching
+	use {
+		'nvim-telescope/telescope.nvim', branch = '0.1.x',
+		requires = { 'nvim-lua/plenary.nvim' }
 	}
 
 	-- Syntax highlighting
@@ -92,6 +95,7 @@ return require('packer').startup(function(use)
 	-- Themes
 	use {
 		{ 'arcticicestudio/nord-vim', config = configs('nord'), disable = true, },
+		{ 'rebelot/kanagawa.nvim', config = configs('kanagawa'), disable = true, },
 		{ 'morhetz/gruvbox', config = configs('gruvbox'), },
 	}
 end)

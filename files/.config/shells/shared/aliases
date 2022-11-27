@@ -41,6 +41,7 @@ alias virc="$EDITOR $DOTDIR/.config/nvim/init.lua"
 alias bwrc="$EDITOR $DOTDIR/.config/bspwm/bspwmrc"
 
 # Adding flags
+alias fd='fd --no-ignore --hidden'
 alias mv='mv -vi'
 alias rm='rm -vi'
 alias cp='cp -vi'

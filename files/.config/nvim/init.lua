@@ -125,6 +125,8 @@ logger = require("vlog").new {
 	opt.cmdwinheight = 10
 	-- Change the way command completion suggestions are displayed
 	opt.wildoptions = 'tagfile'
+	-- Change the maximum width of text
+	opt.textwidth = 120
 	-- Change the way lines that are too long is displayed
 	opt.wrap = true
 	opt.linebreak = true
@@ -175,7 +177,7 @@ logger = require("vlog").new {
 	-- Have 'Shift' + 'Deete' act as 'Delete'
 	keybind('', t'<S-Del>', '<Del>', opts.noremap)
 	-- Have 'Ctrl' + 'f' call fuzzyfind
-	keybind('', t'<C-f>', t':FZF<CR>', opts.noremap)
+	keybind('', t'<C-f>', t':Telescope find_files<CR>', opts.noremap)
 	-- Have '<C-R>' Resize the window to the default
 	keybind('', t'<C-r>', t'<C-w>=', opts.remap)
 	-- Have 'Space' act as the leader key
@@ -297,6 +299,9 @@ logger = require("vlog").new {
 	vim.g.loaded_netrw = 1
 	vim.g.loaded_netrwPlugin = 1
 	vim.g.loaded_netrwSettings = 1
+
+	-- I don't want to use the fzf plugin shipped in pacman
+	vim.g.loaded_fzf = 1
 
 -- Plugins and their configs are stored in 'lua/plugs'
 require('plugs')
