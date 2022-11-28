@@ -188,8 +188,6 @@ logger = require("vlog").new {
 	keybind('', t'<leader>g', t':ZenMode<CR>', opts.silent)
 	-- Have 'leader' + 'c' toggle the cursor column
 	keybind('', t'<leader>c', t':setlocal cursorcolumn!<CR>', opts.silent)
-	-- Have 'leader' + 'wg' go to my general wiki
-	keybind('', t'<leader>ww', t':VimwikiIndex<CR>', opts.silent)
 
 -- Insert, and Command-line modes
 
@@ -203,10 +201,6 @@ logger = require("vlog").new {
 	keybind('n', 'X', '"_X', opts.noremap)
 	-- Have 'Space' + 'Space' unhighlight my last search
 	keybind('n', t'<space><space>', t':noh<CR>', opts.both)
-	-- Have 'leader' + 'wh' convert only the current wiki
-	keybind('n', t'<Leader>wh', t':Vimwiki2HTML<CR>', opts.remap)
-	-- Have 'leader' + 'whh' convert all wikis to html
-	keybind('n', t'<Leader>whh', t':VimwikiAll2HTML<CR>', opts.remap)
 
 	-- Diagnostic keymappings
 	keybind('n', t'<leader>e', vim.diagnostic.open_float, opts.both)
