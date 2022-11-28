@@ -5,7 +5,7 @@ function M.setup()
 		ensure_installed = {
 			'lua', 'vim', 'bash', 'python', 'javascript', 'typescript', 'php', 'r',
 			'c', 'go', 'rust', 'java', 'kotlin', 'c_sharp',
-			'toml', 'query', 'markdown', 'html', 'css',
+			'toml', 'query', 'markdown', 'markdown_inline', 'html', 'css',
 			'comment', 'regex'
 		},
 
