@@ -21,6 +21,12 @@ function M.setup()
 			vim.cmd([[Limelight!]])
 		end,
 	}
+
+	-- Set keybindings
+	local opts = require('keybindings.utils').opts
+
+	-- Have 'leader' + 'g' toggle zen-mode
+	vim.keymap.set('', '<leader>g', ':ZenMode<CR>', opts.silent)
 end
 
 return M

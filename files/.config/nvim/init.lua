@@ -174,18 +174,14 @@ logger = require("vlog").new {
 	keybind('', '<C-j>', '<C-w>j', opts.noremap)
 	keybind('', '<C-k>', '<C-w>k', opts.noremap)
 	keybind('', '<C-l>', '<C-w>l', opts.noremap)
-	-- Have 'Shift' + 'Deete' act as 'Delete'
+	-- Have 'Shift' + 'Delete' act as 'Delete'
 	keybind('', t'<S-Del>', '<Del>', opts.noremap)
-	-- Have 'Ctrl' + 'f' call fuzzyfind
-	keybind('', t'<C-f>', t':Telescope find_files<CR>', opts.noremap)
 	-- Have '<C-R>' Resize the window to the default
 	keybind('', t'<C-r>', t'<C-w>=', opts.remap)
 	-- Have 'Space' act as the leader key
 	keybind('', t'<Space>', t'<leader>', opts.silent)
 	-- Have 'leader' + 'o' spell-check the current document
 	keybind('', '<leader>o', t':setlocal spell! spelllang=en_us,en_gb<CR>', opts.silent)
-	-- Have 'leader' + 'g' toggle Goyo
-	keybind('', t'<leader>g', t':ZenMode<CR>', opts.silent)
 	-- Have 'leader' + 'c' toggle the cursor column
 	keybind('', t'<leader>c', t':setlocal cursorcolumn!<CR>', opts.silent)
 

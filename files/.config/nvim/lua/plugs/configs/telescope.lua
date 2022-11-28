@@ -40,6 +40,13 @@ function M.setup()
 			},
 		},
 	})
+
+	-- Set keybindings
+	local opts = require('keybindings.utils').opts
+
+	-- Have 'Ctrl' + 'ff' call fuzzyfind for files
+	vim.keymap.set('', '<C-f>f', ':Telescope find_files<CR>', opts.noremap)
+	vim.keymap.set('', '<C-f><C-f>', ':Telescope find_files<CR>', opts.noremap)
 end
 
 return M
