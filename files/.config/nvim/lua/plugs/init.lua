@@ -67,7 +67,8 @@ return require('packer').startup(function(use)
 	-- Fuzzy searching
 	use {
 		'nvim-telescope/telescope.nvim', branch = '0.1.x',
-		requires = { 'nvim-lua/plenary.nvim' }
+		requires = { 'nvim-lua/plenary.nvim' },
+		config = configs('telescope'),
 	}
 
 	-- Syntax highlighting
