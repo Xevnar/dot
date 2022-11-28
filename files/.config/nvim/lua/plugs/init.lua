@@ -13,9 +13,15 @@ return require('packer').startup(function(use)
 
 	-- Productivity
 	use {
-		"folke/zen-mode.nvim",
+		'folke/zen-mode.nvim',
 		requires = 'junegunn/limelight.vim',
 		config = configs('zen-mode'),
+	}
+
+	use {
+		'lervag/wiki.vim',
+		requires = 'folke/zen-mode.nvim',
+		config = configs('wiki'),
 	}
 
 	-- git Integration
