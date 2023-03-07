@@ -27,27 +27,15 @@ bspc config pointer_action1 move
 bspc config pointer_action3 resize_side
 bspc config pointer_action3 resize_corner
 
-# Launch startup applications
-startup_script
-
-# Moniters
-isMonitorConnected -1 && bspc monitor "${PRIMARY_MONITOR%%:*}"   -d 0 1 2 3 4 5 6 7 8 9
-isMonitorConnected -2 && bspc monitor "${SECONDARY_MONITOR%%:*}" -d 0 1 2 3 4 5 6 7 8 9
-isMonitorConnected -3 && bspc monitor "${TERTIARY_MONITOR%%:*}"  -d 0 1 2 3 4 5 6 7 8 9
-
 # Window Rules
 bspc rule -r "*"
 
-scratchpad_offset='468+208'
 bspc rule -a 'Scratchpad:*' sticky=on
 bspc rule -a 'Scratchpad:*' state=floating
 bspc rule -a 'Scratchpad:*' locked=on
 bspc rule -a 'Scratchpad:primary' monitor="${PRIMARY_MONITOR%%:*}"
-bspc rule -a 'Scratchpad:primary' rectangle=980x660+"$(addxy "$(getMonitorPosition -1)" "$scratchpad_offset")"
 bspc rule -a 'Scratchpad:secondary' monitor="${SECONDARY_MONITOR%%:*}"
-bspc rule -a 'Scratchpad:secondary' rectangle=980x660+"$(addxy "$(getMonitorPosition -2)" "$scratchpad_offset")"
 bspc rule -a 'Scratchpad:tertiary' monitor="${TERTIARY_MONITOR%%:*}"
-bspc rule -a 'Scratchpad:secondary' rectangle=980x660+"$(addxy "$(getMonitorPosition -2)" "$scratchpad_offset")"
 
 bspc rule -a 'Brave-browser' desktop='^1'
 bspc rule -a 'Brave-browser' locked=on
@@ -80,5 +68,20 @@ bspc rule -a 'YouTube Music' state=floating
 ## Allow bspwm to Swallow
 #pidof bspswallow || bspswallow &
 
-# Default Desktop
-bspc desktop -f focused:'^2'
+# Monitor related shit must be delayed for some god forsaken reason on initial boot
+# I blame nvidia
+sleep 2
+
+# Launch startup applications
+startup_script
+
+# Moniters
+isMonitorConnected -1 && bspc monitor "${PRIMARY_MONITOR%%:*}"   -d 0 1 2 3 4 5 6 7 8 9
+isMonitorConnected -2 && bspc monitor "${SECONDARY_MONITOR%%:*}" -d 0 1 2 3 4 5 6 7 8 9
+isMonitorConnected -3 && bspc monitor "${TERTIARY_MONITOR%%:*}"  -d 0 1 2 3 4 5 6 7 8 9
+
+scratchpad_size='980x670'
+scratchpad_offset='468+208'
+bspc rule -a 'Scratchpad:primary' rectangle="$scratchpad_size+$(addxy "$(getMonitorPosition -1)" "$scratchpad_offset")"
+bspc rule -a 'Scratchpad:secondary' rectangle="$scratchpad_size+$(addxy "$(getMonitorPosition -2)" "$scratchpad_offset")"
+bspc rule -a 'Scratchpad:tertiary' rectangle="$scratchpad_size+$(addxy "$(getMonitorPosition -3)" "$scratchpad_offset")"
