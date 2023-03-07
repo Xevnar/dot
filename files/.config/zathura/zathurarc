@@ -1,3 +1,6 @@
+# Turn off sandbox
+set sandbox none
+
 # Copy to main clipboard instead of selection
 set selection-clipboard clipboard
 
