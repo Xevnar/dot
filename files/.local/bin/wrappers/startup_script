@@ -14,7 +14,7 @@ setkeyboard
 setsid --fork sxhkd > /dev/null 2>&1
 
 # Monitor setup should be delayed so that all monitors can be detected first
-setmonitors; setmonitors # Should be called twice so that monitor setup is correct
+setmonitors; # setmonitors # Should be called twice so that monitor setup is correct
 setwallpaper
 
 # Launch my taskbars and the tray apps
